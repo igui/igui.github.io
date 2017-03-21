@@ -1,0 +1,16 @@
+{% load staticfiles %}
+{% load static %}
+{% load compile_static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ignacio Avas - Developer</title>
+  <link rel="stylesheet" href="{% static "css/styles.scss"|compile %}" />
+</head>
+<body>
+
+{% block content %}{% endblock %}
+
+</body>
+</html>
