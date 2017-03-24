@@ -24,6 +24,7 @@ SECRET_KEY = 'i+acxn5(akgsn!sr4^qgf(^m&*@+g1@u^t@=8s@axc41ml*f=s'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+COMPRESS_ENABLED = True
 
 # Application definition
 
@@ -35,7 +36,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'livereload',
     'django.contrib.staticfiles',
-    'static_precompiler',
+    'compressor',
+    'compressor_toolkit',
     'app'
 )
 
@@ -126,6 +128,7 @@ ALLOWED_HOSTS = ['*']
 
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
+COMPRESS_ROOT = PROJECT_ROOT
 
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
@@ -139,6 +142,9 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    # other finders..
-    'static_precompiler.finders.StaticPrecompilerFinder',
+    'compressor.finders.CompressorFinder'
+)
+
+COMPRESS_PRECOMPILERS = (
+    ('text/x-scss', 'compressor_toolkit.precompilers.SCSSCompiler'),
 )

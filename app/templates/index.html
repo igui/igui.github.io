@@ -26,19 +26,21 @@
 			</p>
 		</div>
 
-		<img src="{% static "images/him.jpg" %}" class="profile-him">
+		<img src="{% static "images/him.png" %}" class="profile-him">
 
 		<div class="profile-details">
 			<h3>Details</h3>
 
-			<span>Name</span>
-			<span>Ignacio Avas</span>
+			<dl>
+			<dt>Name</dt>
+			<dd>Ignacio Avas</dd>
 
-			<span>Age</span>
-			<span>{{ age|escape }}</span>
+			<dt>Age</dt>
+			<dd>{{ age|escape }}</dd>
 
-			<span>Location</span>
-			<span>Montevideo, Uruguay, South America, Earth</span>
+			<dt>Location</dt>
+			<dd>Montevideo, Uruguay, South America, Earth</dd>
+			</dl>
 		</div>
 </section>
 
