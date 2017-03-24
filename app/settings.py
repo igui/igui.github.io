@@ -36,8 +36,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'livereload',
     'django.contrib.staticfiles',
-    'compressor',
-    'compressor_toolkit',
+    'compressor',   
     'app'
 )
 
@@ -128,7 +127,6 @@ ALLOWED_HOSTS = ['*']
 
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
-COMPRESS_ROOT = PROJECT_ROOT
 
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
@@ -145,6 +143,12 @@ STATICFILES_FINDERS = (
     'compressor.finders.CompressorFinder'
 )
 
-COMPRESS_PRECOMPILERS = (
-    ('text/x-scss', 'compressor_toolkit.precompilers.SCSSCompiler'),
+COMPRESS_CSS_FILTERS = (
+    # ...
+    'autoprefixer.AutoprefixerFilter',
 )
+
+COMPRESS_PRECOMPILERS = (
+    ('text/x-sass', 'sass {infile} {outfile}'),
+    ('text/x-scss', 'sass --scss {infile} {outfile}')
+ )

@@ -6,4 +6,3 @@ whitenoise==2.0.6
 python-dateutil==2.6.0
 django-livereload-server==0.2.3
 django-compressor==2.1.1
-django-compressor-toolkit==0.6.0
