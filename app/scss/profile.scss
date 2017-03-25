@@ -6,13 +6,18 @@
 	margin-left: auto;
 	margin-right: auto;
 	max-width: 800px;
-	padding-left: 20px;
-	padding-right: 20px;
+	padding-left: 10px;
+	padding-right: 10px;
 	padding-top: 20px;
 }
 
 .profile-container {
 	display: flex;
+
+	& > * {
+		margin-left: 5px;
+		margin-right: 5px;
+	}
 }
 
 .profile-about {
@@ -22,7 +27,7 @@
 .profile-him {
 	align-self: center;
 
-	@media only screen and (max-width : 720px) {
+	@media only screen and (max-width : $screen-medium) {
 		display: none;
 	}
 }
@@ -31,3 +36,6 @@
 	flex-grow: 1;	
 }
 
+.profile-details-info {
+	margin-left: 0;
+}

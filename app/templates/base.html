@@ -1,13 +1,10 @@
 {% load staticfiles %}
-{% load compress %}
 
 <!DOCTYPE html>
 <html>
 <head>
   <title>Ignacio Avas - Developer</title>
-  	{% compress css %}
-  		<link type="text/x-scss" href="{% static 'css/styles.scss' %}" rel="stylesheet">
-	{% endcompress %}
+  <link type="text/css" href="{% static 'css/styles.css' %}" rel="stylesheet">
 </head>
 <body>
 
