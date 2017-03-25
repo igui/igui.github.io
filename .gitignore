@@ -5,3 +5,4 @@ staticfiles
 db.sqlite3
 .sass-cache
 app/CACHE/
+node_modules/
