@@ -1,0 +1,28 @@
+.profile {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 800px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.profile-container {
+	display: flex;
+}
+
+.profile-about {
+	flex-grow: 2;	
+}
+
+.profile-him {
+	align-self: center;
+
+	@media only screen and (max-width : 720px) {
+		display: none;
+	}
+}
+
+.profile-details {
+	flex-grow: 1;	
+}
+

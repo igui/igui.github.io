@@ -1,0 +1,57 @@
+.jumbotron {
+    align-items: center;
+    color: $bg-color;
+    display: flex;
+    justify-content: center;
+    min-height: 100%;
+}
+
+.jumbotron-background {
+	background-color: $secondary-bg-color;
+    background-position: center center;
+    background-size: cover;
+    height: 100%;
+    position: fixed;
+    width: 100%;
+    z-index: -1;
+}
+
+.jumbotron-header {
+	flex-grow: 0;
+	font-size: 3em;
+	margin-bottom: 0.1em;
+	text-align: center;
+	text-transform: uppercase;
+	width: 100%;
+}
+
+.jumbotron-container {
+	display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.jumbotron-buttons {
+	display: flex;
+	justify-content: space-around;
+	margin-left: -5px;
+	margin-right: -5px;
+}
+
+%white-button {
+	border: 2px solid #fff;	
+	color: #fff;
+	margin-left: 5px;
+	margin-right: 5px;
+	padding: 10px;	
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+.contact-button,
+.resume-button {
+	@extend %white-button;
+	min-width: 100px;
+}
