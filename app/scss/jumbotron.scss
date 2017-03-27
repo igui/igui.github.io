@@ -23,6 +23,10 @@
 	text-align: center;
 	text-transform: uppercase;
 	width: 100%;
+
+	@media only screen and (min-width : $screen-large) {
+		font-size: 5vw;
+	}
 }
 
 .jumbotron-container {

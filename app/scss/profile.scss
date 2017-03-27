@@ -17,29 +17,91 @@
 
 .profile-container {
 	display: flex;
+	flex-flow: wrap;
+	padding-top: 20px;
 
 	& > * {
-		margin-left: 5px;
-		margin-right: 5px;
+		margin-left: 10px;
+		margin-right: 10px;
+		flex-basis: 100%;
+		display: block;
+		flex-grow: 1;
+		flex-shrink: 1;
+
+		@media only screen and (min-width : $screen-medium) {
+			flex-basis: 0;
+		}
+	}
+
+	@media only screen and (min-width : $screen-medium) {
+		padding-top: 0;
+	}
+
+	h3 {
+		text-align: center;
+
+		@media only screen and (min-width : $screen-medium) {
+			text-align: inherit;
+		}
 	}
 }
 
 .profile-about {
-	flex-grow: 2;	
+	@media only screen and (min-width : $screen-medium) {
+		order: 1;
+	}
 }
 
 .profile-him {
 	align-self: center;
 
-	@media only screen and (max-width : $screen-medium) {
-		display: none;
+	@media only screen and (min-width : $screen-medium) {
+		flex-basis: 200px;
+		flex-grow: 0;
+		order: 2;
+	}
+
+	& > img {
+		margin-left: auto;
+		margin-right: auto;
+		display: block;
+		max-width: 100%;
 	}
 }
 
 .profile-details {
-	flex-grow: 1;	
+	@media only screen and (min-width : $screen-medium) {
+		order: 3;
+	}
+}
+
+.profile-details-head {
+	font-weight: bold;
 }
 
 .profile-details-info {
 	margin-left: 0;
+
+	@media only screen and (min-width : $screen-medium) {
+		margin-top: 10px;
+	}
+}
+
+.profile-details-facts {
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+
+	@media only screen and (min-width : $screen-medium) {
+		display: inherit;
+	}
+}
+
+.profile-details-fact + .profile-details-fact {
+	margin-left: 10px;
+
+	@media only screen and (min-width : $screen-medium) {
+		margin-left: 0;	
+		margin-top: 10px;
+	}
 }

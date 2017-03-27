@@ -7,27 +7,35 @@
 	<hr/>
 	
 	<div class="profile-container">
+		<div class="profile-him">
+			<img src="{% static "images/him.png" %}">
+		</div>
+
 		<div class="profile-about">
 			<h3>About me</h3>	
 			<p>
-				Aged {{ age|escape }} and based in Montevideo, Uruguay, I work as full-time developer. I have a Computer Engineering degree since 2015. I specialize in system architecture and design, Python programming and web developing, having broad knowledge of many languages from the old 8086 assembler to ASP .NET. I have a passion for learning new programming paradigms, languages, technologies and new ways to resolve problems. I made some projects: some personal (like this website) and other related to my work or academical activites. You can see them here. If you want to hire or simply send a message you can reach me on the contact section. I promise to write back as soon as I can.
+				I work as full-time developer. I have a Computer Engineering degree since 2015. I specialize in system architecture and design, Python programming and web developing, having broad knowledge of many languages from the old 8086 assembler to ASP .NET. I have a passion for learning new programming paradigms, languages, technologies and new ways to resolve problems.
 			</p>
 		</div>
-
-		<img src="{% static "images/him.png" %}" class="profile-him">
 
 		<div class="profile-details">
 			<h3>Details</h3>
 
-			<dl>
-			<dt>Name</dt>
-			<dd class="profile-details-info">Ignacio Avas</dd>
+			<dl class="profile-details-facts">
+				<div class="profile-details-fact">
+					<dt class="profile-details-head">Name:</dt>
+					<dd class="profile-details-info">Ignacio Avas</dd>
+				</div>
 
-			<dt>Age</dt>
-			<dd class="profile-details-info">{{ age|escape }}</dd>
+				<div class="profile-details-fact">
+					<dt class="profile-details-head">Age:</dt>
+					<dd class="profile-details-info">{{ age|escape }}</dd>
+				</div>
 
-			<dt>Location</dt>
-			<dd class="profile-details-info">Montevideo, Uruguay, South America, Earth</dd>
+				<div class="profile-details-fact">
+					<dt class="profile-details-head">Location:</dt>
+					<dd class="profile-details-info">Uruguay, South America, Earth</dd>
+				</div>
 			</dl>
 		</div>
 	</div>
