@@ -9,10 +9,10 @@
 .profile-content {
 	margin-left: auto;
 	margin-right: auto;
-	max-width: 800px;
+	max-width: $content-width;
 	padding-left: 10px;
 	padding-right: 10px;
-	padding-top: 20px;
+	padding-top: 40px;
 }
 
 .profile-container {
@@ -70,8 +70,10 @@
 }
 
 .profile-details {
+	padding-bottom: 40px;
 	@media only screen and (min-width : $screen-medium) {
 		order: 3;
+		padding-bottom: inherit;
 	}
 }
 
@@ -81,10 +83,6 @@
 
 .profile-details-info {
 	margin-left: 0;
-
-	@media only screen and (min-width : $screen-medium) {
-		margin-top: 10px;
-	}
 }
 
 .profile-details-facts {
@@ -97,11 +95,23 @@
 	}
 }
 
-.profile-details-fact + .profile-details-fact {
-	margin-left: 10px;
+.profile-details-fact {
+	flex-basis: 100%;
 
-	@media only screen and (min-width : $screen-medium) {
-		margin-left: 0;	
+	@media only screen and (min-width : $screen-small) {
+		flex-basis: inherit;
+	}
+
+	& + .profile-details-fact {
+		margin-left: 0;
 		margin-top: 10px;
+
+		@media only screen and (min-width : $screen-small) {
+			margin-top: 0;
+		}
+
+		@media only screen and (min-width : $screen-medium) {
+			margin-top: inherit;
+		}
 	}
 }

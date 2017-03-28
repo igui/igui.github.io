@@ -1,0 +1,62 @@
+.contact {
+	background-color: $secondary-bg-color;
+	color: $bg-color;
+
+	h2 {
+		color: $bg-color;
+	}
+
+	padding-bottom: 100px;
+}
+
+.contact-content {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: $content-width;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 20px;
+}
+
+.contact-title {
+	text-align: center;
+}
+
+.contact-item-icon {
+	width: 20px;
+	height: 20px;
+	background-color: #efefef;
+	padding: 5px;
+	border-radius: 5px;
+	margin-right: 10px;
+}
+
+.contact-items {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: space-around;
+
+	@media only screen and (min-width : $screen-small) {
+		flex-direction: row;
+	}
+}
+
+.contact-item {
+	align-items: center;
+	display: flex;
+	flex-basis: 0;
+	flex-shrink: 1;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	padding-left: 5px;
+	padding-right: 5px;
+
+	@media only screen and (min-width : $screen-small) {
+		flex-basis: 40%;
+	}
+}
+
+.contact-item-link {
+	white-space: nowrap;
+}
