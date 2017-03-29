@@ -1,5 +1,6 @@
 .profile {
 	background-color: $tertiary-bg-color;
+	padding-bottom: 40px;
 }
 
 .profile-title, .profile-tagline {
@@ -83,6 +84,10 @@
 
 .profile-details-info {
 	margin-left: 0;
+
+	@media only screen and (min-width : $screen-medium) {
+		margin-top: 10px;
+	}
 }
 
 .profile-details-facts {
