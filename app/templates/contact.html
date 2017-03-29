@@ -2,33 +2,29 @@
 
 <section class="contact">
 	<div class="contact-content">
-		<h2 class="contact-title">Contact</h2>
+		<h2 class="contact-title"><a id="contact"></a>Contact</h2>
 		<hr>
 
 		<div class="contact-items">
 			<div class="contact-item">
-				<img src="{% static 'images/twitter.svg' %}" class="contact-item-icon">
+				<img src="{% static 'images/twitter.svg' %}" alt="Twitter icon" class="contact-item-icon">
 				<a href="https://twitter.com/ignacioavas" class="contact-item-link">twitter.com/ignacioavas</a>
 			</div>
 
 			<div class="contact-item">
-				<img src="{% static 'images/github.svg' %}" class="contact-item-icon">
+				<img src="{% static 'images/github.svg' %}" alt="Github icon" class="contact-item-icon">
 				<a href="https://github.com/igui" class="contact-item-link">github.com/igui</a>
 			</div>
 
 			<div class="contact-item">
-				<img src="{% static 'images/linkedin.svg' %}" class="contact-item-icon">
+				<img src="{% static 'images/linkedin.svg' %}" alt="LinkedIn icon" class="contact-item-icon">
 				<a href="https://www.linkedin.com/in/iavas/" class="contact-item-link">linkedin.com/in/iavas</a>
 			</div>
 
 			<div class="contact-item">
-				<img src="{% static 'images/at.svg' %}" class="contact-item-icon">
+				<img src="{% static 'images/at.svg' %}" class="contact-item-icon" alt="at sign">
 				<a href="mailto:igui.noreply@gmail.com" id="theemail" class="contact-item-link">
 				Send an Email</a>
-				<script type="text/javascript">
-					var a = document.querySelector('#theemail');
-					a.value = a.innerHTML = [68,80,79,85,66,68,85,33,74,72,79,66,68,74,80,66,87,66,84,15,68,80,78].map(function(i){ return String.fromCharCode(i+31) }).join('');
-				</script>
 			</div>
 		</div>
 	</div>
