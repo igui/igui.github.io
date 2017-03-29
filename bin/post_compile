@@ -1,4 +1,4 @@
 #!/bin/bash
 export PATH=/app/.heroku/node/bin:$PATH
-./manage.py collectstatic --noinput
 gulp sass
+./manage.py collectstatic --noinput
