@@ -4,15 +4,14 @@
     display: flex;
     justify-content: center;
     min-height: 100%;
+    overflow: hidden;
     position: relative;
 }
 
 .jumbotron-background {
-	background-image: url('/static/images/jumbotron.jpg');
 	background-color: $secondary-bg-color;
-    background-position: center center;
-    background-size: cover;
     height: 100%;
+    overflow: hidden;
     position: fixed;
     width: 100%;
     z-index: -1;
@@ -35,8 +34,15 @@
 	position: absolute;
 	width: 100%;
 	height: 100%;
-	z-index: -1;
-	overflow: hidden;	
+	top: 0;
+	left: 0;
+}
+
+.jumbotron-video-fallback {
+	background-color: $secondary-bg-color;
+	position: absolute;
+	top: 0;
+	left: 0;
 }
 
 .jumbotron-container {
@@ -44,6 +50,7 @@
     align-items: center;
     flex-wrap: wrap;
     justify-content: center;
+    z-index: 1;
 }
 
 .jumbotron-buttons {

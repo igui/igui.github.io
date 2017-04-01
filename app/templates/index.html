@@ -4,16 +4,20 @@
 
 {% block content %}
 
-<div class="jumbotron-background"></div>
+<div class="jumbotron-background">
+    <img class="jumbotron-video-fallback" src="{% static 'images/jumbotron.jpg' %}"
+    		id="jumbotron-video-fallback"
+    		alt="Out of focus monitor closeup showing a text editor">
 
-<section class="jumbotron">
 	<div class="jumbotron-video-container">
         <video autoplay loop id="jumbotron-video">
             <source src="{% static 'video/head.mp4' %}" type="video/mp4" />
             <source src="{% static 'video/head.webm' %}" type="video/webm" />
-        </video>
+        </video> 
     </div>
+</div>
 
+<section class="jumbotron">
 	<div class="jumbotron-container">
 		<h1 class="jumbotron-header">Developer.</h1>
 		<div class="jumbotron-buttons">

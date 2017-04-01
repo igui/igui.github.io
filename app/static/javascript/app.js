@@ -9,9 +9,9 @@
 		var videoHeight = 1080;
 		var videoAspectRatio = videoWidth/videoHeight;
 
-		var container = document.querySelector('.jumbotron-video-container');
+		var imgFallback = document.querySelector('#jumbotron-video-fallback');
 		var video = document.querySelector('#jumbotron-video');
-		if(!video || !container)
+		if(!video || !imgFallback)
 		{
 			console.warn('resizeVideo: no video or container');
 			return;
@@ -19,20 +19,20 @@
 
 		if(window.innerWidth / window.innerHeight > videoAspectRatio)
 		{
-			video.width = window.innerWidth;
-			video.height = window.innerWidth / videoAspectRatio;
+			imgFallback.width = video.width = window.innerWidth;
+			imgFallback.height = video.height = window.innerWidth / videoAspectRatio;
 		}
 		else
 		{
-			video.height = window.innerHeight;
-			video.width = window.innerHeight * videoAspectRatio;
+			imgFallback.height = video.height = window.innerHeight;
+			imgFallback.width = video.width = window.innerHeight * videoAspectRatio;
 		}
 
 		var horizontalMargin = (window.innerWidth - video.width) / 2;
 		var verticalMargin = (window.innerHeight - video.height) / 2;
 
-		video.style.marginLeft = horizontalMargin + 'px';
-		video.style.marginTop = verticalMargin + 'px';
+		imgFallback.style.marginLeft = video.style.marginLeft = horizontalMargin + 'px';
+		imgFallback.style.marginTop = video.style.marginTop = verticalMargin + 'px';
 	}
 
 	function fixEmail()
@@ -53,25 +53,9 @@
 		anchor.href = 'mailto:' + anchor.innerHTML;
 	}
 
-	document.onreadystatechange = function(ev)
-	{
-	    if (document.readyState === "complete")
-	    {
-	    	resizeVideo.apply(this, arguments);
-	    }
-	};
-
-	window.onload = function()
-	{
-		try
-		{
-			fixEmail.apply(this, arguments);
-		}
-		finally
-		{
-			resizeVideo.apply(this, arguments);
-		}
-	};
+	document.addEventListener("DOMContentLoaded", resizeVideo);
+	document.addEventListener("DOMContentLoaded", fixEmail);
+	document.addEventListener("load", resizeVideo);
 
 	window.onresize = resizeVideo; 
 })();
