@@ -31,12 +31,35 @@ hr {
 a {
 	text-decoration: none;
 	color: inherit;
+	opacity: 0.85;
+	transition: opacity 0.15s 0s;
+
+	&:hover, &:active {
+		opacity: 1;
+	}
 }
 
 .content {
 	background-color: $bg-color;
 }
 
+%section-content {
+	color: $copy-color;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: $content-width;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 40px;
+	padding-bottom: 40px;
+}
+
+%section-title {
+	text-align: center;
+}
+
+
 @import "jumbotron";
 @import "profile";
+@import "experiences";
 @import "contact";
