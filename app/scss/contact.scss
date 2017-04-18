@@ -16,12 +16,12 @@
 }
 
 .contact-item-icon {
-	width: 20px;
-	height: 20px;
+	width: $medium-spacing;
+	height: $medium-spacing;
 	background-color: #efefef;
-	padding: 5px;
-	border-radius: 5px;
-	margin-right: 10px;
+	padding: $xsmall-spacing;
+	border-radius: $xsmall-spacing;
+	margin-right:  $small-spacing;
 }
 
 .contact-item-at-sign {
@@ -47,10 +47,10 @@
 	display: flex;
 	flex-basis: 0;
 	flex-shrink: 1;
-	padding-bottom: 20px;
-	padding-top: 20px;
-	padding-left: 5px;
-	padding-right: 5px;
+	padding-bottom: $medium-spacing;
+	padding-top: $medium-spacing;
+	padding-left: $xsmall-spacing;
+	padding-right: $xsmall-spacing;
 
 	@media only screen and (min-width : $screen-small) {
 		flex-basis: 40%;

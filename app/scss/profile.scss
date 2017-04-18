@@ -6,6 +6,14 @@
 	@extend %section-title;
 }
 
+.profile-tagline {
+	display: none;
+
+	@media only screen and (min-width : $screen-medium) {
+		display: block;
+	}
+}
+
 .profile-content {
 	@extend %section-content;
 }
@@ -13,11 +21,11 @@
 .profile-container {
 	display: flex;
 	flex-flow: wrap;
-	padding-top: 20px;
+	padding-top: $medium-spacing;
 
 	& > * {
-		margin-left: 10px;
-		margin-right: 10px;
+		margin-left: $small-spacing;
+		margin-right: $small-spacing;
 		flex-basis: 100%;
 		display: block;
 		flex-grow: 1;
@@ -49,8 +57,10 @@
 
 .profile-him {
 	align-self: center;
+	display: none;
 
 	@media only screen and (min-width : $screen-medium) {
+		display: block;
 		flex-basis: 200px;
 		flex-grow: 0;
 		order: 2;
@@ -66,10 +76,8 @@
 }
 
 .profile-details {
-	padding-bottom: 40px;
 	@media only screen and (min-width : $screen-medium) {
 		order: 3;
-		padding-bottom: inherit;
 	}
 }
 
@@ -81,7 +89,7 @@
 	margin-left: 0;
 
 	@media only screen and (min-width : $screen-medium) {
-		margin-top: 10px;
+		margin-top: $small-spacing;
 	}
 }
 
@@ -104,7 +112,7 @@
 
 	& + .profile-details-fact {
 		margin-left: 0;
-		margin-top: 10px;
+		margin-top: $small-spacing;
 
 		@media only screen and (min-width : $screen-small) {
 			margin-top: 0;

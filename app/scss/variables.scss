@@ -3,6 +3,7 @@ $bg-color: #fff;
 $secondary-bg-color: #222;
 $tertiary-bg-color: #e6e6e6;
 $copy-color: #333;
+$copy-secondary-color: #666;
 
 // screen sizes
 $screen-minimum: 320px;
@@ -10,6 +11,13 @@ $screen-small: 420px;
 $screen-medium: 720px;
 $screen-large: 1024px;
 
+// button
+$big-button-width: 100px;
 
 // sizing
 $content-width: 900px;
+$xsmall-spacing: 5px;
+$small-spacing: 10px;
+$medium-spacing: 20px;
+$large-spacing: 30px;
+$xlarge-spacing: 40px;

@@ -1,57 +1,32 @@
+{% load static %}
+
 <section class="experiences">
 	<div class="experiences-content">
-		<h2 class="experiences-title"><a id="experiences"></a>Experiences</h2>
-		<hr>
+		<header>
+			<h2 class="experiences-title"><a id="experiences"></a>Experiences</h2>
+			<blockquote>
+				Design and programming are human activities; forget that and all is lost
+				<br>
+				<span class="quote-author">Bjarne Stroustrup</span>
+			</blockquote>
+			<hr>
+		</header>
 
-		<section class="experience-graph">
+		<section class="experience-timeline-horizontal-image">
+			{{ timeline|safe }}
+		</section>
 
-				<div class="experience-timeline-horizontal">
-						<div class="experience-timeline-point">
-							<time>1987</time>
-							<div class="experience-timeline-detail">Hello World</div>
-							<div class="experience-timeline-badge" id="experience-timeline-1987"></div>
-						</div>
-						<div class="experience-timeline-point">
-							<time>2008</time>
-							<div class="experience-timeline-detail">Hello World</div>
-							<div class="experience-timeline-badge" id="experience-timeline-2008"></div>
-						</div>
-						<div class="experience-timeline-point">
-							<time>2009</time>
-							<div class="experience-timeline-detail">Hello World</div>
-							<div class="experience-timeline-badge" id="experience-timeline-2009"></div>
-						</div>
-						<div class="experience-timeline-point">
-							<time>2010</time>
-							<div class="experience-timeline-detail">Hello World</div>
-							<div class="experience-timeline-badge" id="experience-timeline-2010"></div>
-						</div>
-						<div class="experience-timeline-point">
-							<time>2011</time>
-							<div class="experience-timeline-detail">Hello World</div>
-							<div class="experience-timeline-badge" id="experience-timeline-2011"></div>
-						</div>
-						<div class="experience-timeline-point">
-							<time>2012</time>
-							<div class="experience-timeline-detail">Hello World</div>
-							<div class="experience-timeline-badge" id="experience-timeline-2012"></div>
-						</div>
-						<div class="experience-timeline-point">
-							<time>2013</time>
-							<div class="experience-timeline-detail">Hello World</div>
-							<div class="experience-timeline-badge" id="experience-timeline-2013"></div>
-						</div>
-						<div class="experience-timeline-point">
-							<time>2014</time>
-							<div class="experience-timeline-detail">Hello World</div>
-							<div class="experience-timeline-badge" id="experience-timeline-2014"></div>
-						</div>
-						<div class="experience-timeline-point">
-							<time>2017</time>
-							<div class="experience-timeline-detail">Hello World</div>
-							<div class="experience-timeline-badge" id="experience-timeline-2017"></div>
-						</div>
+		<section class="experience-timeline-education">
+			<h3>Education</h3>
+
+			<div class="experience-entry">
+				<div class="experience-entry-title">University of Republic</div>
+				<div class="experience-entry-subtitle">Computing Engineering</div>
+				<time class="experience-entry-timeline">2006 - 2015</time>
+				<div class="experience-entry-details">
+					In sed euismod tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam et augue id nisl posuere posuere eget ut augue. Integer fermentum mauris a augue hendrerit, at finibus ligula porttitor. Vestibulum augue ligula, tempus id enim et, sollicitudin dictum diam. Aenean scelerisque quam feugiat porttitor luctus. Integer nec purus tellus. Vestibulum ex felis, viverra quis massa vel, vehicula vestibulum dolor. 
 				</div>
+			</div>
 		</section>
 	</div>
 </section>
