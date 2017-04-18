@@ -38,7 +38,7 @@ a {
 	text-decoration: none;
 	color: inherit;
 	opacity: 0.85;
-	transition: opacity 0.15s 0s;
+	transition: opacity $animation-delay-fast 0s;
 
 	&:hover, &:active {
 		opacity: 1;

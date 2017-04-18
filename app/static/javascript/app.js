@@ -3,8 +3,6 @@
 	'use strict';
 	function resizeVideo(ev)
 	{
-		console.log('resizeVideo', ev);
-		
 		var videoWidth = 1920;
 		var videoHeight = 1080;
 		var videoAspectRatio = videoWidth/videoHeight;
@@ -53,9 +51,20 @@
 		anchor.href = 'mailto:' + anchor.innerHTML;
 	}
 
+	function showJumbotronHeader()
+	{
+		var jumbotronHeader = document.querySelector('#jumbotron-header');
+		if(!jumbotronHeader)
+		{
+			console.warn('showJumbotronHeader no element');
+			return;
+		}
+		jumbotronHeader.className += jumbotronHeader.className ? ' shown' : 'shown';
+	}
+
 	document.addEventListener("DOMContentLoaded", resizeVideo);
 	document.addEventListener("DOMContentLoaded", fixEmail);
-	document.addEventListener("load", resizeVideo);
-
-	window.onresize = resizeVideo; 
+	window.addEventListener("load", resizeVideo);
+	window.addEventListener("load", showJumbotronHeader);
+	window.addEventListener("resize", resizeVideo);
 })();

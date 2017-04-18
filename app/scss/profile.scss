@@ -49,6 +49,17 @@
 
 .profile-him {
 	align-self: center;
+	position: relative;
+	min-height: 200px;
+
+	&:hover {
+		.profile-him-front  {
+			transform: rotateY(180deg);
+		}
+		.profile-him-back  {
+			transform: rotateY(0);
+		}
+	}
 
 	@media only screen and (min-width : $screen-medium) {
 		flex-basis: 200px;
@@ -57,16 +68,31 @@
 	}
 
 	& > img {
-		margin-left: auto;
-		margin-right: auto;
 		display: block;
-		max-width: 50%;
+		max-width: 200px;
+		max-height: 200px;
 		border-radius: 100%;
+		position: absolute;
+		top: 0;
+		left: calc(50% - 100px);
+		transition: transform $animation-delay-slow 0s;
+
 
 		@media only screen and (min-width : $screen-medium) {
 			max-width: 100%;
+			left: 0;
 		}
 	}
+}
+
+.profile-him-front {
+	backface-visibility: hidden;
+}
+
+
+.profile-him-back {
+	transform: rotateY(180deg);
+	display: none;
 }
 
 .profile-details {
