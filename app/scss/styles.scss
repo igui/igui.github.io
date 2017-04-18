@@ -72,8 +72,13 @@ blockquote {
 	max-width: $content-width;
 	padding-left: $small-spacing;
 	padding-right: $small-spacing;
-	padding-top: $xlarge-spacing;
-	padding-bottom: $xlarge-spacing;
+	padding-top: $small-spacing;
+	padding-bottom: $small-spacing;
+
+	@media only screen and (min-width : $screen-medium) {
+		padding-top: $xlarge-spacing;
+		padding-bottom: $xlarge-spacing;
+	}
 }
 
 %section-title {

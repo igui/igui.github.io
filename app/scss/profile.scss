@@ -6,14 +6,6 @@
 	@extend %section-title;
 }
 
-.profile-tagline {
-	display: none;
-
-	@media only screen and (min-width : $screen-medium) {
-		display: block;
-	}
-}
-
 .profile-content {
 	@extend %section-content;
 }
@@ -57,10 +49,8 @@
 
 .profile-him {
 	align-self: center;
-	display: none;
 
 	@media only screen and (min-width : $screen-medium) {
-		display: block;
 		flex-basis: 200px;
 		flex-grow: 0;
 		order: 2;
@@ -70,8 +60,12 @@
 		margin-left: auto;
 		margin-right: auto;
 		display: block;
-		max-width: 100%;
+		max-width: 50%;
 		border-radius: 100%;
+
+		@media only screen and (min-width : $screen-medium) {
+			max-width: 100%;
+		}
 	}
 }
 
