@@ -65,6 +65,7 @@
 	document.addEventListener("DOMContentLoaded", resizeVideo);
 	document.addEventListener("DOMContentLoaded", fixEmail);
 	window.addEventListener("load", resizeVideo);
+	// TODO show the animation EARLIER, use https://www.phpied.com/when-is-a-stylesheet-really-loaded/
 	window.addEventListener("load", showJumbotronHeader);
 	window.addEventListener("resize", resizeVideo);
 })();
