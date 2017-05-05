@@ -60,3 +60,56 @@
 		flex-basis: 70%;
 	}	
 }
+
+.experience-timeline-horizontal {
+	display: none;
+
+	@media only screen and (min-width : $screen-medium) {
+		display: flex;
+	}
+}
+
+.experience-timeline-year-section {
+	flex-grow:1;
+	position: relative;
+}
+
+.experience-timeline-year-shape {
+	width: 100%;
+}
+
+.experience-timeline-year-text-container {
+	display: flex;
+	height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	align-items: center;
+	justify-content: center;
+}
+
+.experience-timeline-year-logo {
+    position: absolute;
+    width: 25%;
+    height: 25%;
+    left: calc(50% - 12.5%);
+}
+
+$experience-timeline-year-section-vertical-offset: 70px;
+
+.experience-timeline-year-section:nth-child(odd) .experience-timeline-year-text {
+	padding-top: $experience-timeline-year-section-vertical-offset;
+}
+
+.experience-timeline-year-section:nth-child(even) .experience-timeline-year-text {
+	padding-bottom: $experience-timeline-year-section-vertical-offset;
+}
+
+.experience-timeline-year-section:nth-child(odd) .experience-timeline-year-logo {
+	top: 0;
+}
+
+.experience-timeline-year-section:nth-child(even) .experience-timeline-year-logo {
+	bottom: 2%;
+}
