@@ -72,6 +72,51 @@
 .experience-timeline-year-section {
 	flex-grow:1;
 	position: relative;
+	transition-property: transform;
+	transition-duration: $animation-delay-fast;
+
+	$horizontal-spacing: 35px;
+
+	margin-left: -$horizontal-spacing;
+	margin-right: -$horizontal-spacing;
+	padding-left: $horizontal-spacing;
+	padding-right: $horizontal-spacing;
+
+	&:nth-child(odd) {
+		.experience-timeline-year-logo {
+			top: 5%;
+		}
+
+		.experience-timeline-year-text-container {
+			bottom: 0;
+		}
+
+		.experience-timeline-year-text {
+			order: 0;
+		}
+	}
+
+	&:nth-child(even) {
+		.experience-timeline-year-logo {
+			bottom: 7%;
+		}
+
+		.experience-timeline-year-text-container {
+			top: 0;
+		}
+
+		.experience-timeline-year-text {
+			order: 1;
+		}
+	}
+
+	&:hover {
+		transform: scale(1.1);
+
+		.experience-timeline-year-detail {
+			opacity: 1;
+		}
+	}
 }
 
 .experience-timeline-year-shape {
@@ -80,36 +125,31 @@
 
 .experience-timeline-year-text-container {
 	display: flex;
-	height: 100%;
+	flex-direction: column;
+	height: 40%;
 	left: 0;
 	position: absolute;
-	top: 0;
 	width: 100%;
 	align-items: center;
-	justify-content: center;
+	justify-content: space-between;
+	font-size: calc(100% / 1.1);
 }
 
 .experience-timeline-year-logo {
+	$relative-size: 15%;
+
     position: absolute;
-    width: 25%;
-    height: 25%;
-    left: calc(50% - 12.5%);
+    width: $relative-size;
+    height: $relative-size;
+    left: 50% - $relative-size /2;
 }
 
-$experience-timeline-year-section-vertical-offset: 70px;
-
-.experience-timeline-year-section:nth-child(odd) .experience-timeline-year-text {
-	padding-top: $experience-timeline-year-section-vertical-offset;
-}
-
-.experience-timeline-year-section:nth-child(even) .experience-timeline-year-text {
-	padding-bottom: $experience-timeline-year-section-vertical-offset;
-}
-
-.experience-timeline-year-section:nth-child(odd) .experience-timeline-year-logo {
-	top: 0;
-}
-
-.experience-timeline-year-section:nth-child(even) .experience-timeline-year-logo {
-	bottom: 2%;
+.experience-timeline-year-detail {
+	list-style: none;
+	opacity: 0;
+	transition-duration: $animation-delay-fast;
+	transition-property: opacity;
+	padding: 0;
+	margin: 0;
+	text-align: center;
 }

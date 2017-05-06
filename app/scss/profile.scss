@@ -68,13 +68,13 @@
 	}
 
 	& > img {
-		display: block;
-		max-width: 200px;
-		max-height: 200px;
 		border-radius: 100%;
+		display: block;
+		left: calc(50% - 100px);
+		max-height: 200px;
+		max-width: 200px;
 		position: absolute;
 		top: 0;
-		left: calc(50% - 100px);
 		transition: transform $animation-delay-slow 0s;
 
 
