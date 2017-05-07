@@ -105,10 +105,24 @@
 		resizeJumbotronElement(video);
 	}
 
+	function writeSelfAge()
+	{
+		var msPerYear = 31557600000;
+		var birthDate = new Date(1987,5,30);
+  		var age = Math.floor((Date.now() - birthDate.getTime()) / msPerYear);
+  		
+  		var ageElement = document.getElementById('profile-details-age');
+  		if(ageElement)
+  		{
+  			ageElement.innerHTML = age;
+  		}
+	}
+
 	document.addEventListener("DOMContentLoaded", fixEmail);
 	document.addEventListener("DOMContentLoaded", resizeJumbotronElements);
-	window.addEventListener("load", resizeJumbotronElements);
+	document.addEventListener("DOMContentLoaded", writeSelfAge);
 	window.addEventListener("load", showJumbotronHeader);
 	window.addEventListener("load", addVideo);
+	window.addEventListener("load", resizeJumbotronElements);
 	window.addEventListener("resize", resizeJumbotronElements);
 })();
