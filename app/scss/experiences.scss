@@ -6,14 +6,17 @@
 	@extend %section-title;
 }
 
-.experience-timeline-horizontal-image > svg {
-	width: 100%;
-	height: 100%;
+.experience-entries {
+	margin-top: $xlarge-spacing;
 }
 
 .experience-entry {
 	display: flex;
-	flex-wrap: wrap
+	flex-wrap: wrap;
+
+	& + .experience-entry {
+		margin-top: $large-spacing;
+	}
 }
 
 .experience-entry-subtitle {
@@ -61,7 +64,19 @@
 	}	
 }
 
-.experience-timeline-horizontal {
+.experience-timeline-reduced {
+	display: none;
+
+	@media only screen and (min-width : $screen-small) {
+		display: flex;
+	}
+
+	@media only screen and (min-width : $screen-medium) {
+		display: none;
+	}
+}
+
+.experience-timeline-extended {
 	display: none;
 
 	@media only screen and (min-width : $screen-medium) {
@@ -71,16 +86,14 @@
 
 .experience-timeline-year-section {
 	flex-grow:1;
+	margin-left: -$medium-spacing;
+	margin-right: -$medium-spacing;
+	opacity: 0.9;
+	padding-left: $medium-spacing;
+	padding-right: $medium-spacing;
 	position: relative;
-	transition-property: transform;
 	transition-duration: $animation-delay-fast;
-
-	$horizontal-spacing: 35px;
-
-	margin-left: -$horizontal-spacing;
-	margin-right: -$horizontal-spacing;
-	padding-left: $horizontal-spacing;
-	padding-right: $horizontal-spacing;
+	transition-property: opacity, transform;
 
 	&:nth-child(odd) {
 		.experience-timeline-year-logo {
@@ -88,7 +101,7 @@
 		}
 
 		.experience-timeline-year-text-container {
-			bottom: 0;
+			bottom: 10%;
 		}
 
 		.experience-timeline-year-text {
@@ -102,7 +115,7 @@
 		}
 
 		.experience-timeline-year-text-container {
-			top: 0;
+			top: 10%;
 		}
 
 		.experience-timeline-year-text {
@@ -111,6 +124,7 @@
 	}
 
 	&:hover {
+		opacity: 1;
 		transform: scale(1.1);
 
 		.experience-timeline-year-detail {
@@ -126,7 +140,7 @@
 .experience-timeline-year-text-container {
 	display: flex;
 	flex-direction: column;
-	height: 40%;
+	height: 30%;
 	left: 0;
 	position: absolute;
 	width: 100%;
