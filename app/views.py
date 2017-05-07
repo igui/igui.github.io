@@ -3,6 +3,7 @@ import random
 from datetime import datetime
 from django.shortcuts import render
 from django.template import loader, Context
+from django.conf import settings
 import os.path
 
 # Create your views here.
@@ -14,10 +15,16 @@ def index(request):
 
     cv_url = 'https://www.dropbox.com/s/l2a7xfibomb4a59/CV%20Ignacio%20Avas.pdf?dl=1'
 
+    index_file_path = os.path.join(settings.BASE_DIR, 'index.html')
+
     context = {
         'age': age,
         'cv_url': cv_url
     }
 
-    return render(request, 'index.html', context)
+    response = render(request, 'index.html', context)
 
+    with open(index_file_path, 'w') as destination_file:
+        destination_file.write(str(response.content, 'utf-8'))
+
+    return response
