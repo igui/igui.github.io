@@ -1,41 +1,45 @@
 (function()
 {
 	'use strict';
-	function resizeVideo(ev)
+
+	function resizeJumbotronElements()
+	{
+		resizeJumbotronElement(document.getElementById('jumbotron-video-fallback'));
+		resizeJumbotronElement(document.getElementById('jumbotron-video'));
+	}
+
+	function resizeJumbotronElement(element)
 	{
 		var videoWidth = 1920;
 		var videoHeight = 1080;
 		var videoAspectRatio = videoWidth/videoHeight;
 
-		var imgFallback = document.querySelector('#jumbotron-video-fallback');
-		var video = document.querySelector('#jumbotron-video');
-		if(!video || !imgFallback)
+		if(!element)
 		{
-			console.warn('resizeVideo: no video or container');
 			return;
 		}
 
 		if(window.innerWidth / window.innerHeight > videoAspectRatio)
 		{
-			imgFallback.width = video.width = window.innerWidth;
-			imgFallback.height = video.height = window.innerWidth / videoAspectRatio;
+			element.width = window.innerWidth;
+			element.height = window.innerWidth / videoAspectRatio;
 		}
 		else
 		{
-			imgFallback.height = video.height = window.innerHeight;
-			imgFallback.width = video.width = window.innerHeight * videoAspectRatio;
+			element.height = window.innerHeight;
+			element.width = window.innerHeight * videoAspectRatio;
 		}
 
-		var horizontalMargin = (window.innerWidth - video.width) / 2;
-		var verticalMargin = (window.innerHeight - video.height) / 2;
+		var horizontalMargin = (window.innerWidth - element.width) / 2;
+		var verticalMargin = (window.innerHeight - element.height) / 2;
 
-		imgFallback.style.marginLeft = video.style.marginLeft = horizontalMargin + 'px';
-		imgFallback.style.marginTop = video.style.marginTop = verticalMargin + 'px';
+		element.style.marginLeft = horizontalMargin + 'px';
+		element.style.marginTop = verticalMargin + 'px';
 	}
 
 	function fixEmail()
 	{
-		var anchor = document.querySelector('#theemail');
+		var anchor = document.getElementById('theemail');
 		if(!anchor)
 		{
 			console.warn('fixEmail no anchor');
@@ -53,7 +57,7 @@
 
 	function showJumbotronHeader()
 	{
-		var jumbotronHeader = document.querySelector('#jumbotron-header');
+		var jumbotronHeader = document.getElementById('jumbotron-header');
 		if(!jumbotronHeader)
 		{
 			console.warn('showJumbotronHeader no element');
@@ -62,10 +66,49 @@
 		jumbotronHeader.className += jumbotronHeader.className ? ' shown' : 'shown';
 	}
 
-	document.addEventListener("DOMContentLoaded", resizeVideo);
+	function waitForImageLoad()
+	{
+		var videoFallback = document.getElementById('jumbotron-video-fallback');
+		if(videoFallback)
+		{
+			videoFallback.addEventListener("load", resizeJumbotronElements);
+		}
+	}
+
+	function addVideo()
+	{
+		var container = document.getElementById('jumbotron-video-container');
+		if(!container)
+		{
+			console.warn('addVideo: no container');
+			return;
+		}
+
+		var video = document.createElement('video');	
+		video.id = 'jumbotron-video';
+		video.autoPlay = true;
+		video.loop = true;
+		video.play();
+
+		var sourceMP4 = document.createElement("source"); 
+		sourceMP4.type = "video/mp4";
+		sourceMP4.src = "/static/video/head.mp4";
+		video.appendChild(sourceMP4);
+
+		var sourceOGG = document.createElement("source"); 
+		sourceOGG.type = "video/webm";
+		sourceOGG.src = "/static/video/head.webm";
+		video.appendChild(sourceOGG);
+
+		container.appendChild(video);
+
+		resizeJumbotronElement(video);
+	}
+
 	document.addEventListener("DOMContentLoaded", fixEmail);
-	window.addEventListener("load", resizeVideo);
-	// TODO show the animation EARLIER, use https://www.phpied.com/when-is-a-stylesheet-really-loaded/
+	document.addEventListener("DOMContentLoaded", resizeJumbotronElements);
+	window.addEventListener("load", resizeJumbotronElements);
 	window.addEventListener("load", showJumbotronHeader);
-	window.addEventListener("resize", resizeVideo);
+	window.addEventListener("load", addVideo);
+	window.addEventListener("resize", resizeJumbotronElements);
 })();
