@@ -17,6 +17,7 @@ def index(request):
 
     index_file_path = os.path.join(settings.BASE_DIR, 'index.html')
 
+    # TODO calculate Age in Browser, using JS
     context = {
         'age': age,
         'cv_url': cv_url
