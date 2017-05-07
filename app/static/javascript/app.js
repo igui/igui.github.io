@@ -92,12 +92,12 @@
 
 		var sourceMP4 = document.createElement("source"); 
 		sourceMP4.type = "video/mp4";
-		sourceMP4.src = "/static/video/head.mp4";
+		sourceMP4.src = "app/static/video/head.mp4";
 		video.appendChild(sourceMP4);
 
 		var sourceOGG = document.createElement("source"); 
 		sourceOGG.type = "video/webm";
-		sourceOGG.src = "/static/video/head.webm";
+		sourceOGG.src = "app/static/video/head.webm";
 		video.appendChild(sourceOGG);
 
 		container.appendChild(video);
