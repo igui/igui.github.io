@@ -13,11 +13,9 @@
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
 	flex-grow:1;
-	margin-left: -$medium-spacing;
-	margin-right: -$medium-spacing;
+	margin-left: -$xsmall-spacing;
+	margin-right: -$xsmall-spacing;
 	opacity: 0.9;
-	padding-left: $medium-spacing;
-	padding-right: $medium-spacing;
 	position: relative;
 	transition-duration: $animation-delay-fast;
 	transition-property: opacity, transform;
@@ -56,7 +54,7 @@
 		background-image: url('../images/timeline-year-shape-down.svg');
 
 		.experience-timeline-year-logo {
-			bottom: 7%;
+			bottom: 5%;
 		}
 
 		.experience-timeline-year-text-container {
@@ -71,6 +69,7 @@
 	&:hover {
 		opacity: 1;
 		transform: scale(1.1);
+		z-index: 1;
 
 		.experience-timeline-year-detail {
 			opacity: 1;
