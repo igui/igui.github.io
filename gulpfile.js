@@ -10,6 +10,8 @@ const rename = require('gulp-rename');
 const livereload = require('gulp-livereload');
 const autoprefixer = require('gulp-autoprefixer');
 const spawn = require('child_process').spawn;
+const webserver = require('gulp-webserver');
+const os = require('os');
 
 function handleError(err)
 {
@@ -40,12 +42,11 @@ gulp.task('watch', () => {
 
 /* Run local server */
 gulp.task('runserver', () => {
-    const runserver = spawn('heroku', 
-        ['local', 'web', '-f', 'Procfile.windows'],
-        {
-            stdio: 'inherit',
-            shell: true
-        });
+  gulp.src('.')
+    .pipe(webserver({
+      fallback: 'index.html',
+      port: 5000
+    }));
 });
 
 gulp.task('default', ['sass', 'watch', 'runserver']);
