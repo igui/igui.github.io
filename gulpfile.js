@@ -10,7 +10,6 @@ const rename = require('gulp-rename');
 const livereload = require('gulp-livereload');
 const autoprefixer = require('gulp-autoprefixer');
 const spawn = require('child_process').spawn;
-const webserver = require('gulp-webserver');
 const os = require('os');
 
 function handleError(err)
@@ -42,11 +41,12 @@ gulp.task('watch', () => {
 
 /* Run local server */
 gulp.task('runserver', () => {
-  gulp.src('.')
-    .pipe(webserver({
-      fallback: 'index.html',
-      port: 5000
-    }));
+    spawn('python3', 
+        ['manage.py', 'runserver', '0.0.0.0:5000'],
+        {
+            stdio: 'inherit',
+            shell: true
+        });
 });
 
 gulp.task('default', ['sass', 'watch', 'runserver']);
