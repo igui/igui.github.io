@@ -41,12 +41,24 @@ gulp.task('watch', () => {
 
 /* Run local server */
 gulp.task('runserver', () => {
-    spawn('python3', 
-        ['manage.py', 'runserver', '0.0.0.0:5000'],
-        {
-            stdio: 'inherit',
-            shell: true
-        });
+    if(/win32/.test(os.platform()))
+    {
+        spawn('heroku', 
+            ['local', 'web', '-f', 'Procfile.windows'],
+            {
+                stdio: 'inherit',
+                shell: true
+            });
+    }
+    else
+    {
+        spawn('python3', 
+            ['manage.py', 'runserver', '0.0.0.0:5000'],
+            {
+                stdio: 'inherit',
+                shell: true
+            });
+    }
 });
 
 gulp.task('default', ['sass', 'watch', 'runserver']);
