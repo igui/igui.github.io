@@ -45,11 +45,11 @@
 			console.warn('fixEmail no anchor');
 			return;
 		}
-		var encodedEmail = [68,80,79,85,66,68,85,33,74,72,79,66,68,74,80,66,87,66,84,15,68,80,78];
+		var encodedEmail = [53, 65, 64, 70, 51, 53, 70, 18, 59, 57, 64, 51, 53, 59, 65, 51, 72, 51, 69, 0, 53, 65, 63];
 		anchor.innerHTML = encodedEmail
 			.map(function(i)
 			{
-				return String.fromCharCode(i+31);
+				return String.fromCharCode(i+46);
 			})
 			.join('');
 		anchor.href = 'mailto:' + anchor.innerHTML;
@@ -118,11 +118,22 @@
   		}
 	}
 
+	function openDetailsSkills()
+	{
+		document.querySelectorAll('.skill-count').forEach(function (element)
+		{
+			element.addEventListener('click', function() {
+				document.querySelector('.skills-legend').open = true;
+			});
+		});
+	}
+
 	document.addEventListener("DOMContentLoaded", fixEmail);
 	document.addEventListener("DOMContentLoaded", resizeJumbotronElements);
 	document.addEventListener("DOMContentLoaded", writeSelfAge);
 	window.addEventListener("load", showJumbotronHeader);
 	window.addEventListener("load", addVideo);
 	window.addEventListener("load", resizeJumbotronElements);
+	window.addEventListener("load", openDetailsSkills);
 	window.addEventListener("resize", resizeJumbotronElements);
 })();
