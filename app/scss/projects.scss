@@ -5,3 +5,64 @@
 .projects-title {
 	@extend %section-title;
 }
+
+.projects-grid {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+
+	@media only screen and (min-width : $screen-small) {
+		justify-content: space-between;
+	}
+}
+
+.projects-element {
+	flex-basis: 100%;
+	margin-left: 0;
+	margin-right: 0;
+	position: relative;
+
+	@media only screen and (min-width : $screen-small) {
+		flex-basis: 45%;
+	}
+
+	@media only screen and (min-width : $screen-medium) {
+		flex-basis: 26%;
+	}
+
+	&:hover {
+		.projects-element-caption {
+			opacity: 1;
+			transform: initial;
+		}
+
+		.projects-element-graphic {
+			filter: grayscale(.4) brightness(0.5);
+		}
+	}
+}
+
+.projects-element-graphic {
+	width: 100%;
+
+	filter: initial;
+	transition-duration: $animation-delay-slow;
+	transition-property: filter;
+}
+
+.projects-element-caption {
+	align-items: center;
+	bottom: $small-spacing;
+	color: $bg-color;
+	display: flex;
+	justify-content: center;
+	left: $small-spacing;
+	opacity: 0;
+	position: absolute;
+	right: $small-spacing;
+	text-align: center;
+	top: $small-spacing;
+	transform: translateY($small-spacing);
+	transition-duration: $animation-delay-fast;
+	transition-property: opacity, transform;
+}

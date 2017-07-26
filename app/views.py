@@ -20,7 +20,7 @@ skills = {
     'Assembly': 2,
     'Game Development': 3,
     'CUDA': 3,
-    'Optix': 3
+    'OptiX': 3
 }
 
 # Create your views here.
