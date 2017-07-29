@@ -1,3 +1,11 @@
+.experiences {
+	@extend %section;
+	&:before {
+		background-color: $tertiary-bg-color;
+		clip-path: polygon(100% 0, 100% 100%, 0 0);
+	}
+}
+
 .experiences-content {
 	@extend %section-content;
 }

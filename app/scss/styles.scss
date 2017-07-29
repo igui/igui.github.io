@@ -67,6 +67,20 @@ blockquote {
 	overflow: hidden;
 }
 
+%section {
+	position:relative;
+	padding-top: 50px;
+
+	&:before {
+		content: "";
+		display: block;
+		height: 100px;
+		width: 100%;
+		position: absolute;
+		top: -1px;
+	}
+}
+
 %section-content {
 	color: $copy-color;
 	margin-left: auto;

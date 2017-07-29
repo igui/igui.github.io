@@ -1,5 +1,11 @@
 .profile {
+	@extend %section;
 	background-color: $tertiary-bg-color;
+
+	&:before {
+		background-color: $bg-color;
+		clip-path: polygon(0 0, 0 100%, 100% 0);
+	}
 }
 
 .profile-title, .profile-tagline {
