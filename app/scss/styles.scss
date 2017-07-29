@@ -69,12 +69,12 @@ blockquote {
 
 %section {
 	position:relative;
-	padding-top: 50px;
+	padding-top: 5vw;
 
 	&:before {
 		content: "";
 		display: block;
-		height: 100px;
+		height: 10vw;
 		width: 100%;
 		position: absolute;
 		top: -1px;
