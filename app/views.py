@@ -8,19 +8,20 @@ import os.path
 
 skills = {
     'Python': 4,
-    'Django': 3,
+    'Django': 4,
     'Unity': 4,
     'Photon Mapping': 4,
     'Javascript': 4,
-    'React': 2,
-    'Ruby': 2,
-    'Angular': 1,
+    'React': 4,
+    'Elixir': 3,
+    'Ruby': 3,
+    'Angular': 2,
     'OpenGL': 3,
     'C#': 3,
     'Assembly': 2,
     'Game Development': 3,
     'CUDA': 3,
-    'OptiX': 3
+    'OptiX': 3,
 }
 
 # Create your views here.
