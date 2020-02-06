@@ -1,4 +1,6 @@
+# Python old gitignore
 venv
+.venv
 *.pyc
 staticfiles
 .env
@@ -6,3 +8,11 @@ db.sqlite3
 .sass-cache
 app/CACHE/
 node_modules/
+
+# VSCode
+.vscode
+
+# Gatsby cache 
+.cache
+# Result dir for the static site
+public
