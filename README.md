@@ -1,3 +1,3 @@
 # Ignacio Avas website
 
-My Internet Thing. A Django rendered to static-file site.
+My Internet Thing. It's a Gatsby based website

@@ -5,5 +5,17 @@
  */
 
 module.exports = {
-  /* Your site config here */
+  siteMetadata: {
+    title: 'Ignacio Avas',
+    author: 'Ignacio Avas',
+    description: 'Ignacio Avas website',
+    siteUrl: 'http://ignacioavas.com/',
+    image: 'https://ignacioavas.com/images/him.jpg',
+    social: {
+      twitter: 'ignacioavas',
+    },
+  },
+  plugins: [
+    'gatsby-plugin-typescript'
+  ]
 }
