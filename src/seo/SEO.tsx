@@ -1,8 +1,7 @@
-import React from 'react';
-import Helmet from 'react-helmet';
-import { StaticQuery, graphql } from 'gatsby';
-import SchemaOrg from './SchemaOrg';
-
+import React from "react";
+import Helmet from "react-helmet";
+import { StaticQuery, graphql } from "gatsby";
+import SchemaOrg from "./SchemaOrg";
 
 const SEO = () => (
   <StaticQuery
@@ -43,14 +42,9 @@ const SEO = () => (
           <meta name="twitter:description" content={seo.description} />
           <meta name="twitter:image" content={seo.image} />
         </Helmet>
-        <SchemaOrg
-          url={seo.url}
-          title={seo.title}
-          defaultTitle={seo.title}
-        />
+        <SchemaOrg url={seo.url} title={seo.title} defaultTitle={seo.title} />
       </>
-    )
-    }
+    )}
   />
 );
 

@@ -6,16 +6,14 @@
 
 module.exports = {
   siteMetadata: {
-    title: 'Ignacio Avas',
-    author: 'Ignacio Avas',
-    description: 'Ignacio Avas website',
-    siteUrl: 'http://ignacioavas.com/',
-    image: 'https://ignacioavas.com/images/him.jpg',
+    title: "Ignacio Avas",
+    author: "Ignacio Avas",
+    description: "Ignacio Avas website",
+    siteUrl: "http://ignacioavas.com/",
+    image: "https://ignacioavas.com/images/him.jpg",
     social: {
-      twitter: 'ignacioavas',
-    },
+      twitter: "ignacioavas"
+    }
   },
-  plugins: [
-    'gatsby-plugin-typescript'
-  ]
-}
+  plugins: ["gatsby-plugin-typescript"]
+};

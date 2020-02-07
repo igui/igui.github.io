@@ -1,13 +1,15 @@
-import React, { ReactNode } from 'react';
-import SEO from '../seo/SEO';
+import React, { ReactNode } from "react";
+import SEO from "../seo/SEO";
 
 interface LayoutProps {
   children: ReactNode;
 }
 
-export default ({ children }: LayoutProps) => (
+const Layout = ({ children }: LayoutProps) => (
   <>
     <SEO></SEO>
     {children}
   </>
-)
+);
+
+export default Layout;
