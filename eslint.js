@@ -18,22 +18,4 @@ module.exports = {
     es6: true
   },
   plugins: ['@typescript-eslint', 'react'],
-  parserOptions: {
-    ecmaFeatures: {
-      jsx: true
-    },
-    sourceType: 'module' // Allows for the use of imports
-  },
-  rules: {
-    'react/prop-types': 'off', // Disable prop-types as we use TypeScript for type checking
-  },
-  overrides: [
-    // Override some TypeScript rules just for .js files
-    {
-      files: ['*.js'],
-      rules: {
-        '@typescript-eslint/no-var-requires': 'off' //
-      }
-    }
-  ]
 };
