@@ -12,6 +12,7 @@ module.exports = {
       version: "detect"
     }
   },
+  ignorePatterns: ["build", "node_modules"],
   env: {
     browser: true,
     node: true,
