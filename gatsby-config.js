@@ -3,6 +3,8 @@
  *
  * See: https://www.gatsbyjs.org/docs/gatsby-config/
  */
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const path = require("path");
 
 module.exports = {
   siteMetadata: {
@@ -15,5 +17,23 @@ module.exports = {
       twitter: "ignacioavas"
     }
   },
-  plugins: ["gatsby-plugin-typescript"]
+  plugins: [
+    "gatsby-plugin-typescript",
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "images",
+        path: path.join(__dirname, "src", "assets")
+      }
+    },
+    {
+      resolve: "gatsby-plugin-sharp",
+      options: {
+        useMozJpeg: false,
+        stripMetadata: true,
+        defaultQuality: 75
+      }
+    },
+    "gatsby-transformer-sharp"
+  ]
 };
