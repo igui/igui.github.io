@@ -12,7 +12,7 @@ module.exports = {
     author: "Ignacio Avas",
     description: "Ignacio Avas website",
     siteUrl: "http://ignacioavas.com/",
-    image: "https://ignacioavas.com/images/him.jpg",
+    image: "/social.png",
     social: {
       twitter: "ignacioavas"
     }
@@ -26,14 +26,7 @@ module.exports = {
         path: path.join(__dirname, "src", "assets")
       }
     },
-    {
-      resolve: "gatsby-plugin-sharp",
-      options: {
-        useMozJpeg: false,
-        stripMetadata: true,
-        defaultQuality: 75
-      }
-    },
+    "gatsby-plugin-sharp",
     "gatsby-transformer-sharp"
   ]
 };
