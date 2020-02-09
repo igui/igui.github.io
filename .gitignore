@@ -16,3 +16,6 @@ node_modules/
 .cache
 # Result dir for the static site
 public
+
+# yarn related
+yarn-error.log

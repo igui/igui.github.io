@@ -5,6 +5,7 @@ import NavRow from "./NavRow";
 import Hero from "./Hero";
 import FullVideo from "./FullVideo";
 import { useStaticQuery, graphql } from "gatsby";
+import { get } from "lodash";
 
 interface HeaderContainerProps {
   // background image (comes from graphQL)
@@ -33,7 +34,7 @@ const Header = () => {
   `);
 
   return (
-    <HeaderContainer bg={videoCover.file.publicURL}>
+    <HeaderContainer bg={get(videoCover, "file.publicURL")}>
       <FullVideo />
       <NavRow />
       <Hero />
