@@ -3,7 +3,6 @@
  *
  * See: https://www.gatsbyjs.org/docs/gatsby-config/
  */
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const path = require("path");
 
 const defaultSiteUrl = "http://ignacioavas.com/";

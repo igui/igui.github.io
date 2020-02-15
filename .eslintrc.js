@@ -18,6 +18,14 @@ module.exports = {
     node: true,
     es6: true
   },
+  overrides: [
+    {
+      files: ["**/*.js"],
+      rules: {
+        "@typescript-eslint/no-var-requires": "off"
+      }
+    }
+  ],
   plugins: ["@typescript-eslint", "react"],
   parserOptions: {
     ecmaFeatures: {
