@@ -43,6 +43,15 @@ module.exports = {
     "gatsby-transformer-sharp",
     "gatsby-plugin-styled-components",
     "gatsby-plugin-react-helmet",
-    "gatsby-transformer-remark"
+    {
+      resolve: "gatsby-transformer-remark",
+      options: {
+        plugins: [
+          {
+            resolve: "gatsby-remark-hypenation"
+          }
+        ]
+      }
+    }
   ]
 };
