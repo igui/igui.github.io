@@ -32,9 +32,17 @@ module.exports = {
         path: path.join(__dirname, "src", "assets")
       }
     },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "markdown-sections",
+        path: path.join(__dirname, "src", "markdown-sections")
+      }
+    },
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     "gatsby-plugin-styled-components",
-    "gatsby-plugin-react-helmet"
+    "gatsby-plugin-react-helmet",
+    "gatsby-transformer-remark"
   ]
 };
