@@ -2,46 +2,12 @@ import React from "react";
 import { graphql, useStaticQuery } from "gatsby";
 import {
   screenMedium,
-  tertiaryBgColor,
-  copyColor,
-  smallSpacing,
   copySecondaryColor,
-  linkColor,
-  animationDelaySlow,
-  xlargeSpacing
+  xlargeSpacing,
+  bgColor
 } from "./styleConstants";
 import styled from "styled-components";
-
-const AboutSection = styled.section`
-  background-color: ${tertiaryBgColor};
-`;
-
-const Content = styled.div`
-  color: ${copyColor};
-  line-height: 26px;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: ${screenMedium};
-  padding-left: ${smallSpacing};
-  padding-right: ${smallSpacing};
-  padding-top: ${smallSpacing};
-  padding-bottom: ${smallSpacing};
-
-  a {
-    color: ${linkColor};
-    text-decoration: none;
-    transition-duration: ${animationDelaySlow};
-    transition-property: color;
-
-    &:hover {
-      color: ${copySecondaryColor};
-    }
-  }
-`;
-
-const Title = styled.h2`
-  text-align: center;
-`;
+import Section from "./Section";
 
 const Divider = styled.hr`
   color: ${copySecondaryColor};
@@ -87,18 +53,13 @@ const About = () => {
   `);
 
   return (
-    <AboutSection>
-      <Content>
-        <Title>About me</Title>
-        <Headline
-          dangerouslySetInnerHTML={{ __html: pageQuery.headline.html }}
-        />
-        <Divider />
-        <SectionText
-          dangerouslySetInnerHTML={{ __html: pageQuery.section.html }}
-        />
-      </Content>
-    </AboutSection>
+    <Section backgroundColor={bgColor} id="about" title="About me">
+      <Headline dangerouslySetInnerHTML={{ __html: pageQuery.headline.html }} />
+      <Divider />
+      <SectionText
+        dangerouslySetInnerHTML={{ __html: pageQuery.section.html }}
+      />
+    </Section>
   );
 };
 
