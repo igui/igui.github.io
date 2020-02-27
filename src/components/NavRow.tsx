@@ -14,9 +14,13 @@ import { graphql, useStaticQuery } from "gatsby";
 const Container = styled.nav`
   align-items: center;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   padding: ${mediumSpacing};
   z-index: 2;
+
+  @media only screen and (min-width: ${screenMedium}) {
+    justify-content: space-between;
+  }
 `;
 
 const ImageLogo = styled.img`

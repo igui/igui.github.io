@@ -7,7 +7,8 @@ import {
   smallSpacing,
   copySecondaryColor,
   linkColor,
-  animationDelaySlow
+  animationDelaySlow,
+  xlargeSpacing
 } from "./styleConstants";
 import styled from "styled-components";
 
@@ -44,16 +45,42 @@ const Title = styled.h2`
 
 const Divider = styled.hr`
   color: ${copySecondaryColor};
+  margin-bottom: ${xlargeSpacing};
+  margin-top: ${xlargeSpacing};
 `;
 
 const SectionText = styled.div`
+  text-align: justify;
+
+  @media (min-width: ${screenMedium}) {
+    columns: 2;
+    column-gap: ${xlargeSpacing};
+  }
+
+  p:first-child {
+    margin-top: 0;
+  }
+  p:last-child {
+    margin-bottom: 0;
+  }
+`;
+
+const Headline = styled.h4`
   text-align: justify;
 `;
 
 const About = () => {
   const pageQuery = useStaticQuery(graphql`
     query {
-      markdownRemark(frontmatter: { title: { eq: "about-section-content" } }) {
+      headline: markdownRemark(
+        frontmatter: { title: { eq: "about-headline" } }
+      ) {
+        html
+      }
+
+      section: markdownRemark(
+        frontmatter: { title: { eq: "about-section-content" } }
+      ) {
         html
       }
     }
@@ -63,9 +90,12 @@ const About = () => {
     <AboutSection>
       <Content>
         <Title>About me</Title>
+        <Headline
+          dangerouslySetInnerHTML={{ __html: pageQuery.headline.html }}
+        />
         <Divider />
         <SectionText
-          dangerouslySetInnerHTML={{ __html: pageQuery.markdownRemark.html }}
+          dangerouslySetInnerHTML={{ __html: pageQuery.section.html }}
         />
       </Content>
     </AboutSection>
