@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import {
   screenLarge,
@@ -6,8 +6,7 @@ import {
   xsmallSpacing,
   smallSpacing,
   animationDelayFast,
-  copyColor,
-  animationDelaySlow
+  copyColor
 } from "./styleConstants";
 
 const Container = styled.div`
@@ -29,16 +28,6 @@ const HeroHeader = styled.h1`
 
   @media only screen and (min-width: ${screenLarge}) {
     font-size: 5vw;
-  }
-
-  &.invisible {
-    transform: translateY(50%);
-    opacity: 0;
-  }
-
-  &.visible {
-    transition: all ${animationDelaySlow} ${animationDelaySlow};
-    opacity: 1;
   }
 `;
 
@@ -70,29 +59,14 @@ const Button = styled.a`
 const dropboxResume =
   "https://www.dropbox.com/s/l2a7xfibomb4a59/CV%20Ignacio%20Avas.pdf?dl=1";
 
-const Hero = () => {
-  const heroHeader = useRef<HTMLHeadingElement>(null);
-  useEffect(() => {
-    const el = heroHeader.current;
-    if (!el) {
-      return;
-    }
-    el.classList.add("invisible");
-    setTimeout(() => {
-      el.classList.remove("invisible");
-      el.classList.add("visible");
-    });
-  });
-
-  return (
-    <Container>
-      <HeroHeader ref={heroHeader}>Developer.</HeroHeader>
-      <ButtonRow>
-        <Button href="#contact">Contact</Button>
-        <Button href={dropboxResume}>Resume</Button>
-      </ButtonRow>
-    </Container>
-  );
-};
+const Hero = () => (
+  <Container>
+    <HeroHeader>Developer.</HeroHeader>
+    <ButtonRow>
+      <Button href="#contact">Contact</Button>
+      <Button href={dropboxResume}>Resume</Button>
+    </ButtonRow>
+  </Container>
+);
 
 export default Hero;
