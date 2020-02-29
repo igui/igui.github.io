@@ -65,9 +65,8 @@ const Section = ({
   title
 }: SectionProps) => (
   <SectionWrapper backgroundColor={backgroundColor}>
-    {/* TODO use id to create an anchor element */}
     <SectionContent dark={dark}>
-      <SectionTitle>{title}</SectionTitle>
+      <SectionTitle id={id}>{title}</SectionTitle>
       {children}
     </SectionContent>
   </SectionWrapper>
