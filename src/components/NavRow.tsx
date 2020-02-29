@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef, Ref } from "react";
 import styled from "styled-components";
 import {
   bgColor,
@@ -7,7 +7,8 @@ import {
   smallSpacing,
   mediumSpacing,
   screenMedium,
-  xsmallSpacing
+  xsmallSpacing,
+  animationDelaySlow
 } from "./styleConstants";
 import { graphql, useStaticQuery } from "gatsby";
 
@@ -15,26 +16,35 @@ const Container = styled.nav`
   align-items: center;
   display: flex;
   justify-content: center;
+  opacity: 1;
   padding: ${mediumSpacing};
+  transition: all ${animationDelaySlow} 2s;
   z-index: 2;
 
   @media only screen and (min-width: ${screenMedium}) {
     justify-content: space-between;
   }
+
+  &.invisible {
+    opacity: 0;
+    transform: translateY(-25%);
+  }
 `;
 
 const ImageLogo = styled.img`
   display: inline-block;
-  max-height: 30px;
-  max-width: 30px;
+  max-height: 60px;
+  max-width: 60px;
   margin-right: ${smallSpacing};
 `;
 
 const NavLink = styled.a`
   color: ${bgColor};
   font-size: 1.2em;
+  letter-spacing: -1px;
   padding: ${xsmallSpacing};
   text-decoration: none;
+  text-transform: uppercase;
   transition: all ${animationDelayFast} 0s;
 
   &:last-child {
@@ -64,7 +74,14 @@ const NavLinksContainer = styled.div`
   }
 `;
 
-const NavRow = () => {
+interface ClassNameProps {
+  className?: string;
+}
+
+const NavRowWithRef = (
+  { className }: ClassNameProps,
+  ref: Ref<HTMLElement>
+) => {
   const data = useStaticQuery(graphql`
     query {
       file(relativePath: { eq: "images/ia.svg" }) {
@@ -74,10 +91,9 @@ const NavRow = () => {
   `);
 
   return (
-    <Container>
+    <Container className={className} ref={ref}>
       <NavLogoAnchor href="#">
         <ImageLogo src={data.file.publicURL} alt="Website logo" />
-        <span>Ignacio Avas</span>
       </NavLogoAnchor>
 
       <NavLinksContainer>
@@ -90,4 +106,4 @@ const NavRow = () => {
   );
 };
 
-export default NavRow;
+export default forwardRef(NavRowWithRef);

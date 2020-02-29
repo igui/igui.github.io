@@ -1,20 +1,12 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
-import { bgColor, copyColor } from "./styleConstants";
+import { bgColor, secondaryBgColor } from "./styleConstants";
 import NavRow from "./NavRow";
 import Hero from "./Hero";
 import FullVideo from "./FullVideo";
-import { useStaticQuery, graphql } from "gatsby";
-import { get } from "lodash";
 
-interface HeaderContainerProps {
-  // background image (comes from graphQL)
-  bg: string;
-}
-
-const HeaderContainer = styled.section<HeaderContainerProps>`
-  background-color: ${copyColor};
-  background-image: url(${props => props.bg});
+const HeaderContainer = styled.section`
+  background-color: ${secondaryBgColor};
   color: ${bgColor};
   display: flex;
   flex-direction: column;
@@ -25,18 +17,18 @@ const HeaderContainer = styled.section<HeaderContainerProps>`
 `;
 
 const Header = () => {
-  const videoCover = useStaticQuery(graphql`
-    query {
-      file(relativePath: { eq: "images/video-cover.jpg" }) {
-        publicURL
-      }
-    }
-  `);
+  const fullVideoRef = useRef<HTMLVideoElement>(null);
+  const navRowRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    fullVideoRef.current && fullVideoRef.current.classList.remove("invisible");
+    navRowRef.current && navRowRef.current.classList.remove("invisible");
+  });
 
   return (
-    <HeaderContainer bg={get(videoCover, "file.publicURL")}>
-      <FullVideo />
-      <NavRow />
+    <HeaderContainer>
+      <FullVideo ref={fullVideoRef} className="invisible" />
+      <NavRow ref={navRowRef} className="invisible" />
       <Hero />
     </HeaderContainer>
   );
