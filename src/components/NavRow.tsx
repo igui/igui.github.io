@@ -42,10 +42,16 @@ const NavLink = styled.a`
   color: ${bgColor};
   font-size: 1.2em;
   letter-spacing: -1px;
-  padding: ${xsmallSpacing};
+  margin-left: ${xsmallSpacing};
+  margin-right: ${xsmallSpacing};
+  padding: ${xsmallSpacing} ${smallSpacing};
   text-decoration: none;
   text-transform: uppercase;
   transition: all ${animationDelayFast} 0s;
+
+  &:first-child {
+    margin-left: 0;
+  }
 
   &:last-child {
     margin-right: 0;
@@ -70,7 +76,7 @@ const NavLinksContainer = styled.div`
   display: none;
 
   @media only screen and (min-width: ${screenMedium}) {
-    display: block;
+    display: flex;
   }
 `;
 

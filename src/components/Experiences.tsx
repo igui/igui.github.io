@@ -1,6 +1,13 @@
 import React from "react";
 import Section from "./Section";
 import { tertiaryBgColor } from "./styleConstants";
+import Quote from "./Quote";
+import styled from "styled-components";
+
+const Timeline = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 const Experiences = () => (
   <Section
@@ -8,7 +15,14 @@ const Experiences = () => (
     id="experience"
     title="Experiences"
   >
-    Some stuff here
+    <Quote
+      author="Bjarne Stroustrup"
+      href="https://en.wikipedia.org/wiki/Bjarne_Stroustrup"
+    >
+      Design and programming are human activities; forget that and all is lost
+    </Quote>
+
+    <Timeline></Timeline>
   </Section>
 );
 

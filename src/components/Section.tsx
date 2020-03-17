@@ -42,7 +42,7 @@ const SectionContent = styled.div<SectionContentProps>`
   padding-bottom: ${xlargeSpacing};
 
   a {
-    color: ${linkColor};
+    color: ${props => (props.dark ? copySecondaryColor : linkColor)};
     text-decoration: none;
     transition-duration: ${animationDelaySlow};
     transition-property: color;

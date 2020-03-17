@@ -4,7 +4,7 @@ export const secondaryBgColor = "#222";
 export const tertiaryBgColor = "#efefef";
 export const copyColor = "#333";
 export const copySecondaryColor = "#666";
-export const linkColor = "#33f";
+export const linkColor = "#000";
 
 // screen sizes
 export const screenSmall = "420px";
