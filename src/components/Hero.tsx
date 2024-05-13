@@ -61,7 +61,7 @@ const dropboxResume =
 
 const Hero = () => (
   <Container>
-    <HeroHeader>Developer.</HeroHeader>
+    <HeroHeader>ML Engineer.</HeroHeader>
     <ButtonRow>
       <Button href="#contact">Contact</Button>
       <Button href={dropboxResume}>Resume</Button>
