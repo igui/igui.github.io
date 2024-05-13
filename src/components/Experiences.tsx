@@ -6,34 +6,15 @@ import styled from "styled-components";
 import { graphql, useStaticQuery } from "gatsby";
 
 const Experience = styled.div`
-  @media only screen and (min-width : 768px) {
-    display: grid;
-    // grid-template-columns: 64px 1fr;
-    // grid-template-rows: auto auto auto 1fr;
-    // gap: 0px 5px;
-    // grid-template-areas:
-    //   "image company"
-    //   "image period"
-    //   "image position"
-    //   "image description";
+  display: grid;
 
-    // grid-template-columns: 1fr 64px;
-    // grid-template-rows: auto auto auto 1fr;
-    // gap: 0px 5px;
-    // grid-template-areas:
-    //   "company image"
-    //   "period image"
-    //   "position image"
-    //   "description description";
-
-      grid-template-columns: 1fr 64px;
-      grid-template-rows: auto auto auto;
-      gap: 0px 5px;
-      grid-template-areas:
-        "company image"
-        "period image"
-        "position image";
-  }
+  grid-template-columns: 1fr 64px;
+  grid-template-rows: auto auto auto;
+  gap: 0px 5px;
+  grid-template-areas:
+    "company image"
+    "period image"
+    "position image";
 
   > img {
     grid-area: image;
