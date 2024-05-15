@@ -2,115 +2,147 @@ import React from "react";
 import Section from "./Section";
 import { bgColor } from "./styleConstants";
 import Quote from "./Quote";
-import flappybirdImg from "./assets/projects/flappybird/1.jpg";
-import oneVs100Img from "./assets/projects/1vs100/1.jpg"
-import rpsolverImg from "./assets/projects/rpsolver/1.jpg"
-import scisImg from "./assets/projects/scis/1.jpg"
-import sayCheeseImg from "./assets/projects/saycheese/1.jpg"
-import pasteboardImg from "./assets/projects/pasteboard/1.jpg"
-import sdfImg from "./assets/projects/sdf/1.jpg"
-import notranzoImg from "./assets/projects/notranzo/1.jpg"
-import questionMarkImg from "./assets/projects/question.jpg"
+import flappybirdImg from "../assets/images/projects/flappybird/1.jpg";
+import oneVs100Img from "../assets/images/projects/1vs100/1.jpg"
+import rpsolverImg from "../assets/images/projects/rpsolver/1.jpg"
+import scisImg from "../assets/images/projects/scis/1.jpg"
+import sayCheeseImg from "../assets/images/projects/saycheese/1.jpg"
+import pasteboardImg from "../assets/images/projects/pasteboard/1.jpg"
+import sdfImg from "../assets/images/projects/sdf/1.jpg"
+import notranzoImg from "../assets/images/projects/notranzo/1.jpg"
+import questionMarkImg from "../assets/images/projects/question.jpg"
 import styled from "styled-components";
+import { animationDelayFast, screenMedium } from "./styleConstants";
 
 const PROJECTS = [
   {
     name: "Flappy Bird",
     imagePath: flappybirdImg,
     alt: "Flappy Bird Perspective shot showing a red bird flying over green tubes, over a bridge",
+    fallbackColor: "#668a81",
   },
   {
     name: "1 vs 100",
     imagePath: oneVs100Img,
     alt: "1vs100 Phone shot on a black background",
+    fallbackColor: "#3e3b3d"
   },
   {
     name: "RPSolver",
     imagePath: rpsolverImg,
     alt: "RPSolver",
+    fallbackColor: "#655858"
   },
   {
     name: "SCIS",
     imagePath: scisImg,
     alt: "SCIS iPad screenshot showing the login screen",
+    fallbackColor: "#9d8978"
   },
   {
     name: "Say Cheese",
     imagePath: sayCheeseImg,
     alt: "Say Cheese login screen showing email and password",
+    fallbackColor: "#6e8a8f"
   },
   {
     name: "Pasteboard",
     imagePath: pasteboardImg,
     alt: "Pasteboard login screen displaying website features",
+    fallbackColor: "#9c9c9f"
   },
   {
     name: "Scraping Development Framework",
     imagePath: sdfImg,
     alt: "SDF Browser snapshot",
+    fallbackColor: "#9d9999"
   },
   {
     name: "Notranzo site",
     imagePath: notranzoImg,
     alt: "Notranzo website showing product list",
+    fallbackColor: "#c7a794"
   },
   {
     name: "Your Project?",
     imagePath: questionMarkImg,
     alt:"Mario Style question mark",
+    fallbackColor: "#d7d7d7"
   },
 ]
 
-const ProjectList = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: minmax(100px, auto);
-`;
+const GridSize = "220px";
 
-const ProjectItem = styled.figure`
-  flex-basis: 33%;
-  margin: 0;
-  position: relative;
-`;
+interface ItemPosition {
+  row: number;
+  column: number;
+}
 
-const ProjectImg = styled.img`
-  width: 100%;
-  height: 100%;
-`;
+interface ProjectImgProps extends ItemPosition {
+  fallbackColor: string;
+}
 
-const TransitionDuration = ".15s";
-
-const ProjectName = styled.figcaption`
-  color: #fff;
-  display: flex;
-  background-color: rgba(0, 0, 0, 0.5);
-  justify-content: center;
+const ProjectDescription = styled.figcaption<ItemPosition>`
+  background-color: rgba(128, 127, 0, 0.8);
+  grid-column-start: ${(props) => props.column};
+  grid-column-end: ${(props) => props.column+2};
+  grid-row: ${(props) => props.row};
+  z-index: 3;
+  pointer-events: none;
+  transition-duration: ${animationDelayFast};
   opacity: 0;
-  position: absolute;
+`
+
+const ProjectImg = styled.img<ProjectImgProps>`
+  display: block;
+  background-color: ${(props) => props.fallbackColor};
+  grid-column: ${(props) => props.column};
+  grid-row: ${(props) => props.row};
   width: 100%;
   height: 100%;
-  left: 0px;
-  top: 0px;
-  text-align: center;
-  transition-duration: ${TransitionDuration};
-  transition-property: opacity;
-  flex-direction: column;
+  z-index: 0;
+  transition-duration: ${animationDelayFast};
 
-  ${ProjectItem}:hover & {
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &:hover + ${ProjectDescription} {
     opacity: 1;
-    transform: initial;
+    transform: scale(1.1);
   }
-`
+`;
 
-const ProjectNameText = styled.span`
-  transition-duration: ${TransitionDuration};
-  transition-property: transform;
-  transform: translateY(10px);
-
-  ${ProjectItem}:hover & {
-    transform: initial;
+const ProjectList = styled.div`
+  @media only screen and (min-width: ${screenMedium}) {
+    display: grid;
+    grid-template-columns: repeat(3, ${GridSize});
+    grid-auto-rows: ${GridSize};
   }
-`
+`;
+
+interface ProjectItemProps {
+  alt: string;
+  fallbackColor: string;
+  imagePath: string;
+  index: number;
+  name: string;
+}
+
+const ProjectItem = ({ alt, fallbackColor, imagePath, index, name }: ProjectItemProps) => {
+  const rowImg = Math.floor(index / 3) + 1;
+  const columnImg = index % 3 + 1;
+  const columnDescription = columnImg === 3 ? 2 : columnImg + 1;
+
+  return (
+      <>
+        <ProjectImg src={imagePath} alt={alt} fallbackColor={fallbackColor} row={rowImg} column={columnImg} />
+        <ProjectDescription row={rowImg} column={columnDescription}>
+          {name}
+        </ProjectDescription>
+    </>
+  );
+};
 
 const Projects = () => (
   <Section backgroundColor={bgColor} id="projects" title="Projects">
@@ -121,13 +153,9 @@ const Projects = () => (
       The most complicated skill is to be simple.
     </Quote>
     <ProjectList>
-      {PROJECTS.map(({ name, imagePath, alt }) => (
-        <ProjectItem key={name}>
-          <ProjectImg src={imagePath} alt={alt} />
-          <ProjectName>
-            <ProjectNameText>{name}</ProjectNameText>
-          </ProjectName>
-        </ProjectItem>))}
+      {PROJECTS.map((project, index) => (
+        <ProjectItem key={index} {...project} index={index} />
+      ))}
     </ProjectList>
   </Section>
 );

@@ -31,6 +31,9 @@ const FullVideoWithRef = (
       mp4: file(relativePath: { eq: "videos/head.mp4" }) {
         publicURL
       }
+      poster: file(relativePath: { eq: "videos/first.jpg" }) {
+        publicURL
+      }
     }
   `);
 
@@ -42,6 +45,7 @@ const FullVideoWithRef = (
       muted={true}
       loop={true}
       ref={ref}
+      poster={videoSources.poster.publicURL}
     >
       <source src={videoSources.webM.publicURL} type="video/webm" />
       <source src={videoSources.mp4.publicURL} type="video/mp4" />

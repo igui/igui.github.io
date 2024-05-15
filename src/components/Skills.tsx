@@ -4,44 +4,44 @@ import { tertiaryBgColor } from "./styleConstants";
 import Quote from "./Quote";
 import styled from "styled-components";
 import { graphql, useStaticQuery } from "gatsby";
-import pythonImg from "./assets/skills/python.png";
-import awsLogo from "./assets/skills/aws.svg";
-import sqlLogo from "./assets/skills/sql.png";
-import mlLogo from "./assets/skills/ml.png";
-import kafkaLogo from "./assets/skills/kafka.svg";
-import pytorchLogo from "./assets/skills/pytorch.png";
-import tensorflowLogo from "./assets/skills/tensorflow.png";
-import pandasLogo from "./assets/skills/pandas.png";
-import chatGptLogo from "./assets/skills/chatgpt.png";
-import aiLogo from "./assets/skills/ai.png";
-import chatbotLogo from "./assets/skills/chatbot.png";
-import dataScienceLogo from "./assets/skills/data-science.png";
-import pipelineLogo from "./assets/skills/pipeline.png";
-import datawarehouseLogo from "./assets/skills/data-warehouse.png";
-import nlpImage from "./assets/skills/nlp.png";
-import computerVisionImg from "./assets/skills/computer-vision.png";
-import deepLearningImg from "./assets/skills/deep-learning.png";
-import sklearnLogo from "./assets/skills/sklearn.png";
+import pythonImg from "../assets/images/skills/python.png";
+import awsLogo from "../assets/images/skills/aws.svg";
+import sqlLogo from "../assets/images/skills/sql.png";
+import mlLogo from "../assets/images/skills/ml.png";
+import kafkaLogo from "../assets/images/skills/kafka.svg";
+import pytorchLogo from "../assets/images/skills/pytorch.png";
+import tensorflowLogo from "../assets/images/skills/tensorflow.png";
+import pandasLogo from "../assets/images/skills/pandas.png";
+import chatGptLogo from "../assets/images/skills/chatgpt.png";
+import aiLogo from "../assets/images/skills/ai.png";
+import chatbotLogo from "../assets/images/skills/chatbot.png";
+import dataScienceLogo from "../assets/images/skills/data-science.png";
+import pipelineLogo from "../assets/images/skills/pipeline.png";
+import datawarehouseLogo from "../assets/images/skills/data-warehouse.png";
+import nlpImage from "../assets/images/skills/nlp.png";
+import computerVisionImg from "../assets/images/skills/computer-vision.png";
+import deepLearningImg from "../assets/images/skills/deep-learning.png";
+import sklearnLogo from "../assets/images/skills/sklearn.png";
 
 const SKILL_LIST = [
-  { name: "Machine Learning", yearsOfExperience: 4, image: mlLogo },
-  { name: "Natural Language Processing (NLP)", yearsOfExperience: 2, image: nlpImage },
-  { name: "Artificial Intelligence (AI)", yearsOfExperience: 4, image: aiLogo },
-  { name: "Deep Learning", yearsOfExperience: 3, image: deepLearningImg },
-  { name: "Python", yearsOfExperience: 10, image: pythonImg },
-  { name: "Computer Vision", yearsOfExperience: 1, image: computerVisionImg },
-  { name: "Large Language Models (LLM)", yearsOfExperience: 1, image: chatGptLogo },
-  { name: "Chatbots", yearsOfExperience: 1, image: chatbotLogo },
-  { name: "Data Science", yearsOfExperience: 3, image: dataScienceLogo },
-  { name: "Data Warehousing", yearsOfExperience: 4, image: datawarehouseLogo },
-  { name: "Data Pipelines", yearsOfExperience: 3, image: pipelineLogo },
-  { name: "Tensorflow", yearsOfExperience: 1, image: tensorflowLogo },
-  { name: "Pytorch", yearsOfExperience: 2, image: pytorchLogo },
-  { name: "AWS", yearsOfExperience: 7, image: awsLogo },
-  { name: "SQL", yearsOfExperience: 13, image: sqlLogo },
-  { name: "Apache Kafka", yearsOfExperience: 2, image: kafkaLogo },
-  { name: "Pandas", yearsOfExperience: 5, image: pandasLogo },
-  { name: "Scikit learn", yearsOfExperience: 5, image: sklearnLogo },
+  { name: "Machine Learning", yearsOfExperience: 4, image: mlLogo, fallbackColor: "#452e7e" },
+  { name: "Natural Language Processing (NLP)", yearsOfExperience: 2, image: nlpImage, fallbackColor: "#004876" },
+  { name: "Artificial Intelligence (AI)", yearsOfExperience: 4, image: aiLogo, fallbackColor: "#fed800" },
+  { name: "Deep Learning", yearsOfExperience: 3, image: deepLearningImg, fallbackColor: "#fed800" },
+  { name: "Python", yearsOfExperience: 10, image: pythonImg, fallbackColor: "#215765" },
+  { name: "Computer Vision", yearsOfExperience: 1, image: computerVisionImg, fallbackColor: "#2d5396" },
+  { name: "Large Language Models (LLM)", yearsOfExperience: 1, image: chatGptLogo, fallbackColor: "#74aa9c" },
+  { name: "Chatbots", yearsOfExperience: 1, image: chatbotLogo, fallbackColor: "#3cca9d" },
+  { name: "Data Science", yearsOfExperience: 3, image: dataScienceLogo, fallbackColor: "#9dcb5b" },
+  { name: "Data Warehousing", yearsOfExperience: 4, image: datawarehouseLogo, fallbackColor: "#7bd0a9" },
+  { name: "Data Pipelines", yearsOfExperience: 3, image: pipelineLogo, fallbackColor: "#004876" },
+  { name: "Tensorflow", yearsOfExperience: 1, image: tensorflowLogo, fallbackColor: "#000000" },
+  { name: "Pytorch", yearsOfExperience: 2, image: pytorchLogo, fallbackColor: "#343541" },
+  { name: "AWS", yearsOfExperience: 7, image: awsLogo, fallbackColor: "#232f3e" },
+  { name: "SQL", yearsOfExperience: 13, image: sqlLogo, fallbackColor: "#ff6838" },
+  { name: "Apache Kafka", yearsOfExperience: 2, image: kafkaLogo, fallbackColor: "#a1b8d3" },
+  { name: "Pandas", yearsOfExperience: 5, image: pandasLogo, fallbackColor: "#150458" },
+  { name: "Scikit learn", yearsOfExperience: 5, image: sklearnLogo, fallbackColor: "#9dcb5b" },
 ]
 
 const OTHER_SKILLS = [
@@ -84,10 +84,13 @@ const ImageItem = styled.li`
 
 const ImageSize = "120px";
 
-const Image = styled.img`
+const Image = styled.img<{ fallbackColor: string; }>`
   margin: 0 auto;
-  max-height: ${ImageSize};
-  max-width: ${ImageSize};
+  height: ${ImageSize};
+  width: ${ImageSize};
+  // Nice circle image for fallback
+  clip-path: circle(calc(50% - 2px));
+  background-color: ${(props) => props.fallbackColor};
 `;
 
 const ImagePlaceholder = styled.div`
@@ -134,8 +137,7 @@ const Skills = () => {
     <ImageList>
       {SKILL_LIST.map((skill) => (
         <ImageItem key={skill.name}>
-          { skill.image && <Image src={skill.image} /> }
-          { !skill.image && <ImagePlaceholder /> }
+          <Image src={skill.image} fallbackColor={skill.fallbackColor} />
 
           <Name>{skill.name}</Name>
           {/* <span>{skill.yearsOfExperience}</span> */}
