@@ -1,6 +1,6 @@
 ---
-title: "skill-paragraph"
-path: "/"
+title: "Skills Heading"
+path: "/skills-heading"
 date: "2024-05-11"
 ---
 

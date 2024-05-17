@@ -4,6 +4,7 @@ import { bgColor, smallSpacing, tertiaryBgColor } from "./styleConstants";
 import Quote from "./Quote";
 import styled from "styled-components";
 import { graphql, useStaticQuery } from "gatsby";
+import { MarkdownRemarkNode } from "./types";
 
 const Experience = styled.div`
   display: grid;
@@ -67,14 +68,6 @@ const Experience = styled.div`
 
 const Timeline = styled.div``;
 
-interface MarkdownRemarkNode {
-  id: string;
-  html: string;
-  frontmatter: {
-    path: string;
-  };
-}
-
 const Experiences = () => {
   const pageQuery = useStaticQuery(graphql`
     query {
@@ -84,9 +77,6 @@ const Experiences = () => {
       ) {
         nodes {
           id
-          frontmatter {
-            path
-          }
           html
         }
       }
@@ -102,9 +92,8 @@ const Experiences = () => {
       <Quote
         author="Bjarne Stroustrup"
         href="https://en.wikipedia.org/wiki/Bjarne_Stroustrup"
-      >
-        Design and programming are human activities; forget that and all is lost
-      </Quote>
+        content="Design and programming are human activities; forget that and all is lost"
+      />
 
       <Timeline>
         {pageQuery.allMarkdownRemark.nodes.map((node: MarkdownRemarkNode) => (

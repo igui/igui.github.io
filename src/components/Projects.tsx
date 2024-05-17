@@ -10,6 +10,7 @@ import {
   tertiaryBgColor,
 } from "./styleConstants";
 import { graphql, useStaticQuery } from "gatsby";
+import { MarkdownRemarkNode } from "./types";
 
 const GridSize = "220px";
 
@@ -115,14 +116,6 @@ const ProjectList = styled.div`
   }
 `;
 
-interface MarkdownRemarkNode {
-  id: string;
-  html: string;
-  frontmatter: {
-    title: string;
-  };
-}
-
 const Projects = () => {
   const pageQuery = useStaticQuery(graphql`
     {
@@ -132,6 +125,7 @@ const Projects = () => {
       ) {
         nodes {
           html
+          id
           frontmatter {
             title
           }
@@ -143,17 +137,10 @@ const Projects = () => {
   return (
     <Section backgroundColor={bgColor} id="projects" title="Projects">
       <Quote
-        author="Dejan Stojanović"
-        href="https://en.wikipedia.org/wiki/Dejan_Stojanovi%C4%87"
-      >
-        The most complicated skill is to be simple.
-      </Quote>
-      {/* <ProjectList>
-        {PROJECTS.map((project, index) => (
-          <ProjectItem key={index} {...project} index={index} />
-        ))}
-      </ProjectList> */}
-
+        author="Alan Turing"
+        href="https://en.wikipedia.org/wiki/Alan_Turing"
+        content="Sometimes it is the people no one imagines anything of who do the things that no-one can imagine."
+      />
       <ProjectListWrapper>
         <ProjectList>
           {pageQuery.allMarkdownRemark.nodes.map((node: MarkdownRemarkNode) => (

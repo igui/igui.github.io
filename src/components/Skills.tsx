@@ -183,15 +183,6 @@ const Image = styled.img<{ fallbackColor: string }>`
   background-color: ${(props) => props.fallbackColor};
 `;
 
-const ImagePlaceholder = styled.div`
-  background: red;
-  border-radius: 50%;
-  display: inline-flex;
-  height: ${ImageSize};
-  margin: 0 auto;
-  width: ${ImageSize};
-`;
-
 const Name = styled.span`
   text-align: center;
 `;
@@ -203,9 +194,7 @@ const SkillParagraph = styled.p`
 const Skills = () => {
   const pageQuery = useStaticQuery(graphql`
     query {
-      skills: markdownRemark(
-        frontmatter: { title: { eq: "skill-paragraph" } }
-      ) {
+      skills: markdownRemark(frontmatter: { path: { eq: "/skills-heading" } }) {
         html
       }
     }
@@ -214,12 +203,10 @@ const Skills = () => {
   return (
     <Section backgroundColor={tertiaryBgColor} id="skills" title="Skills">
       <Quote
-        author="Alan Turing"
-        href="https://en.wikipedia.org/wiki/Alan_Turing"
-      >
-        Sometimes it is the people no one imagines anything of who do the things
-        that no-one can imagine
-      </Quote>
+        author="Dejan Stojanović"
+        href="https://www.dejanstojanovic.info/bio.html"
+        content="The most complicated one is to be simple."
+      />
 
       <SkillParagraph
         dangerouslySetInnerHTML={{ __html: pageQuery.skills.html }}

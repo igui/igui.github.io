@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { copySecondaryColor, xlargeSpacing } from "./styleConstants";
 
 interface QuoteProps {
-  children: ReactNode;
+  content: string;
   author: string;
   href: string;
 }
@@ -29,9 +29,9 @@ const Divider = styled.hr`
   margin-top: ${xlargeSpacing};
 `;
 
-const Quote = ({ author, children, href }: QuoteProps) => (
+const Quote = ({ author, content, href }: QuoteProps) => (
   <Container>
-    <Content>{children}</Content>
+    <Content>{content}</Content>
     <AuthorLink href={href}>{author}</AuthorLink>
     <Divider />
   </Container>

@@ -40,10 +40,8 @@ const Contact = () => (
     <Quote
       author="Larry Constantine"
       href="https://en.wikipedia.org/wiki/Larry_Constantine"
-    >
-      Hiring people to write code to sell is not the same as hiring people to
-      design and build durable, usable, dependable software.
-    </Quote>
+      content="Hiring people to write code to sell is not the same as hiring people to design and build durable, usable, dependable software."
+    />
 
     <LinkContainer>
       <ContactLink
