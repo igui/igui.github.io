@@ -47,6 +47,9 @@
     "prettier": "3.2.5",
     "typescript": "^5.4.5"
   },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/igui/igui.github.io"

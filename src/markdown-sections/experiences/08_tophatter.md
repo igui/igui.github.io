@@ -5,9 +5,9 @@ path: "/experiences/08_tophatter"
 
 <img alt="Tophatter logo" src="/company-logos/tophatter.webp">
 
-### [TopHatter](https://www.tophatter.com/)
+### [Tophatter](https://www.tophatter.com/)
 
-#### Full Stack
+#### Software Engineer & Machine Learning Engineer
 
 ##### 2020 - 2021
 
