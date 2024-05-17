@@ -3,7 +3,12 @@ import Section from "./Section";
 import { animationDelaySlow, bgColor, screenSmall } from "./styleConstants";
 import Quote from "./Quote";
 import styled from "styled-components";
-import { animationDelayFast, screenMedium, smallSpacing, tertiaryBgColor } from "./styleConstants";
+import {
+  animationDelayFast,
+  screenMedium,
+  smallSpacing,
+  tertiaryBgColor,
+} from "./styleConstants";
 import { graphql, useStaticQuery } from "gatsby";
 
 const GridSize = "220px";
@@ -12,7 +17,6 @@ const ProjectListWrapper = styled.div`
   display: flex;
   justify-content: center;
 `;
-
 
 const Project = styled.div`
   display: flex;
@@ -38,7 +42,8 @@ const Project = styled.div`
   }
 
   // Hack to make the project description to be as wide as the grid
-  h3, p {
+  h3,
+  p {
     box-sizing: border-box;
     display: none;
     margin: 0;
@@ -47,19 +52,20 @@ const Project = styled.div`
     position: relative;
   }
 
-
   &:hover {
     opacity: 1 !important;
     z-index: 1;
 
-    h3, p {
+    h3,
+    p {
       display: initial;
       background-color: ${bgColor};
     }
   }
 
   @media only screen and (min-width: ${screenSmall}) and (max-width: calc(${screenMedium} - 1px)) {
-    h3, p {
+    h3,
+    p {
       width: calc(2 * ${GridSize});
     }
 
@@ -72,7 +78,8 @@ const Project = styled.div`
   }
 
   @media only screen and (min-width: ${screenMedium}) {
-    h3, p {
+    h3,
+    p {
       width: calc(3 * ${GridSize});
     }
 
@@ -108,7 +115,6 @@ const ProjectList = styled.div`
   }
 `;
 
-
 interface MarkdownRemarkNode {
   id: string;
   html: string;
@@ -117,11 +123,13 @@ interface MarkdownRemarkNode {
   };
 }
 
-
 const Projects = () => {
   const pageQuery = useStaticQuery(graphql`
     {
-      allMarkdownRemark(filter: {frontmatter: {path: {glob: "/projects/*"}}}, sort: { fileAbsolutePath: ASC }) {
+      allMarkdownRemark(
+        filter: { frontmatter: { path: { glob: "/projects/*" } } }
+        sort: { fileAbsolutePath: ASC }
+      ) {
         nodes {
           html
           frontmatter {
@@ -149,12 +157,13 @@ const Projects = () => {
       <ProjectListWrapper>
         <ProjectList>
           {pageQuery.allMarkdownRemark.nodes.map((node: MarkdownRemarkNode) => (
-            <Project key={node.id} dangerouslySetInnerHTML={{ __html: node.html }} />
+            <Project
+              key={node.id}
+              dangerouslySetInnerHTML={{ __html: node.html }}
+            />
           ))}
-
         </ProjectList>
       </ProjectListWrapper>
-
     </Section>
   );
 };

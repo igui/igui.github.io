@@ -17,8 +17,8 @@ const SchemaOrg = ({ defaultTitle, title, url }: SchemaOrgProps) => (
           "@type": "WebSite",
           url,
           name: title,
-          alternateName: defaultTitle
-        }
+          alternateName: defaultTitle,
+        },
       ])}
     </script>
   </Helmet>

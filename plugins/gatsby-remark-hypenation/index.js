@@ -8,7 +8,7 @@ const english = require("hyphenation.en-us");
 module.exports = ({ markdownAST }) => {
   const hyper = new Hypher(english);
 
-  visit(markdownAST, `text`, node => {
+  visit(markdownAST, `text`, (node) => {
     node.value = hyper.hyphenateText(node.value);
   });
 };

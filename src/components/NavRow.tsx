@@ -8,7 +8,7 @@ import {
   mediumSpacing,
   screenMedium,
   xsmallSpacing,
-  animationDelaySlow
+  animationDelaySlow,
 } from "./styleConstants";
 import { graphql, useStaticQuery } from "gatsby";
 
@@ -86,7 +86,7 @@ interface ClassNameProps {
 
 const NavRowWithRef = (
   { className }: ClassNameProps,
-  ref: Ref<HTMLElement>
+  ref: Ref<HTMLElement>,
 ) => {
   const data = useStaticQuery(graphql`
     query {

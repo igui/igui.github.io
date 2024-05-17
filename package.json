@@ -10,7 +10,9 @@
     "build": "gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "prepare": "husky",
+    "test": "echo \"Error: no test specified\""
   },
   "dependencies": {
     "babel-plugin-styled-components": "^2.1.4",
@@ -42,7 +44,7 @@
     "eslint-plugin-react": "^7.34.1",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
-    "prettier": "^3.2.5",
+    "prettier": "3.2.5",
     "typescript": "^5.4.5"
   },
   "repository": {

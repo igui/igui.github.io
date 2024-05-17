@@ -6,7 +6,7 @@ import {
   xsmallSpacing,
   smallSpacing,
   animationDelayFast,
-  copyColor
+  copyColor,
 } from "./styleConstants";
 
 const Container = styled.div`

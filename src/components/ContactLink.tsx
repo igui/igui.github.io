@@ -4,7 +4,7 @@ import {
   smallSpacing,
   xsmallSpacing,
   mediumSpacing,
-  tertiaryBgColor
+  tertiaryBgColor,
 } from "./styleConstants";
 
 interface ContactLinkProps {

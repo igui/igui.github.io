@@ -21,7 +21,7 @@ interface ClassNameProps {
 
 const FullVideoWithRef = (
   { className }: ClassNameProps,
-  ref: Ref<HTMLVideoElement>
+  ref: Ref<HTMLVideoElement>,
 ) => {
   const videoSources = useStaticQuery(graphql`
     query {

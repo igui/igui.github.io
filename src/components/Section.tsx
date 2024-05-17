@@ -8,7 +8,7 @@ import {
   animationDelaySlow,
   copySecondaryColor,
   tertiaryBgColor,
-  xlargeSpacing
+  xlargeSpacing,
 } from "./styleConstants";
 
 interface SectionWrapperProps {
@@ -27,11 +27,11 @@ interface SectionProps extends SectionWrapperProps, SectionContentProps {
 
 const SectionWrapper = styled.section<SectionWrapperProps>`
   margin-top: 0;
-  background-color: ${props => props.backgroundColor};
+  background-color: ${(props) => props.backgroundColor};
 `;
 
 const SectionContent = styled.div<SectionContentProps>`
-  color: ${props => (props.dark ? tertiaryBgColor : copyColor)};
+  color: ${(props) => (props.dark ? tertiaryBgColor : copyColor)};
   line-height: 26px;
   margin-left: auto;
   margin-right: auto;
@@ -42,7 +42,7 @@ const SectionContent = styled.div<SectionContentProps>`
   padding-bottom: ${xlargeSpacing};
 
   a {
-    color: ${props => (props.dark ? copySecondaryColor : linkColor)};
+    color: ${(props) => (props.dark ? copySecondaryColor : linkColor)};
     text-decoration: none;
     transition-duration: ${animationDelaySlow};
     transition-property: color;
@@ -62,7 +62,7 @@ const Section = ({
   children,
   id,
   dark,
-  title
+  title,
 }: SectionProps) => (
   <SectionWrapper backgroundColor={backgroundColor}>
     <SectionContent dark={dark}>

@@ -24,25 +24,115 @@ import deepLearningImg from "../assets/images/skills/deep-learning.png";
 import sklearnLogo from "../assets/images/skills/sklearn.png";
 
 const SKILL_LIST = [
-  { name: "Machine Learning", yearsOfExperience: 4, image: mlLogo, fallbackColor: "#452e7e" },
-  { name: "Natural Language Processing (NLP)", yearsOfExperience: 2, image: nlpImage, fallbackColor: "#004876" },
-  { name: "Artificial Intelligence (AI)", yearsOfExperience: 4, image: aiLogo, fallbackColor: "#fed800" },
-  { name: "Deep Learning", yearsOfExperience: 3, image: deepLearningImg, fallbackColor: "#fed800" },
-  { name: "Python", yearsOfExperience: 10, image: pythonImg, fallbackColor: "#215765" },
-  { name: "Computer Vision", yearsOfExperience: 1, image: computerVisionImg, fallbackColor: "#2d5396" },
-  { name: "Large Language Models (LLM)", yearsOfExperience: 1, image: chatGptLogo, fallbackColor: "#74aa9c" },
-  { name: "Chatbots", yearsOfExperience: 1, image: chatbotLogo, fallbackColor: "#3cca9d" },
-  { name: "Data Science", yearsOfExperience: 3, image: dataScienceLogo, fallbackColor: "#9dcb5b" },
-  { name: "Data Warehousing", yearsOfExperience: 4, image: datawarehouseLogo, fallbackColor: "#7bd0a9" },
-  { name: "Data Pipelines", yearsOfExperience: 3, image: pipelineLogo, fallbackColor: "#004876" },
-  { name: "Tensorflow", yearsOfExperience: 1, image: tensorflowLogo, fallbackColor: "#000000" },
-  { name: "Pytorch", yearsOfExperience: 2, image: pytorchLogo, fallbackColor: "#343541" },
-  { name: "AWS", yearsOfExperience: 7, image: awsLogo, fallbackColor: "#232f3e" },
-  { name: "SQL", yearsOfExperience: 13, image: sqlLogo, fallbackColor: "#ff6838" },
-  { name: "Apache Kafka", yearsOfExperience: 2, image: kafkaLogo, fallbackColor: "#a1b8d3" },
-  { name: "Pandas", yearsOfExperience: 5, image: pandasLogo, fallbackColor: "#150458" },
-  { name: "Scikit learn", yearsOfExperience: 5, image: sklearnLogo, fallbackColor: "#9dcb5b" },
-]
+  {
+    name: "Machine Learning",
+    yearsOfExperience: 4,
+    image: mlLogo,
+    fallbackColor: "#452e7e",
+  },
+  {
+    name: "Natural Language Processing (NLP)",
+    yearsOfExperience: 2,
+    image: nlpImage,
+    fallbackColor: "#004876",
+  },
+  {
+    name: "Artificial Intelligence (AI)",
+    yearsOfExperience: 4,
+    image: aiLogo,
+    fallbackColor: "#fed800",
+  },
+  {
+    name: "Deep Learning",
+    yearsOfExperience: 3,
+    image: deepLearningImg,
+    fallbackColor: "#fed800",
+  },
+  {
+    name: "Python",
+    yearsOfExperience: 10,
+    image: pythonImg,
+    fallbackColor: "#215765",
+  },
+  {
+    name: "Computer Vision",
+    yearsOfExperience: 1,
+    image: computerVisionImg,
+    fallbackColor: "#2d5396",
+  },
+  {
+    name: "Large Language Models (LLM)",
+    yearsOfExperience: 1,
+    image: chatGptLogo,
+    fallbackColor: "#74aa9c",
+  },
+  {
+    name: "Chatbots",
+    yearsOfExperience: 1,
+    image: chatbotLogo,
+    fallbackColor: "#3cca9d",
+  },
+  {
+    name: "Data Science",
+    yearsOfExperience: 3,
+    image: dataScienceLogo,
+    fallbackColor: "#9dcb5b",
+  },
+  {
+    name: "Data Warehousing",
+    yearsOfExperience: 4,
+    image: datawarehouseLogo,
+    fallbackColor: "#7bd0a9",
+  },
+  {
+    name: "Data Pipelines",
+    yearsOfExperience: 3,
+    image: pipelineLogo,
+    fallbackColor: "#004876",
+  },
+  {
+    name: "Tensorflow",
+    yearsOfExperience: 1,
+    image: tensorflowLogo,
+    fallbackColor: "#000000",
+  },
+  {
+    name: "Pytorch",
+    yearsOfExperience: 2,
+    image: pytorchLogo,
+    fallbackColor: "#343541",
+  },
+  {
+    name: "AWS",
+    yearsOfExperience: 7,
+    image: awsLogo,
+    fallbackColor: "#232f3e",
+  },
+  {
+    name: "SQL",
+    yearsOfExperience: 13,
+    image: sqlLogo,
+    fallbackColor: "#ff6838",
+  },
+  {
+    name: "Apache Kafka",
+    yearsOfExperience: 2,
+    image: kafkaLogo,
+    fallbackColor: "#a1b8d3",
+  },
+  {
+    name: "Pandas",
+    yearsOfExperience: 5,
+    image: pandasLogo,
+    fallbackColor: "#150458",
+  },
+  {
+    name: "Scikit learn",
+    yearsOfExperience: 5,
+    image: sklearnLogo,
+    fallbackColor: "#9dcb5b",
+  },
+];
 
 const OTHER_SKILLS = [
   { name: "E-Commerce", yearsOfExperience: 5 },
@@ -84,7 +174,7 @@ const ImageItem = styled.li`
 
 const ImageSize = "120px";
 
-const Image = styled.img<{ fallbackColor: string; }>`
+const Image = styled.img<{ fallbackColor: string }>`
   margin: 0 auto;
   height: ${ImageSize};
   width: ${ImageSize};
@@ -104,14 +194,13 @@ const ImagePlaceholder = styled.div`
 
 const Name = styled.span`
   text-align: center;
-`
+`;
 
 const SkillParagraph = styled.p`
   text-align: justify;
 `;
 
 const Skills = () => {
-
   const pageQuery = useStaticQuery(graphql`
     query {
       skills: markdownRemark(
@@ -123,38 +212,40 @@ const Skills = () => {
   `);
 
   return (
-  <Section backgroundColor={tertiaryBgColor} id="skills" title="Skills">
-    <Quote
-      author="Alan Turing"
-      href="https://en.wikipedia.org/wiki/Alan_Turing"
-    >
-      Sometimes it is the people no one imagines anything of who do the things
-      that no-one can imagine
-    </Quote>
+    <Section backgroundColor={tertiaryBgColor} id="skills" title="Skills">
+      <Quote
+        author="Alan Turing"
+        href="https://en.wikipedia.org/wiki/Alan_Turing"
+      >
+        Sometimes it is the people no one imagines anything of who do the things
+        that no-one can imagine
+      </Quote>
 
-    <SkillParagraph dangerouslySetInnerHTML={{ __html: pageQuery.skills.html }} />
+      <SkillParagraph
+        dangerouslySetInnerHTML={{ __html: pageQuery.skills.html }}
+      />
 
-    <ImageList>
-      {SKILL_LIST.map((skill) => (
-        <ImageItem key={skill.name}>
-          <Image src={skill.image} fallbackColor={skill.fallbackColor} />
+      <ImageList>
+        {SKILL_LIST.map((skill) => (
+          <ImageItem key={skill.name}>
+            <Image src={skill.image} fallbackColor={skill.fallbackColor} />
 
-          <Name>{skill.name}</Name>
-          {/* <span>{skill.yearsOfExperience}</span> */}
-        </ImageItem>
-      ))}
-    </ImageList>
-    <h3>Other Skills</h3>
-    <ul>
-      {OTHER_SKILLS.map((skill) => (
+            <Name>{skill.name}</Name>
+            {/* <span>{skill.yearsOfExperience}</span> */}
+          </ImageItem>
+        ))}
+      </ImageList>
+      <h3>Other Skills</h3>
+      <ul>
+        {OTHER_SKILLS.map((skill) => (
           <li key={skill.name}>
             {skill.name}
             {/* <span>{skill.yearsOfExperience}</span> */}
           </li>
-      ))}
-    </ul>
-  </Section>
+        ))}
+      </ul>
+    </Section>
   );
-}
+};
 
 export default Skills;

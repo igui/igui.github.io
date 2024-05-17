@@ -1,9 +1,6 @@
 import React from "react";
 import { graphql, useStaticQuery } from "gatsby";
-import {
-  bgColor,
-  screenMedium
-} from "./styleConstants";
+import { bgColor, screenMedium } from "./styleConstants";
 import styled from "styled-components";
 import Section from "./Section";
 import himImg from "../assets/images/him.jpg";
@@ -56,21 +53,20 @@ const ImgContainer = styled.div`
     transform: rotateY(0deg);
   }
 
-  @media only screen and (min-width : ${screenMedium}) {
+  @media only screen and (min-width: ${screenMedium}) {
     width: ${ImgContainerSizeLarge};
     height: ${ImgContainerSizeLarge};
   }
-`
+`;
 
 const BioContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   grid-column: 3;
-`
-
-const BioInfo = styled.div`
 `;
+
+const BioInfo = styled.div``;
 
 const About = () => {
   const pageQuery = useStaticQuery(graphql`
@@ -92,16 +88,10 @@ const About = () => {
         </ImgContainer>
       </Header>
       <BioContainer>
-          <BioInfo>
-            Name: Ignacio Avas
-          </BioInfo>
-          <BioInfo>
-            Countries: 🇺🇾 🇪🇸 🇧🇪
-          </BioInfo>
-          <BioInfo>
-            Languages: Spanish, English, Italian, Dutch
-          </BioInfo>
-        </BioContainer>
+        <BioInfo>Name: Ignacio Avas</BioInfo>
+        <BioInfo>Countries: 🇺🇾 🇪🇸 🇧🇪</BioInfo>
+        <BioInfo>Languages: Spanish, English, Italian, Dutch</BioInfo>
+      </BioContainer>
 
       <SectionText
         dangerouslySetInnerHTML={{ __html: pageQuery.section.html }}

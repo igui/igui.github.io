@@ -65,8 +65,7 @@ const Experience = styled.div`
   }
 `;
 
-const Timeline = styled.div`
-`;
+const Timeline = styled.div``;
 
 interface MarkdownRemarkNode {
   id: string;
@@ -79,7 +78,10 @@ interface MarkdownRemarkNode {
 const Experiences = () => {
   const pageQuery = useStaticQuery(graphql`
     query {
-      allMarkdownRemark(filter: {frontmatter: {path: {glob: "/experiences/*"}}}, sort: { fileAbsolutePath: DESC}) {
+      allMarkdownRemark(
+        filter: { frontmatter: { path: { glob: "/experiences/*" } } }
+        sort: { fileAbsolutePath: DESC }
+      ) {
         nodes {
           id
           frontmatter {
@@ -106,7 +108,10 @@ const Experiences = () => {
 
       <Timeline>
         {pageQuery.allMarkdownRemark.nodes.map((node: MarkdownRemarkNode) => (
-          <Experience key={node.id} dangerouslySetInnerHTML={{ __html: node.html }} />
+          <Experience
+            key={node.id}
+            dangerouslySetInnerHTML={{ __html: node.html }}
+          />
         ))}
       </Timeline>
     </Section>

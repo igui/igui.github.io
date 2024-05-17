@@ -6,11 +6,13 @@ import styled from "styled-components";
 import { screenMedium } from "./styleConstants";
 import { graphql, useStaticQuery } from "gatsby";
 
-
 const Publications = () => {
   const pageQuery = useStaticQuery(graphql`
     {
-      allMarkdownRemark(filter: {frontmatter: {path: {glob: "/publications/*"}}}, sort: { fileAbsolutePath: ASC }) {
+      allMarkdownRemark(
+        filter: { frontmatter: { path: { glob: "/publications/*" } } }
+        sort: { fileAbsolutePath: ASC }
+      ) {
         nodes {
           html
           frontmatter {
@@ -29,7 +31,6 @@ const Publications = () => {
       >
         Somewhere, something incredible is waiting to be known.
       </Quote>
-
     </Section>
   );
 };

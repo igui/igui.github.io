@@ -1,21 +1,16 @@
 # Python old gitignore
-venv
-.venv
-*.pyc
-staticfiles
-.env
-db.sqlite3
-.sass-cache
-app/CACHE/
 node_modules/
 
 # VSCode
 .vscode
 
-# Gatsby cache 
+# Gatsby cache
 .cache
 # Result dir for the static site
 public
+
+# Husky
+.husky
 
 # yarn related
 yarn-error.log
