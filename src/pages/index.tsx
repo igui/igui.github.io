@@ -6,6 +6,7 @@ import Contact from "../components/Contact";
 import Skills from "../components/Skills";
 import Projects from "../components/Projects";
 import Experiences from "../components/Experiences";
+import Publications from "../components/Publications";
 
 const IndexPage = () => (
   <Layout>
@@ -14,6 +15,7 @@ const IndexPage = () => (
     <Skills />
     <Projects />
     <Experiences />
+    <Publications />
     <Contact />
   </Layout>
 );

@@ -10,7 +10,8 @@ import himImg from "../assets/images/him.jpg";
 import himBackImg from "../assets/images/him-back.jpg";
 
 const Header = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   justify-content: center;
 `;
 
@@ -23,6 +24,7 @@ const ImgContainerSizeLarge = "160px";
 
 const ImgContainer = styled.div`
   position: relative;
+  grid-column: 2;
 
   width: ${ImgContainerSizeSmall};
   height: ${ImgContainerSizeSmall};
@@ -60,15 +62,19 @@ const ImgContainer = styled.div`
   }
 `
 
+const BioContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  grid-column: 3;
+`
+
+const BioInfo = styled.div`
+`;
+
 const About = () => {
   const pageQuery = useStaticQuery(graphql`
     query {
-      headline: markdownRemark(
-        frontmatter: { title: { eq: "about-headline" } }
-      ) {
-        html
-      }
-
       section: markdownRemark(
         frontmatter: { title: { eq: "about-section-content" } }
       ) {
@@ -85,6 +91,17 @@ const About = () => {
           <img src={himBackImg} />
         </ImgContainer>
       </Header>
+      <BioContainer>
+          <BioInfo>
+            Name: Ignacio Avas
+          </BioInfo>
+          <BioInfo>
+            Countries: 🇺🇾 🇪🇸 🇧🇪
+          </BioInfo>
+          <BioInfo>
+            Languages: Spanish, English, Italian, Dutch
+          </BioInfo>
+        </BioContainer>
 
       <SectionText
         dangerouslySetInnerHTML={{ __html: pageQuery.section.html }}

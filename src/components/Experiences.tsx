@@ -1,12 +1,14 @@
 import React from "react";
 import Section from "./Section";
-import { tertiaryBgColor } from "./styleConstants";
+import { bgColor, smallSpacing, tertiaryBgColor } from "./styleConstants";
 import Quote from "./Quote";
 import styled from "styled-components";
 import { graphql, useStaticQuery } from "gatsby";
 
 const Experience = styled.div`
   display: grid;
+  max-height: 72px;
+  padding: ${smallSpacing};
 
   grid-template-columns: 1fr 64px;
   grid-template-rows: auto auto auto;
@@ -40,14 +42,26 @@ const Experience = styled.div`
     grid-area: period;
     margin: 0;
   }
+
   > p {
-    margin: 0;
-    text-align: justify;
+    display: none;
     grid-column: 1 / 3;
+    margin: 0;
+    position: relative;
+    right: ${smallSpacing};
+    padding: ${smallSpacing};
+    width: 100%;
+    text-align: justify;
+    z-index: 1;
   }
 
-  & + & {
-    margin-top: 20px;
+  &:hover {
+    background-color: ${bgColor};
+  }
+
+  &:hover p {
+    display: initial;
+    background-color: ${bgColor};
   }
 `;
 
@@ -65,7 +79,7 @@ interface MarkdownRemarkNode {
 const Experiences = () => {
   const pageQuery = useStaticQuery(graphql`
     query {
-      allMarkdownRemark(filter: {frontmatter: {path: {glob: "/experiences/*"}}}) {
+      allMarkdownRemark(filter: {frontmatter: {path: {glob: "/experiences/*"}}}, sort: { fileAbsolutePath: DESC}) {
         nodes {
           id
           frontmatter {
@@ -76,14 +90,6 @@ const Experiences = () => {
       }
     }
   `);
-
-  const sortedExperiences = pageQuery.allMarkdownRemark.nodes.sort(
-      ({ frontmatter: { path: pathA } }: MarkdownRemarkNode,
-       { frontmatter: { path: pathB }}: MarkdownRemarkNode) => (
-        // Sort by path in descending order
-      pathB.localeCompare(pathA)
-    )
-  );
 
   return (
     <Section
@@ -99,7 +105,7 @@ const Experiences = () => {
       </Quote>
 
       <Timeline>
-        {sortedExperiences.map((node: MarkdownRemarkNode) => (
+        {pageQuery.allMarkdownRemark.nodes.map((node: MarkdownRemarkNode) => (
           <Experience key={node.id} dangerouslySetInnerHTML={{ __html: node.html }} />
         ))}
       </Timeline>

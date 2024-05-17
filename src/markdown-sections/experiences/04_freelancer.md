@@ -3,8 +3,7 @@ title: "Freelancing"
 path: "/experiences/04_freelancer"
 ---
 
-<!-- Empty PNG -->
-<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVQIW2NgAAIAAAUAAR4f7BQAAAAASUVORK5CYII=">
+<img src="company-logos/ruby.webp">
 
 ### Freelancing
 #### Ruby Developer
