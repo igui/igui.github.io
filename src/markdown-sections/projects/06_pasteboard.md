@@ -4,7 +4,7 @@ path: "/projects/06_pastevoard"
 date: "2024-05-21"
 ---
 
-<imgwrapper fallbackColor="#9c9c9f">
+<imgwrapper style="{ background-color: #9c9c9f; }">
   <img src="/projects/pasteboard.jpg" alt="Pasteboard login screen displaying website features">
 </imgwrapper>
 

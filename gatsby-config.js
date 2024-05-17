@@ -28,13 +28,6 @@ module.exports = {
     {
       resolve: "gatsby-source-filesystem",
       options: {
-        name: "assets",
-        path: path.join(__dirname, "src", "assets"),
-      },
-    },
-    {
-      resolve: "gatsby-source-filesystem",
-      options: {
         name: "markdown-sections",
         path: path.join(__dirname, "src", "markdown-sections"),
       },

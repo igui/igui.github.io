@@ -4,7 +4,7 @@ path: "/projects/08_notranzo"
 date: "2024-05-21"
 ---
 
-<imgwrapper fallbackColor="#c7a794">
+<imgwrapper style="{ background-color: #c7a794; }">
   <img src="/projects/notranzo.jpg" alt="Notranzo website showing product list">
 </imgwrapper>
 

@@ -3,8 +3,8 @@ import { graphql, useStaticQuery } from "gatsby";
 import { bgColor, screenMedium } from "./styleConstants";
 import styled from "styled-components";
 import Section from "./Section";
-import himImg from "../assets/images/him.jpg";
-import himBackImg from "../assets/images/him-back.jpg";
+import himImg from "./assets/about/him.jpg";
+import himBackImg from "./assets/about/him-back.jpg";
 
 const Header = styled.div`
   display: grid;

@@ -11,6 +11,7 @@ import {
   animationDelaySlow,
 } from "./styleConstants";
 import { graphql, useStaticQuery } from "gatsby";
+import logoImg from "./assets/ia.svg";
 
 const Container = styled.nav`
   align-items: center;
@@ -87,29 +88,18 @@ interface ClassNameProps {
 const NavRowWithRef = (
   { className }: ClassNameProps,
   ref: Ref<HTMLElement>,
-) => {
-  const data = useStaticQuery(graphql`
-    query {
-      file(relativePath: { eq: "images/ia.svg" }) {
-        publicURL
-      }
-    }
-  `);
+) => (
+  <Container className={className} ref={ref}>
+    <NavLogoAnchor href="#">
+      <ImageLogo src={logoImg} alt="Website logo" />
+    </NavLogoAnchor>
 
-  return (
-    <Container className={className} ref={ref}>
-      <NavLogoAnchor href="#">
-        <ImageLogo src={data.file.publicURL} alt="Website logo" />
-      </NavLogoAnchor>
-
-      <NavLinksContainer>
-        <NavLink href="#about">About</NavLink>
-        <NavLink href="#experience">Experience</NavLink>
-        <NavLink href="#projects">Projects</NavLink>
-        <NavLink href="#contact">Contact</NavLink>
-      </NavLinksContainer>
-    </Container>
-  );
-};
-
+    <NavLinksContainer>
+      <NavLink href="#about">About</NavLink>
+      <NavLink href="#experience">Experience</NavLink>
+      <NavLink href="#projects">Projects</NavLink>
+      <NavLink href="#contact">Contact</NavLink>
+    </NavLinksContainer>
+  </Container>
+);
 export default forwardRef(NavRowWithRef);

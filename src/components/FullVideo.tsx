@@ -1,7 +1,7 @@
 import React, { forwardRef, Ref } from "react";
 import styled from "styled-components";
-import { useStaticQuery, graphql } from "gatsby";
 import { animationDelaySlow } from "./styleConstants";
+import posterImg from "./assets/fullVideo/first.jpg";
 
 const Container = styled.video`
   min-height: 100%;
@@ -22,35 +22,19 @@ interface ClassNameProps {
 const FullVideoWithRef = (
   { className }: ClassNameProps,
   ref: Ref<HTMLVideoElement>,
-) => {
-  const videoSources = useStaticQuery(graphql`
-    query {
-      webM: file(relativePath: { eq: "videos/head.webm" }) {
-        publicURL
-      }
-      mp4: file(relativePath: { eq: "videos/head.mp4" }) {
-        publicURL
-      }
-      poster: file(relativePath: { eq: "videos/first.jpg" }) {
-        publicURL
-      }
-    }
-  `);
-
-  return (
-    <Container
-      className={className}
-      controls={false}
-      autoPlay={true}
-      muted={true}
-      loop={true}
-      ref={ref}
-      poster={videoSources.poster.publicURL}
-    >
-      <source src={videoSources.webM.publicURL} type="video/webm" />
-      <source src={videoSources.mp4.publicURL} type="video/mp4" />
-    </Container>
-  );
-};
+) => (
+  <Container
+    className={className}
+    controls={false}
+    autoPlay={true}
+    muted={true}
+    loop={true}
+    ref={ref}
+    poster={posterImg}
+  >
+    <source src="/videos/head.webm" type="video/webm" />
+    <source src="/videos/head.mp4" type="video/mp4" />
+  </Container>
+);
 
 export default forwardRef(FullVideoWithRef);

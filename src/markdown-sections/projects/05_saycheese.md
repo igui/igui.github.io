@@ -4,7 +4,7 @@ path: "/projects/05_saycheese"
 date: "2024-05-21"
 ---
 
-<imgwrapper fallbackColor="#6e8a8f">
+<imgwrapper style="{ background-color: #6e8a8f; }">
   <img src="/projects/saycheese.jpg" alt="Say Cheese login screen showing email and password">
 </imgwrapper>
 

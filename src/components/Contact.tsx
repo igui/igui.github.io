@@ -3,8 +3,11 @@ import Section from "./Section";
 import { secondaryBgColor, screenMedium, largeSpacing } from "./styleConstants";
 import Quote from "./Quote";
 import styled from "styled-components";
-import { useStaticQuery, graphql } from "gatsby";
 import ContactLink, { Container } from "./ContactLink";
+import emailSvg from "./assets/contact/email.svg";
+import githubSvg from "./assets/contact/github.svg";
+import linkedinSvg from "./assets/contact/linkedin.svg";
+import twitterSvg from "./assets/contact/twitter-x.svg";
 
 const LinkContainer = styled.div`
   display: flex;
@@ -27,63 +30,44 @@ const LinkContainer = styled.div`
   }
 `;
 
-const Contact = () => {
-  const data = useStaticQuery(graphql`
-    query {
-      email: file(relativePath: { eq: "images/email.svg" }) {
-        publicURL
-      }
-      github: file(relativePath: { eq: "images/github.svg" }) {
-        publicURL
-      }
-      linkedin: file(relativePath: { eq: "images/linkedin.svg" }) {
-        publicURL
-      }
-      twitter: file(relativePath: { eq: "images/twitter.svg" }) {
-        publicURL
-      }
-    }
-  `);
-
-  return (
-    <Section
-      dark={true}
-      backgroundColor={secondaryBgColor}
-      id="contact"
-      title="Contact"
+const Contact = () => (
+  <Section
+    dark={true}
+    backgroundColor={secondaryBgColor}
+    id="contact"
+    title="Contact"
+  >
+    <Quote
+      author="Larry Constantine"
+      href="https://en.wikipedia.org/wiki/Larry_Constantine"
     >
-      <Quote
-        author="Larry Constantine"
-        href="https://en.wikipedia.org/wiki/Larry_Constantine"
-      >
-        Hiring people to write code to sell is not the same as hiring people to
-        design and build durable, usable, dependable software.
-      </Quote>
+      Hiring people to write code to sell is not the same as hiring people to
+      design and build durable, usable, dependable software.
+    </Quote>
 
-      <LinkContainer>
-        <ContactLink
-          icon={data.github.publicURL}
-          href="https://github.com/igui"
-          linkProtected={false}
-        />
-        <ContactLink
-          icon={data.linkedin.publicURL}
-          href="https://linkedin.com/in/iavas"
-          linkProtected={false}
-        />
-        <ContactLink
-          icon={data.twitter.publicURL}
-          href="https://twitter.com/ignacioavas"
-          linkProtected={false}
-        />
-        <ContactLink
-          icon={data.email.publicURL}
-          href="mailto:contact@ignacioavas.com"
-          linkProtected={true}
-        />
-      </LinkContainer>
-    </Section>
-  );
-};
+    <LinkContainer>
+      <ContactLink
+        icon={githubSvg}
+        href="https://github.com/igui"
+        linkProtected={false}
+      />
+      <ContactLink
+        icon={linkedinSvg}
+        href="https://linkedin.com/in/iavas"
+        linkProtected={false}
+      />
+      <ContactLink
+        icon={twitterSvg}
+        href="https://x.com/ignacioavas"
+        linkProtected={false}
+      />
+      <ContactLink
+        icon={emailSvg}
+        href="mailto:contact@ignacioavas.com"
+        linkProtected={true}
+      />
+    </LinkContainer>
+  </Section>
+);
 
 export default Contact;
