@@ -1,4 +1,0 @@
-#!/bin/bash
-export PATH=/app/.heroku/node/bin:$PATH
-gulp sass
-./manage.py collectstatic --noinput

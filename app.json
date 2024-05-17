@@ -1,8 +1,0 @@
-{
-  "name": "Ignacio Avas Website",
-  "description": "A simple website used for describing the author of it.",
-  "image": "heroku/python",
-  "repository": "https://github.com/igui/website",
-  "keywords": ["python", "django" ],
-  "addons": [ "heroku-postgresql" ]
-}
