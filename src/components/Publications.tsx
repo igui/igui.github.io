@@ -1,15 +1,67 @@
 import React from "react";
 import Section from "./Section";
-import { bgColor, screenSmall } from "./styleConstants";
+import {
+  bgColor,
+  mediumSpacing,
+  screenSmall,
+  smallSpacing,
+} from "./styleConstants";
 import Quote from "./Quote";
 import styled from "styled-components";
-import { screenMedium } from "./styleConstants";
 import { graphql, useStaticQuery } from "gatsby";
 import { MarkdownRemarkNode } from "./types";
 
-const PublicationList = styled.ul``;
+const PublicationList = styled.ul`
+  list-style: none;
+  padding-left: 0;
+`;
 
-const PublicationItem = styled.li``;
+const PublicationItem = styled.li`
+  display: grid;
+  grid-template-columns: 1fr 64px;
+  grid-template-rows: auto auto auto auto;
+  gap: 0px 5px;
+  grid-template-areas:
+    "title image"
+    "publication image"
+    "figure figure"
+    "content content";
+  margin-top: ${mediumSpacing};
+
+  > img {
+    grid-area: image;
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  h2 {
+    grid-area: title;
+    margin: 0;
+    font-size: 1rem;
+  }
+
+  h3 {
+    grid-area: publication;
+    margin: 0;
+    font-size: 1rem;
+  }
+
+  figure {
+    grid-area: figure;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: ${mediumSpacing} 0 0 0;
+
+    > img {
+      max-width: 100%;
+    }
+  }
+
+  p {
+    grid-area: content;
+  }
+`;
 
 const Heading = styled.p`
   text-align: justify;

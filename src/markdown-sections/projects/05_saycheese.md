@@ -10,4 +10,4 @@ date: "2024-05-21"
 
 ### Say Cheese
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+SayCheese was a project that I worked on as part of a web development course. The goal was to create a simple website that allows users to upload photos, add captions, and share them with friends. The website was built using HTML, CSS, and JavaScript. It features a responsive design that works on both desktop and mobile devices.

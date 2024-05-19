@@ -10,4 +10,15 @@ date: "2024-05-21"
 
 ### Scraping Development Framework
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Scraping Development Framework was a project to help automate the scraping process
+of a website. The framework was built using Python, Qt and was designed to be
+used by non-programmers. The goal was to make it easy for users to create scraping
+scripts without having to write any code. The framework featured a visual editor
+that allowed users to select elements on a webpage and define the scraping logic
+using a simple drag-and-drop interface. The resulting script could then be run
+to extract data from the website and save it to a file. The framework was used
+to scrape data from various websites, including e-commerce sites, news sites, and
+social media platforms. It was also used to create custom scrapers for clients
+who needed to extract data from specific websites. The framework was well-received
+by users and was praised for its ease of use and flexibility. It was used by
+my teammates at Giglobaljob.

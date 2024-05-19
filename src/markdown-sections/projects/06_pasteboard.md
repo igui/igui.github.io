@@ -10,4 +10,8 @@ date: "2024-05-21"
 
 ### Pasteboard
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Pasteboard was a website that I created when working as a Ruby freelancer for an Uruguayan
+client. The website was built using Ruby on Rails and allowed users to create and share websites
+back in the day before social networks were popular. The website featured a simple editor
+that allowed users to bookmark websites, add tags, notes and share them with friends. The website
+was well-received by users and was used by my client to share interesting websites with his friends.

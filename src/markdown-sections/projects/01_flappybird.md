@@ -10,4 +10,4 @@ date: "2024-05-21"
 
 ### Flappy Bird
 
-Flappy Bird is a popular mobile game developed by Vietnamese programmer Dong Nguyen and released by GEARS Studios in 2013. The game features a simplistic yet highly addictive gameplay where players control a small bird, navigating it through a series of green pipes by tapping the screen to make the bird flap its wings and gain altitude. The goal is to fly be.
+TBD

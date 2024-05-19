@@ -222,15 +222,6 @@ const Skills = () => {
           </ImageItem>
         ))}
       </ImageList>
-      <h3>Other Skills</h3>
-      <ul>
-        {OTHER_SKILLS.map((skill) => (
-          <li key={skill.name}>
-            {skill.name}
-            {/* <span>{skill.yearsOfExperience}</span> */}
-          </li>
-        ))}
-      </ul>
     </Section>
   );
 };
