@@ -46,12 +46,5 @@ module.exports = {
         ],
       },
     },
-    {
-      resolve: "gatsby-plugin-mixpanel",
-      options: {
-        // TODO: Use a safer way to store the token
-        apiToken: "31d560c5487fa63be19c0af92287c582",
-      },
-    },
   ],
 };

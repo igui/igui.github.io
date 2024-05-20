@@ -1,3 +1,4 @@
+import mixpanel from "mixpanel-browser";
 import React, { useEffect, useState } from "react";
 import About from "../components/About";
 import Contact from "../components/Contact";
@@ -7,7 +8,9 @@ import Layout from "../components/Layout";
 import Projects from "../components/Projects";
 import Publications from "../components/Publications";
 import Skills from "../components/Skills";
-import { useMixpanel } from "gatsby-plugin-mixpanel";
+
+// TODO: Think of a safer way to store the Mixpanel token
+mixpanel.init("428c165f58ca09a568884e7dbaf0f01d");
 
 const IndexPage = () => {
   // Tracks the active project or experience so that we remove focus
@@ -29,10 +32,9 @@ const IndexPage = () => {
     }
   };
 
-  // Track page load
-  const mixpanel = useMixpanel();
-  mixpanel.track("Page loaded");
-  console.debug("Page loaded");
+  useEffect(() => {
+    mixpanel.track("Page visited");
+  }, []);
 
   return (
     <Layout>
