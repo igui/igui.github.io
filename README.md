@@ -7,7 +7,7 @@ This website is a personal project to showcase my professional experience and pr
 
 ## Features
 
-- **Gatsby v4**: The latest version of Gatsby.
+- **Gatsby v5**: The latest version of Gatsby.
 - **TypeScript**: Add types to your JavaScript code.
 - **React v18**: The latest version of React.
 - **Styled Components**: Use the best CSS-in-JS solution.

@@ -1,12 +1,13 @@
-import React, { useState } from "react";
-import Layout from "../components/Layout";
-import Header from "../components/Header";
+import React, { useEffect, useState } from "react";
 import About from "../components/About";
 import Contact from "../components/Contact";
-import Skills from "../components/Skills";
-import Projects from "../components/Projects";
 import Experiences from "../components/Experiences";
+import Header from "../components/Header";
+import Layout from "../components/Layout";
+import Projects from "../components/Projects";
 import Publications from "../components/Publications";
+import Skills from "../components/Skills";
+import { useMixpanel } from "gatsby-plugin-mixpanel";
 
 const IndexPage = () => {
   // Tracks the active project or experience so that we remove focus
@@ -23,6 +24,11 @@ const IndexPage = () => {
       setActiveProject(null);
     }
   };
+
+  // Track page load
+  const mixpanel = useMixpanel();
+  mixpanel.track("Page loaded");
+  console.debug("Page loaded");
 
   return (
     <Layout>
