@@ -1,5 +1,7 @@
 # Ignacio Avas website
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/18c4e988-b58a-4aa9-bfba-7dcff2f60d18/deploy-status)](https://app.netlify.com/sites/ignacioavas/deploys)
+
 My Internet Website. It's a Gatsby based website hosted on Netlify.
 This website is a personal project to showcase my professional experience and projects.
 
