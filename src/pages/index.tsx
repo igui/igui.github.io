@@ -14,10 +14,7 @@ const IndexPage = () => {
   const [activeProject, setActiveProject] = useState<string | null>(null);
   const [activeExperience, setActiveExperience] = useState<string | null>(null);
 
-  const toggleActiveElement = (
-    id: string,
-    type: "projects" | "experiences",
-  ) => {
+  const toggleActiveElement = (id: string, type: string) => {
     if (type === "projects") {
       setActiveProject(activeProject === id ? null : id);
       setActiveExperience(null);
@@ -40,7 +37,10 @@ const IndexPage = () => {
         activeElement={activeExperience}
         onElementClick={(id) => toggleActiveElement(id, "experiences")}
       />
-      <Publications />
+      <Publications
+        activeElement={activeExperience}
+        onElementClick={(id) => toggleActiveElement(id, "publications")}
+      />
       <Contact />
     </Layout>
   );

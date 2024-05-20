@@ -12,13 +12,13 @@ import {
 import { MarkdownRemarkNode } from "./types";
 
 interface ExperienceProps {
-  active: null | false | true;
+  active: boolean;
 }
 
 const Experience = styled.div<ExperienceProps>`
   background-color: ${(props) => (props.active ? bgColor : "unset")};
   display: grid;
-  max-height: 72px;
+  max-height: ${(props) => (props.active ? "unset" : "72px")};
   padding: ${smallSpacing};
   grid-template-columns: 1fr 64px;
   grid-template-rows: auto auto auto;
@@ -110,7 +110,7 @@ const Experiences = ({ activeElement, onElementClick }: ExperiencesProps) => {
       <div>
         {pageQuery.allMarkdownRemark.nodes.map((node: MarkdownRemarkNode) => (
           <Experience
-            active={activeElement === null ? null : activeElement === node.id}
+            active={activeElement === node.id}
             onClick={onElementClick.bind(null, node.id)}
             key={node.id}
             dangerouslySetInnerHTML={{ __html: node.html }}
