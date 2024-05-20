@@ -13,6 +13,7 @@ This website is a personal project to showcase my professional experience and pr
 - **Styled Components**: Use the best CSS-in-JS solution.
 - **SEO**: SEO friendly.
 - **PWA**: Progressive Web App ready.
+- **Tracking**: Mixpanel ready for basic tracking.
 
 ## Getting Started
 
