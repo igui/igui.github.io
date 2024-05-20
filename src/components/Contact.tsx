@@ -1,13 +1,13 @@
 import React from "react";
-import Section from "./Section";
-import { secondaryBgColor, screenMedium, largeSpacing } from "./styleConstants";
-import Quote from "./Quote";
 import styled from "styled-components";
 import ContactLink, { Container } from "./ContactLink";
+import Quote from "./Quote";
+import Section from "./Section";
 import emailSvg from "./assets/contact/email.svg";
 import githubSvg from "./assets/contact/github.svg";
 import linkedinSvg from "./assets/contact/linkedin.svg";
 import twitterSvg from "./assets/contact/twitter-x.svg";
+import { largeSpacing, screenMedium, secondaryBgColor } from "./styleConstants";
 
 const LinkContainer = styled.div`
   display: flex;

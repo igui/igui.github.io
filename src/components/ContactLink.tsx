@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import {
-  smallSpacing,
-  xsmallSpacing,
   mediumSpacing,
+  smallSpacing,
   tertiaryBgColor,
+  xsmallSpacing,
 } from "./styleConstants";
 
 interface ContactLinkProps {

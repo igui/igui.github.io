@@ -1,9 +1,9 @@
+import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
+import styled from "styled-components";
+import Quote from "./Quote";
 import Section from "./Section";
 import { bgColor, smallSpacing, tertiaryBgColor } from "./styleConstants";
-import Quote from "./Quote";
-import styled from "styled-components";
-import { graphql, useStaticQuery } from "gatsby";
 import { MarkdownRemarkNode } from "./types";
 
 const Experience = styled.div`

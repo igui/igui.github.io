@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import {
-  screenLarge,
-  bgColor,
-  xsmallSpacing,
-  smallSpacing,
   animationDelayFast,
+  bgColor,
   copyColor,
+  screenLarge,
+  smallSpacing,
+  xsmallSpacing,
 } from "./styleConstants";
 
 const Container = styled.div`

@@ -10,15 +10,4 @@ date: "2024-05-21"
 
 ### Scraping Development Framework
 
-Scraping Development Framework was a project to help automate the scraping process
-of a website. The framework was built using Python, Qt and was designed to be
-used by non-programmers. The goal was to make it easy for users to create scraping
-scripts without having to write any code. The framework featured a visual editor
-that allowed users to select elements on a webpage and define the scraping logic
-using a simple drag-and-drop interface. The resulting script could then be run
-to extract data from the website and save it to a file. The framework was used
-to scrape data from various websites, including e-commerce sites, news sites, and
-social media platforms. It was also used to create custom scrapers for clients
-who needed to extract data from specific websites. The framework was well-received
-by users and was praised for its ease of use and flexibility. It was used by
-my teammates at Giglobaljob.
+SDF is a Python framework that allows to easy scrape a site. It enables to make XPath and CSS queries to quickly parse a website. The focus of the framework is to make the job of making a scraper easier, allow to parse sites with millions of items, and be able to export the items in several formats ranging from CSVs to MySQL database dump. SDF uses browsers (as in a Web Browser) to do the job. Browsers come in two flavors: the WebKitBrowser, a standard browser (similar to Safari or Chrome) that can be controlled through python code. WebkitBrowser manages javascript, flash and other types of content. The other type of browser is the BasicBrowser, a minimalistic and faster version of WebKitBrowser that doesn't handle javascript directly. SDF features recovery and parallel processing, so multiple browsers can be used concurrently to scrape a large site in hours.

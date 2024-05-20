@@ -1,7 +1,7 @@
 import React, { forwardRef, Ref } from "react";
 import styled from "styled-components";
-import { animationDelaySlow } from "./styleConstants";
 import posterImg from "./assets/fullVideo/first.jpg";
+import { animationDelaySlow } from "./styleConstants";
 
 const Container = styled.video`
   min-height: 100%;

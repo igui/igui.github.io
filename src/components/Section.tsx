@@ -1,12 +1,12 @@
 import React, { ReactNode } from "react";
 import styled from "styled-components";
 import {
+  animationDelaySlow,
   copyColor,
+  copySecondaryColor,
+  linkColor,
   screenMedium,
   smallSpacing,
-  linkColor,
-  animationDelaySlow,
-  copySecondaryColor,
   tertiaryBgColor,
   xlargeSpacing,
 } from "./styleConstants";

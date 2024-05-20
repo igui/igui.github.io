@@ -1,27 +1,27 @@
-import React from "react";
-import Section from "./Section";
-import { tertiaryBgColor } from "./styleConstants";
-import Quote from "./Quote";
-import styled from "styled-components";
 import { graphql, useStaticQuery } from "gatsby";
-import pythonImg from "./assets/skills/python.png";
-import awsLogo from "./assets/skills/aws.svg";
-import sqlLogo from "./assets/skills/sql.png";
-import mlLogo from "./assets/skills/ml.png";
-import kafkaLogo from "./assets/skills/kafka.svg";
-import pytorchLogo from "./assets/skills/pytorch.png";
-import tensorflowLogo from "./assets/skills/tensorflow.png";
-import pandasLogo from "./assets/skills/pandas.png";
-import chatGptLogo from "./assets/skills/chatgpt.png";
+import React from "react";
+import styled from "styled-components";
+import Quote from "./Quote";
+import Section from "./Section";
 import aiLogo from "./assets/skills/ai.png";
+import awsLogo from "./assets/skills/aws.svg";
 import chatbotLogo from "./assets/skills/chatbot.png";
-import dataScienceLogo from "./assets/skills/data-science.png";
-import pipelineLogo from "./assets/skills/pipeline.png";
-import datawarehouseLogo from "./assets/skills/data-warehouse.png";
-import nlpImage from "./assets/skills/nlp.png";
+import chatGptLogo from "./assets/skills/chatgpt.png";
 import computerVisionImg from "./assets/skills/computer-vision.png";
+import dataScienceLogo from "./assets/skills/data-science.png";
+import datawarehouseLogo from "./assets/skills/data-warehouse.png";
 import deepLearningImg from "./assets/skills/deep-learning.png";
+import kafkaLogo from "./assets/skills/kafka.svg";
+import mlLogo from "./assets/skills/ml.png";
+import nlpImage from "./assets/skills/nlp.png";
+import pandasLogo from "./assets/skills/pandas.png";
+import pipelineLogo from "./assets/skills/pipeline.png";
+import pythonImg from "./assets/skills/python.png";
+import pytorchLogo from "./assets/skills/pytorch.png";
 import sklearnLogo from "./assets/skills/sklearn.png";
+import sqlLogo from "./assets/skills/sql.png";
+import tensorflowLogo from "./assets/skills/tensorflow.png";
+import { tertiaryBgColor } from "./styleConstants";
 
 const SKILL_LIST = [
   {

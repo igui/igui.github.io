@@ -10,4 +10,4 @@ date: "2024-05-21"
 
 ### Say Cheese
 
-SayCheese was a project that I worked on as part of a web development course. The goal was to create a simple website that allows users to upload photos, add captions, and share them with friends. The website was built using HTML, CSS, and JavaScript. It features a responsive design that works on both desktop and mobile devices.
+This project was the main result of an University course I participed in with 3 patners. The aim of the course was the construction of a Web Application for both events (like parties, weddings, etc.) hosts and guests to share different resources like photos and videos. The hosts organize events on the site and the event guests upload content from different places like Youtube, Vimeo or their computers. In a nutshell the application is a suite that allows to manage events and it behaves like a social network in the way that allows users to interact between them by sending messages, or things like being tagged in photos. Say Cheese also integrates with Facebook, Twitter, Google Maps and allows users to safely login using their Facebook account.

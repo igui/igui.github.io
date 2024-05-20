@@ -10,4 +10,4 @@ date: "2024-05-21"
 
 ### SCIS
 
-TBD
+[SuiteCommerce InStore](https://www.netsuite.com/portal/products/ecommerce/products/pos.shtml) is a point of sales application that leverage Netsuite ERP capabilities with web technologies. It is developed mainly in Javascript and Swift. It provides retailers with a solution that unifies the physical and digital shopping experiences within a single, cloud-based commerce platform. Using a mobile device, your sales associates can access inventory and customer information to engage customers effectively, drive more sales, and provide a satisfying shopping experience.

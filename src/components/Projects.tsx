@@ -1,15 +1,14 @@
-import React from "react";
-import Section from "./Section";
-import { animationDelaySlow, bgColor, screenSmall } from "./styleConstants";
-import Quote from "./Quote";
+import { graphql, useStaticQuery } from "gatsby";
+import React, { useState } from "react";
 import styled from "styled-components";
+import Quote from "./Quote";
+import Section from "./Section";
 import {
   animationDelayFast,
+  bgColor,
   screenMedium,
-  smallSpacing,
-  tertiaryBgColor,
+  screenSmall,
 } from "./styleConstants";
-import { graphql, useStaticQuery } from "gatsby";
 import { MarkdownRemarkNode } from "./types";
 
 const GridSize = "220px";
@@ -17,12 +16,20 @@ const GridSize = "220px";
 const ProjectListWrapper = styled.div`
   display: flex;
   justify-content: center;
+  overflow-x: clip;
 `;
 
-const Project = styled.div`
+interface ProjectProps {
+  active: null | false | true;
+}
+
+const Project = styled.div<ProjectProps>`
   display: flex;
   flex-direction: column;
+  opacity: ${(props) => (props.active === false ? 0.5 : 1)};
+  transition: opacity ${animationDelayFast};
   width: ${GridSize};
+  z-index: ${(props) => (props.active === true ? 1 : 0)};
 
   h3 {
     order: -1;
@@ -30,7 +37,6 @@ const Project = styled.div`
 
   // Make the project description be on top
   imgwrapper {
-    order: unset;
     width: ${GridSize};
     height: ${GridSize};
     margin-left: auto;
@@ -45,23 +51,20 @@ const Project = styled.div`
   // Hack to make the project description to be as wide as the grid
   h3,
   p {
+    box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.5);
     box-sizing: border-box;
-    display: none;
+    opacity: 0;
     margin: 0;
     order: unset;
     padding: 10px;
     position: relative;
+    transition: opacity ${animationDelayFast};
   }
 
-  &:hover {
-    opacity: 1 !important;
-    z-index: 1;
-
-    h3,
-    p {
-      display: initial;
-      background-color: ${bgColor};
-    }
+  h3,
+  p {
+    opacity: ${(props) => (props.active === true ? "1" : "0")};
+    background-color: ${bgColor};
   }
 
   @media only screen and (min-width: ${screenSmall}) and (max-width: calc(${screenMedium} - 1px)) {
@@ -103,10 +106,6 @@ const ProjectList = styled.div`
   grid-auto-rows: ${GridSize};
   grid-template-columns: 1fr;
 
-  &:hover ${Project} {
-    opacity: 0.5;
-  }
-
   @media only screen and (min-width: ${screenSmall}) {
     grid-template-columns: 1fr 1fr;
   }
@@ -117,6 +116,16 @@ const ProjectList = styled.div`
 `;
 
 const Projects = () => {
+  const [activeProject, setActiveProject] = useState<string | null>(null);
+
+  const toggleActiveProject = (id: string) => {
+    if (activeProject === id) {
+      setActiveProject(null);
+    } else {
+      setActiveProject(id);
+    }
+  };
+
   const pageQuery = useStaticQuery(graphql`
     {
       allMarkdownRemark(
@@ -145,7 +154,9 @@ const Projects = () => {
         <ProjectList>
           {pageQuery.allMarkdownRemark.nodes.map((node: MarkdownRemarkNode) => (
             <Project
+              active={activeProject === null ? null : activeProject === node.id}
               key={node.id}
+              onClick={() => toggleActiveProject(node.id)}
               dangerouslySetInnerHTML={{ __html: node.html }}
             />
           ))}

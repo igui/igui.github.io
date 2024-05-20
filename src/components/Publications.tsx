@@ -1,14 +1,9 @@
-import React from "react";
-import Section from "./Section";
-import {
-  bgColor,
-  mediumSpacing,
-  screenSmall,
-  smallSpacing,
-} from "./styleConstants";
-import Quote from "./Quote";
-import styled from "styled-components";
 import { graphql, useStaticQuery } from "gatsby";
+import React from "react";
+import styled from "styled-components";
+import Quote from "./Quote";
+import Section from "./Section";
+import { bgColor, mediumSpacing } from "./styleConstants";
 import { MarkdownRemarkNode } from "./types";
 
 const PublicationList = styled.ul`

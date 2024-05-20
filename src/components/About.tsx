@@ -1,14 +1,13 @@
-import React from "react";
 import { graphql, useStaticQuery } from "gatsby";
-import { bgColor, screenMedium } from "./styleConstants";
+import React from "react";
 import styled from "styled-components";
 import Section from "./Section";
-import himImg from "./assets/about/him.jpg";
 import himBackImg from "./assets/about/him-back.jpg";
+import himImg from "./assets/about/him.jpg";
+import { bgColor, screenMedium } from "./styleConstants";
 
 const Header = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  display: flex;
   justify-content: center;
 `;
 
@@ -66,8 +65,6 @@ const BioContainer = styled.div`
   grid-column: 3;
 `;
 
-const BioInfo = styled.div``;
-
 const About = () => {
   const pageQuery = useStaticQuery(graphql`
     query {
@@ -88,9 +85,9 @@ const About = () => {
         </ImgContainer>
       </Header>
       <BioContainer>
-        <BioInfo>Name: Ignacio Avas</BioInfo>
-        <BioInfo>Countries: 🇺🇾 🇪🇸 🇧🇪</BioInfo>
-        <BioInfo>Languages: Spanish, English, Italian, Dutch</BioInfo>
+        <div>Name: Ignacio Avas</div>
+        <div>Countries: 🇺🇾 🇪🇸 🇧🇪</div>
+        <div>Languages: Spanish, English, Italian, Dutch</div>
       </BioContainer>
 
       <SectionText

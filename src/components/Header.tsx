@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
-import { bgColor, secondaryBgColor } from "./styleConstants";
-import NavRow from "./NavRow";
-import Hero from "./Hero";
 import FullVideo from "./FullVideo";
+import Hero from "./Hero";
+import NavRow from "./NavRow";
+import { bgColor, secondaryBgColor } from "./styleConstants";
 
 const HeaderContainer = styled.section`
   background-color: ${secondaryBgColor};
