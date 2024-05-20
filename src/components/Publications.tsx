@@ -13,7 +13,7 @@ const PublicationList = styled.ul`
 
 const PublicationItem = styled.li`
   display: grid;
-  grid-template-columns: 1fr 64px;
+  grid-template-columns: 1fr 72px;
   grid-template-rows: auto auto auto auto;
   gap: 0px 5px;
   grid-template-areas:
@@ -26,7 +26,7 @@ const PublicationItem = styled.li`
   > img {
     grid-area: image;
     max-width: 100%;
-    max-height: 100%;
+    max-height: 60px;
   }
 
   h2 {

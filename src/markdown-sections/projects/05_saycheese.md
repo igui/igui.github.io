@@ -4,9 +4,9 @@ path: "/projects/05_saycheese"
 date: "2024-05-21"
 ---
 
-<imgwrapper style="{ background-color: #6e8a8f; }">
+<figure style="{ background-color: #6e8a8f; }">
   <img src="/projects/saycheese.jpg" alt="Say Cheese login screen showing email and password">
-</imgwrapper>
+</figure>
 
 ### Say Cheese
 

@@ -31,16 +31,11 @@ const Project = styled.div<ProjectProps>`
   width: ${GridSize};
   z-index: ${(props) => (props.active === true ? 1 : 0)};
 
-  h3 {
-    order: -1;
-  }
-
   // Make the project description be on top
-  imgwrapper {
+  figure {
     width: ${GridSize};
     height: ${GridSize};
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
 
     img {
       max-width: ${GridSize};
@@ -63,6 +58,7 @@ const Project = styled.div<ProjectProps>`
 
   h3,
   p {
+    visibility: ${(props) => (props.active === true ? "unset" : "hidden")};
     opacity: ${(props) => (props.active === true ? "1" : "0")};
     background-color: ${bgColor};
   }
@@ -115,17 +111,12 @@ const ProjectList = styled.div`
   }
 `;
 
-const Projects = () => {
-  const [activeProject, setActiveProject] = useState<string | null>(null);
+interface ProjectsProps {
+  activeElement: null | string; // The id of the active element
+  onElementClick: (id: string) => void;
+}
 
-  const toggleActiveProject = (id: string) => {
-    if (activeProject === id) {
-      setActiveProject(null);
-    } else {
-      setActiveProject(id);
-    }
-  };
-
+const Projects = ({ activeElement, onElementClick }: ProjectsProps) => {
   const pageQuery = useStaticQuery(graphql`
     {
       allMarkdownRemark(
@@ -154,9 +145,9 @@ const Projects = () => {
         <ProjectList>
           {pageQuery.allMarkdownRemark.nodes.map((node: MarkdownRemarkNode) => (
             <Project
-              active={activeProject === null ? null : activeProject === node.id}
+              active={activeElement === null ? null : activeElement === node.id}
               key={node.id}
-              onClick={() => toggleActiveProject(node.id)}
+              onClick={onElementClick.bind(null, node.id)}
               dangerouslySetInnerHTML={{ __html: node.html }}
             />
           ))}

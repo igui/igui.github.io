@@ -4,9 +4,9 @@ path: "/projects/08_notranzo"
 date: "2024-05-21"
 ---
 
-<imgwrapper style="{ background-color: #c7a794; }">
+<figure style="{ background-color: #c7a794; }">
   <img src="/projects/notranzo.jpg" alt="Notranzo website showing product list">
-</imgwrapper>
+</figure>
 
 ### Notranzo site
 

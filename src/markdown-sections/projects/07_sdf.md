@@ -4,9 +4,9 @@ path: "/projects/07_sdf"
 date: "2024-05-21"
 ---
 
-<imgwrapper style="{ background-color: #9d9999; }">
+<figure style="{ background-color: #9d9999; }">
   <img src="/projects/sdf.jpg" alt="SDF Browser snapshot">
-</imgwrapper>
+</figure>
 
 ### Scraping Development Framework
 
