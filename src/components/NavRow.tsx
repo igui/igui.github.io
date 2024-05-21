@@ -12,6 +12,7 @@ import {
 } from "./styleConstants";
 import { graphql, useStaticQuery } from "gatsby";
 import logoImg from "./assets/ia.svg";
+import mixpanel from "mixpanel-browser";
 
 const Container = styled.nav`
   align-items: center;
@@ -95,10 +96,38 @@ const NavRowWithRef = (
     </NavLogoAnchor>
 
     <NavLinksContainer>
-      <NavLink href="#about">About</NavLink>
-      <NavLink href="#experience">Experience</NavLink>
-      <NavLink href="#projects">Projects</NavLink>
-      <NavLink href="#contact">Contact</NavLink>
+      <NavLink
+        href="#about"
+        onClick={() => {
+          mixpanel.track("NavRow Click", { href: "#about" });
+        }}
+      >
+        About
+      </NavLink>
+      <NavLink
+        href="#experience"
+        onClick={() => {
+          mixpanel.track("NavRow Click", { href: "#experience" });
+        }}
+      >
+        Experience
+      </NavLink>
+      <NavLink
+        href="#projects"
+        onClick={() => {
+          mixpanel.track("NavRow Click", { href: "#projects" });
+        }}
+      >
+        Projects
+      </NavLink>
+      <NavLink
+        href="#contact"
+        onClick={() => {
+          mixpanel.track("NavRow Click", { href: "#contact" });
+        }}
+      >
+        Contact
+      </NavLink>
     </NavLinksContainer>
   </Container>
 );

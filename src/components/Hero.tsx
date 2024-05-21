@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import mixpanel from "mixpanel-browser";
 import {
   animationDelayFast,
   bgColor,
@@ -57,14 +58,28 @@ const Button = styled.a`
   }
 `;
 const dropboxResume =
-  "https://www.dropbox.com/s/l2a7xfibomb4a59/CV%20Ignacio%20Avas.pdf?dl=1";
+  "https://www.dropbox.com/scl/fi/873docs5pu254jgsneswo/CV-Ignacio-Avas.pdf?rlkey=hbc1umexaya20kit51k0s5j39&st=47ttclqv&dl=1";
 
 const Hero = () => (
   <Container>
     <HeroHeader>ML Engineer.</HeroHeader>
     <ButtonRow>
-      <Button href="#contact">Contact</Button>
-      <Button href={dropboxResume}>Resume</Button>
+      <Button
+        href="#contact"
+        onClick={() => {
+          mixpanel.track("Click Contact");
+        }}
+      >
+        Contact
+      </Button>
+      <Button
+        href={dropboxResume}
+        onClick={() => {
+          mixpanel.track("Click Resume");
+        }}
+      >
+        Resume
+      </Button>
     </ButtonRow>
   </Container>
 );

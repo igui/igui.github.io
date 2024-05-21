@@ -6,6 +6,7 @@ import {
   tertiaryBgColor,
   xsmallSpacing,
 } from "./styleConstants";
+import mixpanel from "mixpanel-browser";
 
 interface ContactLinkProps {
   linkProtected: boolean;
@@ -46,7 +47,14 @@ const ContactLink = ({ icon, href, linkProtected }: ContactLinkProps) => {
   return (
     <Container>
       <Image src={icon} alt="Logo" />
-      <a href={realLink}>{hrefToText(realLink)}</a>
+      <a
+        href={realLink}
+        onClick={() => {
+          mixpanel.track("Contact Link Click", { href });
+        }}
+      >
+        {hrefToText(realLink)}
+      </a>
     </Container>
   );
 };
