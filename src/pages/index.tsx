@@ -10,7 +10,7 @@ import Publications from "../components/Publications";
 import Skills from "../components/Skills";
 
 // TODO: Think of a safer way to store the Mixpanel token
-mixpanel.init("428c165f58ca09a568884e7dbaf0f01d");
+mixpanel.init("428c165f58ca09a568884e7dbaf0f01d", { ignore_dnt: true });
 
 const IndexPage = () => {
   // Tracks the active project or experience so that we remove focus

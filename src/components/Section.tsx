@@ -12,11 +12,11 @@ import {
 } from "./styleConstants";
 
 interface SectionWrapperProps {
-  backgroundColor: string;
+  bgcolor: string;
 }
 
 interface SectionContentProps {
-  dark?: boolean;
+  dark?: "true" | "false";
 }
 
 interface SectionProps extends SectionWrapperProps, SectionContentProps {
@@ -27,11 +27,11 @@ interface SectionProps extends SectionWrapperProps, SectionContentProps {
 
 const SectionWrapper = styled.section<SectionWrapperProps>`
   margin-top: 0;
-  background-color: ${(props) => props.backgroundColor};
+  background-color: ${(props) => props.bgcolor};
 `;
 
 const SectionContent = styled.div<SectionContentProps>`
-  color: ${(props) => (props.dark ? tertiaryBgColor : copyColor)};
+  color: ${(props) => (props.dark === "true" ? tertiaryBgColor : copyColor)};
   line-height: 26px;
   margin-left: auto;
   margin-right: auto;
@@ -57,15 +57,9 @@ const SectionTitle = styled.h2`
   text-align: center;
 `;
 
-const Section = ({
-  backgroundColor,
-  children,
-  id,
-  dark,
-  title,
-}: SectionProps) => (
-  <SectionWrapper backgroundColor={backgroundColor}>
-    <SectionContent dark={dark}>
+const Section = ({ bgcolor, children, id, dark, title }: SectionProps) => (
+  <SectionWrapper bgcolor={bgcolor}>
+    <SectionContent dark={dark ? "true" : "false"}>
       <SectionTitle id={id}>{title}</SectionTitle>
       {children}
     </SectionContent>

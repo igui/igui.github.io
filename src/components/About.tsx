@@ -77,7 +77,7 @@ const About = () => {
   `);
 
   return (
-    <Section backgroundColor={bgColor} id="about" title="About me">
+    <Section bgcolor={bgColor} id="about" title="About me">
       <Header>
         <ImgContainer>
           <img src={himImg} />

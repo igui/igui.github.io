@@ -20,16 +20,16 @@ const ProjectListWrapper = styled.div`
 `;
 
 interface ProjectProps {
-  active: null | false | true;
+  active: null | "false" | "true";
 }
 
 const Project = styled.div<ProjectProps>`
   display: flex;
   flex-direction: column;
-  opacity: ${(props) => (props.active === false ? 0.5 : 1)};
+  opacity: ${(props) => (props.active === "false" ? 0.5 : 1)};
   transition: opacity ${animationDelayFast};
   width: ${GridSize};
-  z-index: ${(props) => (props.active === true ? 1 : 0)};
+  z-index: ${(props) => (props.active === "true" ? 1 : 0)};
 
   // Make the project description be on top
   figure {
@@ -58,8 +58,8 @@ const Project = styled.div<ProjectProps>`
 
   h3,
   p {
-    visibility: ${(props) => (props.active === true ? "unset" : "hidden")};
-    opacity: ${(props) => (props.active === true ? "1" : "0")};
+    visibility: ${(props) => (props.active === "true" ? "unset" : "hidden")};
+    opacity: ${(props) => (props.active === "true" ? "1" : "0")};
     background-color: ${bgColor};
   }
 
@@ -135,7 +135,7 @@ const Projects = ({ activeElement, onElementClick }: ProjectsProps) => {
   `);
 
   return (
-    <Section backgroundColor={bgColor} id="projects" title="Projects">
+    <Section bgcolor={bgColor} id="projects" title="Projects">
       <Quote
         author="Alan Turing"
         href="https://en.wikipedia.org/wiki/Alan_Turing"
@@ -145,7 +145,13 @@ const Projects = ({ activeElement, onElementClick }: ProjectsProps) => {
         <ProjectList>
           {pageQuery.allMarkdownRemark.nodes.map((node: MarkdownRemarkNode) => (
             <Project
-              active={activeElement === null ? null : activeElement === node.id}
+              active={
+                activeElement === null
+                  ? null
+                  : activeElement === node.id
+                    ? "true"
+                    : "false"
+              }
               key={node.id}
               onClick={onElementClick.bind(null, node.id)}
               dangerouslySetInnerHTML={{ __html: node.html }}

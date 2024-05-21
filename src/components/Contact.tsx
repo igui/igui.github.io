@@ -31,12 +31,7 @@ const LinkContainer = styled.div`
 `;
 
 const Contact = () => (
-  <Section
-    dark={true}
-    backgroundColor={secondaryBgColor}
-    id="contact"
-    title="Contact"
-  >
+  <Section dark={true} bgcolor={secondaryBgColor} id="contact" title="Contact">
     <Quote
       author="Larry Constantine"
       href="https://en.wikipedia.org/wiki/Larry_Constantine"

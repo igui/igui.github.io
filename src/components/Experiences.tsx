@@ -12,13 +12,13 @@ import {
 import { MarkdownRemarkNode } from "./types";
 
 interface ExperienceProps {
-  active: boolean;
+  active: "true" | "false";
 }
 
 const Experience = styled.div<ExperienceProps>`
-  background-color: ${(props) => (props.active ? bgColor : "unset")};
+  background-color: ${(props) => (props.active === "true" ? bgColor : "unset")};
   display: grid;
-  max-height: ${(props) => (props.active ? "unset" : "72px")};
+  max-height: ${(props) => (props.active === "true" ? "unset" : "72px")};
   padding: ${smallSpacing};
   grid-template-columns: 1fr 64px;
   grid-template-rows: auto auto auto;
@@ -63,11 +63,11 @@ const Experience = styled.div<ExperienceProps>`
     grid-column: 1 / 3;
     list-style: none;
     margin: 0;
-    opacity: ${(props) => (props.active ? 1 : 0)};
+    opacity: ${(props) => (props.active === "true" ? 1 : 0)};
     padding: ${smallSpacing};
     text-align: justify;
     transition: opacity ${animationDelaySlow};
-    pointer-events: ${(props) => (props.active ? "unset" : "none")};
+    pointer-events: ${(props) => (props.active === "true" ? "unset" : "none")};
     width: 100%;
     right: ${smallSpacing};
     position: relative;
@@ -96,11 +96,7 @@ const Experiences = ({ activeElement, onElementClick }: ExperiencesProps) => {
   `);
 
   return (
-    <Section
-      backgroundColor={tertiaryBgColor}
-      id="experience"
-      title="Experiences"
-    >
+    <Section bgcolor={tertiaryBgColor} id="experience" title="Experiences">
       <Quote
         author="Bjarne Stroustrup"
         href="https://en.wikipedia.org/wiki/Bjarne_Stroustrup"
@@ -110,7 +106,7 @@ const Experiences = ({ activeElement, onElementClick }: ExperiencesProps) => {
       <div>
         {pageQuery.allMarkdownRemark.nodes.map((node: MarkdownRemarkNode) => (
           <Experience
-            active={activeElement === node.id}
+            active={activeElement === node.id ? "true" : "false"}
             onClick={onElementClick.bind(null, node.id)}
             key={node.id}
             dangerouslySetInnerHTML={{ __html: node.html }}

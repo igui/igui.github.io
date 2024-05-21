@@ -28,109 +28,109 @@ const SKILL_LIST = [
     name: "Machine Learning",
     yearsOfExperience: 4,
     image: mlLogo,
-    fallbackColor: "#452e7e",
+    bgcolor: "#452e7e",
   },
   {
     name: "Natural Language Processing (NLP)",
     yearsOfExperience: 2,
     image: nlpImage,
-    fallbackColor: "#004876",
+    bgcolor: "#004876",
   },
   {
     name: "Artificial Intelligence (AI)",
     yearsOfExperience: 4,
     image: aiLogo,
-    fallbackColor: "#fed800",
+    bgcolor: "#fed800",
   },
   {
     name: "Deep Learning",
     yearsOfExperience: 3,
     image: deepLearningImg,
-    fallbackColor: "#fed800",
+    bgcolor: "#fed800",
   },
   {
     name: "Python",
     yearsOfExperience: 10,
     image: pythonImg,
-    fallbackColor: "#215765",
+    bgcolor: "#215765",
   },
   {
     name: "Computer Vision",
     yearsOfExperience: 1,
     image: computerVisionImg,
-    fallbackColor: "#2d5396",
+    bgcolor: "#2d5396",
   },
   {
     name: "Large Language Models (LLM)",
     yearsOfExperience: 1,
     image: chatGptLogo,
-    fallbackColor: "#74aa9c",
+    bgcolor: "#74aa9c",
   },
   {
     name: "Chatbots",
     yearsOfExperience: 1,
     image: chatbotLogo,
-    fallbackColor: "#3cca9d",
+    bgcolor: "#3cca9d",
   },
   {
     name: "Data Science",
     yearsOfExperience: 3,
     image: dataScienceLogo,
-    fallbackColor: "#9dcb5b",
+    bgcolor: "#9dcb5b",
   },
   {
     name: "Data Warehousing",
     yearsOfExperience: 4,
     image: datawarehouseLogo,
-    fallbackColor: "#7bd0a9",
+    bgcolor: "#7bd0a9",
   },
   {
     name: "Data Pipelines",
     yearsOfExperience: 3,
     image: pipelineLogo,
-    fallbackColor: "#004876",
+    bgcolor: "#004876",
   },
   {
     name: "Tensorflow",
     yearsOfExperience: 1,
     image: tensorflowLogo,
-    fallbackColor: "#000000",
+    bgcolor: "#000000",
   },
   {
     name: "Pytorch",
     yearsOfExperience: 2,
     image: pytorchLogo,
-    fallbackColor: "#343541",
+    bgcolor: "#343541",
   },
   {
     name: "AWS",
     yearsOfExperience: 7,
     image: awsLogo,
-    fallbackColor: "#232f3e",
+    bgcolor: "#232f3e",
   },
   {
     name: "SQL",
     yearsOfExperience: 13,
     image: sqlLogo,
-    fallbackColor: "#ff6838",
+    bgcolor: "#ff6838",
   },
   {
     name: "Apache Kafka",
     yearsOfExperience: 2,
     image: kafkaLogo,
-    fallbackColor: "#a1b8d3",
+    bgcolor: "#a1b8d3",
   },
   {
     name: "Pandas",
     yearsOfExperience: 5,
     image: pandasLogo,
-    fallbackColor: "#150458",
+    bgcolor: "#150458",
   },
   {
     name: "Scikit learn",
     yearsOfExperience: 5,
     image: sklearnLogo,
-    fallbackColor: "#9dcb5b",
+    bgcolor: "#9dcb5b",
   },
 ];
 
@@ -174,13 +174,13 @@ const ImageItem = styled.li`
 
 const ImageSize = "120px";
 
-const Image = styled.img<{ fallbackColor: string }>`
+const Image = styled.img<{ bgcolor: string }>`
   margin: 0 auto;
   height: ${ImageSize};
   width: ${ImageSize};
   // Nice circle image for fallback
   clip-path: circle(calc(50% - 2px));
-  background-color: ${(props) => props.fallbackColor};
+  background-color: ${(props) => props.bgcolor};
 `;
 
 const Name = styled.span`
@@ -201,7 +201,7 @@ const Skills = () => {
   `);
 
   return (
-    <Section backgroundColor={tertiaryBgColor} id="skills" title="Skills">
+    <Section bgcolor={tertiaryBgColor} id="skills" title="Skills">
       <Quote
         author="Dejan Stojanović"
         href="https://www.dejanstojanovic.info/bio.html"
@@ -215,7 +215,7 @@ const Skills = () => {
       <ImageList>
         {SKILL_LIST.map((skill) => (
           <ImageItem key={skill.name}>
-            <Image src={skill.image} fallbackColor={skill.fallbackColor} />
+            <Image src={skill.image} bgcolor={skill.bgcolor} />
 
             <Name>{skill.name}</Name>
             {/* <span>{skill.yearsOfExperience}</span> */}
