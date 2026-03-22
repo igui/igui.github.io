@@ -1,5 +1,5 @@
-import { graphql, useStaticQuery } from "gatsby";
-import React, { useState } from "react";
+"use client";
+
 import styled from "styled-components";
 import Quote from "./Quote";
 import Section from "./Section";
@@ -9,7 +9,6 @@ import {
   screenMedium,
   screenSmall,
 } from "./styleConstants";
-import { MarkdownRemarkNode } from "./types";
 
 const GridSize = "220px";
 
@@ -20,18 +19,17 @@ const ProjectListWrapper = styled.div`
 `;
 
 interface ProjectProps {
-  active: null | "false" | "true";
+  $active: null | "false" | "true";
 }
 
 const Project = styled.div<ProjectProps>`
   display: flex;
   flex-direction: column;
-  opacity: ${(props) => (props.active === "false" ? 0.5 : 1)};
+  opacity: ${(props) => (props.$active === "false" ? 0.5 : 1)};
   transition: opacity ${animationDelayFast};
   width: ${GridSize};
-  z-index: ${(props) => (props.active === "true" ? 1 : 0)};
+  z-index: ${(props) => (props.$active === "true" ? 1 : 0)};
 
-  // Make the project description be on top
   figure {
     width: ${GridSize};
     height: ${GridSize};
@@ -43,7 +41,6 @@ const Project = styled.div<ProjectProps>`
     }
   }
 
-  // Hack to make the project description to be as wide as the grid
   h3,
   p {
     box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.5);
@@ -58,8 +55,8 @@ const Project = styled.div<ProjectProps>`
 
   h3,
   p {
-    visibility: ${(props) => (props.active === "true" ? "unset" : "hidden")};
-    opacity: ${(props) => (props.active === "true" ? "1" : "0")};
+    visibility: ${(props) => (props.$active === "true" ? "unset" : "hidden")};
+    opacity: ${(props) => (props.$active === "true" ? "1" : "0")};
     background-color: ${bgColor};
   }
 
@@ -69,7 +66,6 @@ const Project = styled.div<ProjectProps>`
       width: calc(2 * ${GridSize});
     }
 
-    // Make the project description align to the left side of the grid
     &:nth-child(even) {
       * {
         left: -${GridSize};
@@ -83,7 +79,6 @@ const Project = styled.div<ProjectProps>`
       width: calc(3 * ${GridSize});
     }
 
-    // Make the project description align to the left side of the grid
     &:nth-child(3n + 2) {
       * {
         left: -${GridSize};
@@ -111,56 +106,43 @@ const ProjectList = styled.div`
   }
 `;
 
+interface MarkdownItem {
+  id: string;
+  html: string;
+}
+
 interface ProjectsProps {
-  activeElement: null | string; // The id of the active element
+  items: MarkdownItem[];
+  activeElement: null | string;
   onElementClick: (id: string) => void;
 }
 
-const Projects = ({ activeElement, onElementClick }: ProjectsProps) => {
-  const pageQuery = useStaticQuery(graphql`
-    {
-      allMarkdownRemark(
-        filter: { frontmatter: { path: { glob: "/projects/*" } } }
-        sort: { fileAbsolutePath: ASC }
-      ) {
-        nodes {
-          html
-          id
-          frontmatter {
-            title
-          }
-        }
-      }
-    }
-  `);
-
-  return (
-    <Section bgcolor={bgColor} id="projects" title="Projects">
-      <Quote
-        author="Alan Turing"
-        href="https://en.wikipedia.org/wiki/Alan_Turing"
-        content="Sometimes it is the people no one imagines anything of who do the things that no-one can imagine."
-      />
-      <ProjectListWrapper>
-        <ProjectList>
-          {pageQuery.allMarkdownRemark.nodes.map((node: MarkdownRemarkNode) => (
-            <Project
-              active={
-                activeElement === null
-                  ? null
-                  : activeElement === node.id
-                    ? "true"
-                    : "false"
-              }
-              key={node.id}
-              onClick={onElementClick.bind(null, node.id)}
-              dangerouslySetInnerHTML={{ __html: node.html }}
-            />
-          ))}
-        </ProjectList>
-      </ProjectListWrapper>
-    </Section>
-  );
-};
+const Projects = ({ items, activeElement, onElementClick }: ProjectsProps) => (
+  <Section bgcolor={bgColor} id="projects" title="Projects">
+    <Quote
+      author="Alan Turing"
+      href="https://en.wikipedia.org/wiki/Alan_Turing"
+      content="Sometimes it is the people no one imagines anything of who do the things that no-one can imagine."
+    />
+    <ProjectListWrapper>
+      <ProjectList>
+        {items.map((node) => (
+          <Project
+            $active={
+              activeElement === null
+                ? null
+                : activeElement === node.id
+                  ? "true"
+                  : "false"
+            }
+            key={node.id}
+            onClick={() => onElementClick(node.id)}
+            dangerouslySetInnerHTML={{ __html: node.html }}
+          />
+        ))}
+      </ProjectList>
+    </ProjectListWrapper>
+  </Section>
+);
 
 export default Projects;

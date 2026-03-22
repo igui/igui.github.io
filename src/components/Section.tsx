@@ -1,4 +1,6 @@
-import React, { ReactNode } from "react";
+"use client";
+
+import { ReactNode } from "react";
 import styled from "styled-components";
 import {
   animationDelaySlow,
@@ -12,26 +14,28 @@ import {
 } from "./styleConstants";
 
 interface SectionWrapperProps {
-  bgcolor: string;
+  $bgcolor: string;
 }
 
 interface SectionContentProps {
-  dark?: "true" | "false";
+  $dark?: "true" | "false";
 }
 
-interface SectionProps extends SectionWrapperProps, SectionContentProps {
+interface SectionProps {
+  bgcolor: string;
   children: ReactNode | ReactNode[];
   id: string;
   title: string;
+  dark?: boolean;
 }
 
 const SectionWrapper = styled.section<SectionWrapperProps>`
   margin-top: 0;
-  background-color: ${(props) => props.bgcolor};
+  background-color: ${(props) => props.$bgcolor};
 `;
 
 const SectionContent = styled.div<SectionContentProps>`
-  color: ${(props) => (props.dark === "true" ? tertiaryBgColor : copyColor)};
+  color: ${(props) => (props.$dark === "true" ? tertiaryBgColor : copyColor)};
   line-height: 26px;
   margin-left: auto;
   margin-right: auto;
@@ -42,7 +46,7 @@ const SectionContent = styled.div<SectionContentProps>`
   padding-bottom: ${xlargeSpacing};
 
   a {
-    color: ${(props) => (props.dark ? copySecondaryColor : linkColor)};
+    color: ${(props) => (props.$dark ? copySecondaryColor : linkColor)};
     text-decoration: none;
     transition-duration: ${animationDelaySlow};
     transition-property: color;
@@ -58,8 +62,8 @@ const SectionTitle = styled.h2`
 `;
 
 const Section = ({ bgcolor, children, id, dark, title }: SectionProps) => (
-  <SectionWrapper bgcolor={bgcolor}>
-    <SectionContent dark={dark ? "true" : "false"}>
+  <SectionWrapper $bgcolor={bgcolor}>
+    <SectionContent $dark={dark ? "true" : "false"}>
       <SectionTitle id={id}>{title}</SectionTitle>
       {children}
     </SectionContent>

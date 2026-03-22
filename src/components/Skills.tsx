@@ -1,157 +1,29 @@
-import { graphql, useStaticQuery } from "gatsby";
-import React from "react";
+"use client";
+
 import styled from "styled-components";
 import Quote from "./Quote";
 import Section from "./Section";
-import aiLogo from "./assets/skills/ai.png";
-import awsLogo from "./assets/skills/aws.svg";
-import chatbotLogo from "./assets/skills/chatbot.png";
-import chatGptLogo from "./assets/skills/chatgpt.png";
-import computerVisionImg from "./assets/skills/computer-vision.png";
-import dataScienceLogo from "./assets/skills/data-science.png";
-import datawarehouseLogo from "./assets/skills/data-warehouse.png";
-import deepLearningImg from "./assets/skills/deep-learning.png";
-import kafkaLogo from "./assets/skills/kafka.svg";
-import mlLogo from "./assets/skills/ml.png";
-import nlpImage from "./assets/skills/nlp.png";
-import pandasLogo from "./assets/skills/pandas.png";
-import pipelineLogo from "./assets/skills/pipeline.png";
-import pythonImg from "./assets/skills/python.png";
-import pytorchLogo from "./assets/skills/pytorch.png";
-import sklearnLogo from "./assets/skills/sklearn.png";
-import sqlLogo from "./assets/skills/sql.png";
-import tensorflowLogo from "./assets/skills/tensorflow.png";
 import { tertiaryBgColor } from "./styleConstants";
 
 const SKILL_LIST = [
-  {
-    name: "Machine Learning",
-    yearsOfExperience: 4,
-    image: mlLogo,
-    bgcolor: "#452e7e",
-  },
-  {
-    name: "Natural Language Processing (NLP)",
-    yearsOfExperience: 2,
-    image: nlpImage,
-    bgcolor: "#004876",
-  },
-  {
-    name: "Artificial Intelligence (AI)",
-    yearsOfExperience: 4,
-    image: aiLogo,
-    bgcolor: "#fed800",
-  },
-  {
-    name: "Deep Learning",
-    yearsOfExperience: 3,
-    image: deepLearningImg,
-    bgcolor: "#fed800",
-  },
-  {
-    name: "Python",
-    yearsOfExperience: 10,
-    image: pythonImg,
-    bgcolor: "#215765",
-  },
-  {
-    name: "Computer Vision",
-    yearsOfExperience: 1,
-    image: computerVisionImg,
-    bgcolor: "#2d5396",
-  },
-  {
-    name: "Large Language Models (LLM)",
-    yearsOfExperience: 1,
-    image: chatGptLogo,
-    bgcolor: "#74aa9c",
-  },
-  {
-    name: "Chatbots",
-    yearsOfExperience: 1,
-    image: chatbotLogo,
-    bgcolor: "#3cca9d",
-  },
-  {
-    name: "Data Science",
-    yearsOfExperience: 3,
-    image: dataScienceLogo,
-    bgcolor: "#9dcb5b",
-  },
-  {
-    name: "Data Warehousing",
-    yearsOfExperience: 4,
-    image: datawarehouseLogo,
-    bgcolor: "#7bd0a9",
-  },
-  {
-    name: "Data Pipelines",
-    yearsOfExperience: 3,
-    image: pipelineLogo,
-    bgcolor: "#004876",
-  },
-  {
-    name: "Tensorflow",
-    yearsOfExperience: 1,
-    image: tensorflowLogo,
-    bgcolor: "#000000",
-  },
-  {
-    name: "Pytorch",
-    yearsOfExperience: 2,
-    image: pytorchLogo,
-    bgcolor: "#343541",
-  },
-  {
-    name: "AWS",
-    yearsOfExperience: 7,
-    image: awsLogo,
-    bgcolor: "#232f3e",
-  },
-  {
-    name: "SQL",
-    yearsOfExperience: 13,
-    image: sqlLogo,
-    bgcolor: "#ff6838",
-  },
-  {
-    name: "Apache Kafka",
-    yearsOfExperience: 2,
-    image: kafkaLogo,
-    bgcolor: "#a1b8d3",
-  },
-  {
-    name: "Pandas",
-    yearsOfExperience: 5,
-    image: pandasLogo,
-    bgcolor: "#150458",
-  },
-  {
-    name: "Scikit learn",
-    yearsOfExperience: 5,
-    image: sklearnLogo,
-    bgcolor: "#9dcb5b",
-  },
-];
-
-const OTHER_SKILLS = [
-  { name: "E-Commerce", yearsOfExperience: 5 },
-  { name: "JSON", yearsOfExperience: 10 },
-  { name: "Github", yearsOfExperience: 10 },
-  { name: "Web Development", yearsOfExperience: 13 },
-  { name: "Distributed Systems", yearsOfExperience: 5 },
-  { name: "Node.js", yearsOfExperience: 8 },
-  { name: "Git", yearsOfExperience: 10 },
-  { name: "REST", yearsOfExperience: 10 },
-  { name: "AWS Lambda", yearsOfExperience: 1 },
-  { name: "Typescript", yearsOfExperience: 3 },
-  { name: "Redux", yearsOfExperience: 1 },
-  { name: "Javascript", yearsOfExperience: 10 },
-  { name: "Linux", yearsOfExperience: 14 },
-  { name: "React", yearsOfExperience: 3 },
-  { name: "React native", yearsOfExperience: 3 },
-  { name: "HTML", yearsOfExperience: 10 },
-  { name: "Docker", yearsOfExperience: 3 },
+  { name: "Machine Learning", image: "/assets/skills/ml.png", bgcolor: "#452e7e" },
+  { name: "Natural Language Processing (NLP)", image: "/assets/skills/nlp.png", bgcolor: "#004876" },
+  { name: "Artificial Intelligence (AI)", image: "/assets/skills/ai.png", bgcolor: "#fed800" },
+  { name: "Deep Learning", image: "/assets/skills/deep-learning.png", bgcolor: "#fed800" },
+  { name: "Python", image: "/assets/skills/python.png", bgcolor: "#215765" },
+  { name: "Computer Vision", image: "/assets/skills/computer-vision.png", bgcolor: "#2d5396" },
+  { name: "Large Language Models (LLM)", image: "/assets/skills/chatgpt.png", bgcolor: "#74aa9c" },
+  { name: "Chatbots", image: "/assets/skills/chatbot.png", bgcolor: "#3cca9d" },
+  { name: "Data Science", image: "/assets/skills/data-science.png", bgcolor: "#9dcb5b" },
+  { name: "Data Warehousing", image: "/assets/skills/data-warehouse.png", bgcolor: "#7bd0a9" },
+  { name: "Data Pipelines", image: "/assets/skills/pipeline.png", bgcolor: "#004876" },
+  { name: "Tensorflow", image: "/assets/skills/tensorflow.png", bgcolor: "#000000" },
+  { name: "Pytorch", image: "/assets/skills/pytorch.png", bgcolor: "#343541" },
+  { name: "AWS", image: "/assets/skills/aws.svg", bgcolor: "#232f3e" },
+  { name: "SQL", image: "/assets/skills/sql.png", bgcolor: "#ff6838" },
+  { name: "Apache Kafka", image: "/assets/skills/kafka.svg", bgcolor: "#a1b8d3" },
+  { name: "Pandas", image: "/assets/skills/pandas.png", bgcolor: "#150458" },
+  { name: "Scikit learn", image: "/assets/skills/sklearn.png", bgcolor: "#9dcb5b" },
 ];
 
 const ImageList = styled.ul`
@@ -174,13 +46,12 @@ const ImageItem = styled.li`
 
 const ImageSize = "120px";
 
-const Image = styled.img<{ bgcolor: string }>`
+const Image = styled.img<{ $bgcolor: string }>`
   margin: 0 auto;
   height: ${ImageSize};
   width: ${ImageSize};
-  // Nice circle image for fallback
   clip-path: circle(calc(50% - 2px));
-  background-color: ${(props) => props.bgcolor};
+  background-color: ${(props) => props.$bgcolor};
 `;
 
 const Name = styled.span`
@@ -191,39 +62,29 @@ const SkillParagraph = styled.p`
   text-align: justify;
 `;
 
-const Skills = () => {
-  const pageQuery = useStaticQuery(graphql`
-    query {
-      skills: markdownRemark(frontmatter: { path: { eq: "/skills-heading" } }) {
-        html
-      }
-    }
-  `);
+interface SkillsProps {
+  headingHtml: string;
+}
 
-  return (
-    <Section bgcolor={tertiaryBgColor} id="skills" title="Skills">
-      <Quote
-        author="Dejan Stojanović"
-        href="https://www.dejanstojanovic.info/bio.html"
-        content="The most complicated one is to be simple."
-      />
+const Skills = ({ headingHtml }: SkillsProps) => (
+  <Section bgcolor={tertiaryBgColor} id="skills" title="Skills">
+    <Quote
+      author="Dejan Stojanović"
+      href="https://www.dejanstojanovic.info/bio.html"
+      content="The most complicated one is to be simple."
+    />
 
-      <SkillParagraph
-        dangerouslySetInnerHTML={{ __html: pageQuery.skills.html }}
-      />
+    <SkillParagraph dangerouslySetInnerHTML={{ __html: headingHtml }} />
 
-      <ImageList>
-        {SKILL_LIST.map((skill) => (
-          <ImageItem key={skill.name}>
-            <Image src={skill.image} bgcolor={skill.bgcolor} />
-
-            <Name>{skill.name}</Name>
-            {/* <span>{skill.yearsOfExperience}</span> */}
-          </ImageItem>
-        ))}
-      </ImageList>
-    </Section>
-  );
-};
+    <ImageList>
+      {SKILL_LIST.map((skill) => (
+        <ImageItem key={skill.name}>
+          <Image src={skill.image} $bgcolor={skill.bgcolor} alt={skill.name} />
+          <Name>{skill.name}</Name>
+        </ImageItem>
+      ))}
+    </ImageList>
+  </Section>
+);
 
 export default Skills;

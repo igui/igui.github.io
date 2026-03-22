@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from "react";
+"use client";
+
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import {
   mediumSpacing,
@@ -35,11 +37,10 @@ const hrefToText = (href: string) => {
 };
 
 const ContactLink = ({ icon, href, linkProtected }: ContactLinkProps) => {
-  // to partially protect agains botss
+  // to partially protect against bots
   const [realLink, setRealLink] = useState(linkProtected ? "" : href);
   useEffect(() => {
     if (linkProtected) {
-      // To display the real link only if JS is enabled, after the page loads
       setRealLink(href);
     }
   });

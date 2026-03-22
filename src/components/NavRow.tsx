@@ -1,4 +1,6 @@
-import React, { forwardRef, Ref } from "react";
+"use client";
+
+import { forwardRef, Ref } from "react";
 import styled from "styled-components";
 import {
   bgColor,
@@ -10,8 +12,6 @@ import {
   xsmallSpacing,
   animationDelaySlow,
 } from "./styleConstants";
-import { graphql, useStaticQuery } from "gatsby";
-import logoImg from "./assets/ia.svg";
 import mixpanel from "mixpanel-browser";
 
 const Container = styled.nav`
@@ -92,7 +92,7 @@ const NavRowWithRef = (
 ) => (
   <Container className={className} ref={ref}>
     <NavLogoAnchor href="#">
-      <ImageLogo src={logoImg} alt="Website logo" />
+      <ImageLogo src="/assets/ia.svg" alt="Website logo" />
     </NavLogoAnchor>
 
     <NavLinksContainer>

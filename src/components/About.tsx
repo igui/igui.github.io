@@ -1,9 +1,7 @@
-import { graphql, useStaticQuery } from "gatsby";
-import React from "react";
+"use client";
+
 import styled from "styled-components";
 import Section from "./Section";
-import himBackImg from "./assets/about/him-back.jpg";
-import himImg from "./assets/about/him.jpg";
 import { bgColor, screenMedium } from "./styleConstants";
 
 const Header = styled.div`
@@ -65,36 +63,26 @@ const BioContainer = styled.div`
   grid-column: 3;
 `;
 
-const About = () => {
-  const pageQuery = useStaticQuery(graphql`
-    query {
-      section: markdownRemark(
-        frontmatter: { title: { eq: "about-section-content" } }
-      ) {
-        html
-      }
-    }
-  `);
+interface AboutProps {
+  html: string;
+}
 
-  return (
-    <Section bgcolor={bgColor} id="about" title="About me">
-      <Header>
-        <ImgContainer>
-          <img src={himImg} />
-          <img src={himBackImg} />
-        </ImgContainer>
-      </Header>
-      <BioContainer>
-        <div>Name: Ignacio Avas</div>
-        <div>Countries: 🇺🇾 🇪🇸 🇧🇪</div>
-        <div>Languages: Spanish, English, Italian, Dutch</div>
-      </BioContainer>
+const About = ({ html }: AboutProps) => (
+  <Section bgcolor={bgColor} id="about" title="About me">
+    <Header>
+      <ImgContainer>
+        <img src="/assets/about/him.jpg" alt="Ignacio Avas" />
+        <img src="/assets/about/him-back.jpg" alt="Ignacio Avas back" />
+      </ImgContainer>
+    </Header>
+    <BioContainer>
+      <div>Name: Ignacio Avas</div>
+      <div>Countries: 🇺🇾 🇪🇸 🇧🇪</div>
+      <div>Languages: Spanish, English, Italian, Dutch</div>
+    </BioContainer>
 
-      <SectionText
-        dangerouslySetInnerHTML={{ __html: pageQuery.section.html }}
-      />
-    </Section>
-  );
-};
+    <SectionText dangerouslySetInnerHTML={{ __html: html }} />
+  </Section>
+);
 
 export default About;

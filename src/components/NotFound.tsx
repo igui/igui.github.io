@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+
 import { bgColor } from "./styleConstants";
 import Quote from "./Quote";
 import Section from "./Section";
@@ -11,8 +12,8 @@ const NotFound = () => (
       content="I have not failed. I've just found 10,000 ways that won't work."
     />
     <p>
-      You just hit a page that doesn&#39;t exist... the sadness. Here's there's
-      a puppy image:
+      You just hit a page that doesn&#39;t exist... the sadness. Here&apos;s a
+      puppy image:
     </p>
     <img src="https://placedog.net/640/480?r" alt="A random puppy" />
   </Section>

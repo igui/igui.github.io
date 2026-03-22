@@ -1,6 +1,7 @@
-import React, { forwardRef, Ref } from "react";
+"use client";
+
+import { forwardRef, Ref } from "react";
 import styled from "styled-components";
-import posterImg from "./assets/fullVideo/first.jpg";
 import { animationDelaySlow } from "./styleConstants";
 
 const Container = styled.video`
@@ -30,7 +31,7 @@ const FullVideoWithRef = (
     muted={true}
     loop={true}
     ref={ref}
-    poster={posterImg}
+    poster="/assets/fullVideo/first.jpg"
   >
     <source src="/videos/head.webm" type="video/webm" />
     <source src="/videos/head.mp4" type="video/mp4" />

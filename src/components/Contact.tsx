@@ -1,12 +1,9 @@
-import React from "react";
+"use client";
+
 import styled from "styled-components";
 import ContactLink, { Container } from "./ContactLink";
 import Quote from "./Quote";
 import Section from "./Section";
-import emailSvg from "./assets/contact/email.svg";
-import githubSvg from "./assets/contact/github.svg";
-import linkedinSvg from "./assets/contact/linkedin.svg";
-import twitterSvg from "./assets/contact/twitter-x.svg";
 import { largeSpacing, screenMedium, secondaryBgColor } from "./styleConstants";
 
 const LinkContainer = styled.div`
@@ -40,22 +37,22 @@ const Contact = () => (
 
     <LinkContainer>
       <ContactLink
-        icon={githubSvg}
+        icon="/assets/contact/github.svg"
         href="https://github.com/igui"
         linkProtected={false}
       />
       <ContactLink
-        icon={linkedinSvg}
+        icon="/assets/contact/linkedin.svg"
         href="https://linkedin.com/in/iavas"
         linkProtected={false}
       />
       <ContactLink
-        icon={twitterSvg}
+        icon="/assets/contact/twitter-x.svg"
         href="https://x.com/ignacioavas"
         linkProtected={false}
       />
       <ContactLink
-        icon={emailSvg}
+        icon="/assets/contact/email.svg"
         href="mailto:contact@ignacioavas.com"
         linkProtected={true}
       />

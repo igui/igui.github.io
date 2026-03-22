@@ -1,4 +1,6 @@
-import React, { useEffect, useRef } from "react";
+"use client";
+
+import { useEffect, useRef } from "react";
 import styled from "styled-components";
 import FullVideo from "./FullVideo";
 import Hero from "./Hero";

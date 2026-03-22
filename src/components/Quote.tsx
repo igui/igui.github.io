@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+
 import styled from "styled-components";
 import { copySecondaryColor, xlargeSpacing } from "./styleConstants";
 
@@ -19,7 +20,7 @@ const AuthorLink = styled.a`
   }
 `;
 
-const Container = styled.blockquote`
+const QuoteContainer = styled.blockquote`
   text-align: center;
 `;
 
@@ -30,11 +31,11 @@ const Divider = styled.hr`
 `;
 
 const Quote = ({ author, content, href }: QuoteProps) => (
-  <Container>
+  <QuoteContainer>
     <Content>{content}</Content>
     <AuthorLink href={href}>{author}</AuthorLink>
     <Divider />
-  </Container>
+  </QuoteContainer>
 );
 
 export default Quote;

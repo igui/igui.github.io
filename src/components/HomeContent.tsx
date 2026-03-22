@@ -1,20 +1,40 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import mixpanel from "mixpanel-browser";
-import React, { useEffect, useState } from "react";
-import About from "../components/About";
-import Contact from "../components/Contact";
-import Experiences from "../components/Experiences";
-import Header from "../components/Header";
-import Layout from "../components/Layout";
-import Projects from "../components/Projects";
-import Publications from "../components/Publications";
-import Skills from "../components/Skills";
+import Header from "./Header";
+import About from "./About";
+import Skills from "./Skills";
+import Projects from "./Projects";
+import Experiences from "./Experiences";
+import Publications from "./Publications";
+import Contact from "./Contact";
+
+interface MarkdownItem {
+  id: string;
+  html: string;
+}
+
+interface HomeContentProps {
+  aboutHtml: string;
+  skillsHeadingHtml: string;
+  projects: MarkdownItem[];
+  experiences: MarkdownItem[];
+  publicationsHeadingHtml: string;
+  publications: MarkdownItem[];
+}
 
 // TODO: Think of a safer way to store the Mixpanel token
 mixpanel.init("428c165f58ca09a568884e7dbaf0f01d", { ignore_dnt: true });
 
-const IndexPage = () => {
-  // Tracks the active project or experience so that we remove focus
-  // when passing from one section to the other one
+export default function HomeContent({
+  aboutHtml,
+  skillsHeadingHtml,
+  projects,
+  experiences,
+  publicationsHeadingHtml,
+  publications,
+}: HomeContentProps) {
   const [activeProject, setActiveProject] = useState<string | null>(null);
   const [activeExpPublication, setActiveExpPublication] = useState<
     string | null
@@ -37,25 +57,27 @@ const IndexPage = () => {
   }, []);
 
   return (
-    <Layout>
+    <>
       <Header />
-      <About />
-      <Skills />
+      <About html={aboutHtml} />
+      <Skills headingHtml={skillsHeadingHtml} />
       <Projects
+        items={projects}
         activeElement={activeProject}
         onElementClick={(id) => toggleActiveElement(id, "projects")}
       />
       <Experiences
+        items={experiences}
         activeElement={activeExpPublication}
         onElementClick={(id) => toggleActiveElement(id, "experiences")}
       />
       <Publications
+        items={publications}
+        headingHtml={publicationsHeadingHtml}
         activeElement={activeExpPublication}
         onElementClick={(id) => toggleActiveElement(id, "publications")}
       />
       <Contact />
-    </Layout>
+    </>
   );
-};
-
-export default IndexPage;
+}

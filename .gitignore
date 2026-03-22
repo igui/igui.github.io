@@ -1,13 +1,11 @@
-# Python old gitignore
 node_modules/
 
 # VSCode
 .vscode
 
-# Gatsby cache
-.cache
-# Result dir for the static site
-public
+# Next.js
+.next
+out
 
 # Husky
 .husky

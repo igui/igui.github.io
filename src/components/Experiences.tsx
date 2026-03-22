@@ -1,5 +1,5 @@
-import { graphql, useStaticQuery } from "gatsby";
-import React from "react";
+"use client";
+
 import styled from "styled-components";
 import Quote from "./Quote";
 import Section from "./Section";
@@ -9,16 +9,15 @@ import {
   smallSpacing,
   tertiaryBgColor,
 } from "./styleConstants";
-import { MarkdownRemarkNode } from "./types";
 
 interface ExperienceProps {
-  active: "true" | "false";
+  $active: "true" | "false";
 }
 
 const Experience = styled.div<ExperienceProps>`
-  background-color: ${(props) => (props.active === "true" ? bgColor : "unset")};
+  background-color: ${(props) => (props.$active === "true" ? bgColor : "unset")};
   display: grid;
-  max-height: ${(props) => (props.active === "true" ? "unset" : "72px")};
+  max-height: ${(props) => (props.$active === "true" ? "unset" : "72px")};
   padding: ${smallSpacing};
   grid-template-columns: 1fr 64px;
   grid-template-rows: auto auto auto;
@@ -63,11 +62,11 @@ const Experience = styled.div<ExperienceProps>`
     grid-column: 1 / 3;
     list-style: none;
     margin: 0;
-    opacity: ${(props) => (props.active === "true" ? 1 : 0)};
+    opacity: ${(props) => (props.$active === "true" ? 1 : 0)};
     padding: ${smallSpacing};
     text-align: justify;
     transition: opacity ${animationDelaySlow};
-    pointer-events: ${(props) => (props.active === "true" ? "unset" : "none")};
+    pointer-events: ${(props) => (props.$active === "true" ? "unset" : "none")};
     width: 100%;
     right: ${smallSpacing};
     position: relative;
@@ -75,46 +74,40 @@ const Experience = styled.div<ExperienceProps>`
   }
 `;
 
+interface MarkdownItem {
+  id: string;
+  html: string;
+}
+
 interface ExperiencesProps {
+  items: MarkdownItem[];
   activeElement: null | string;
   onElementClick: (id: string) => void;
 }
 
-const Experiences = ({ activeElement, onElementClick }: ExperiencesProps) => {
-  const pageQuery = useStaticQuery(graphql`
-    query {
-      allMarkdownRemark(
-        filter: { frontmatter: { path: { glob: "/experiences/*" } } }
-        sort: { fileAbsolutePath: DESC }
-      ) {
-        nodes {
-          id
-          html
-        }
-      }
-    }
-  `);
+const Experiences = ({
+  items,
+  activeElement,
+  onElementClick,
+}: ExperiencesProps) => (
+  <Section bgcolor={tertiaryBgColor} id="experience" title="Experiences">
+    <Quote
+      author="Bjarne Stroustrup"
+      href="https://en.wikipedia.org/wiki/Bjarne_Stroustrup"
+      content="Design and programming are human activities; forget that and all is lost"
+    />
 
-  return (
-    <Section bgcolor={tertiaryBgColor} id="experience" title="Experiences">
-      <Quote
-        author="Bjarne Stroustrup"
-        href="https://en.wikipedia.org/wiki/Bjarne_Stroustrup"
-        content="Design and programming are human activities; forget that and all is lost"
-      />
-
-      <div>
-        {pageQuery.allMarkdownRemark.nodes.map((node: MarkdownRemarkNode) => (
-          <Experience
-            active={activeElement === node.id ? "true" : "false"}
-            onClick={onElementClick.bind(null, node.id)}
-            key={node.id}
-            dangerouslySetInnerHTML={{ __html: node.html }}
-          />
-        ))}
-      </div>
-    </Section>
-  );
-};
+    <div>
+      {items.map((node) => (
+        <Experience
+          $active={activeElement === node.id ? "true" : "false"}
+          onClick={() => onElementClick(node.id)}
+          key={node.id}
+          dangerouslySetInnerHTML={{ __html: node.html }}
+        />
+      ))}
+    </div>
+  </Section>
+);
 
 export default Experiences;
