@@ -21,7 +21,7 @@ const EXPERIENCES = [
   {
     company: "Hired",
     role: "Machine Learning Engineer",
-    period: "2021 – Present",
+    period: "2021 – 2024",
     logo: "/company-logos/hired.webp",
     description:
       "Developed ranking systems using XGBoost and Python, enhancing the relevance of jobseekers in online searches with a 10% increase in NDCG. Engineered vector embeddings from resumes using Sentence BERT and RoBERTa, creating a recommendation system that showcases similar candidates. Co-authored a paper presented at SMC 2023. Implemented fairness strategies to ensure bias prevention across different racial groups and genders. Maintained a dynamic GPT integrated with Hired.com, handling over 200 real-time conversations.",
