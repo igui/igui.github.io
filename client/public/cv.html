@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ignacio Avas — AI Engineer CV</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --teal: #0EA5A5;
+      --teal-dark: #0D9488;
+      --slate: #64748B;
+      --text-dark: #1a1a2e;
+      --text-body: #475569;
+      --text-muted: #6b7280;
+      --bg: #fafafa;
+      --card-border: #e8e8ec;
+      --tag-bg: #f1f5f9;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      color: var(--text-body);
+      background: var(--bg);
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      color: var(--text-dark);
+    }
+
+    a { color: var(--teal); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .page {
+      max-width: 850px;
+      margin: 0 auto;
+      padding: 48px 48px 32px;
+    }
+
+    /* ── Header ── */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 32px;
+      padding-bottom: 28px;
+      border-bottom: 2px solid var(--teal);
+      margin-bottom: 32px;
+    }
+
+    .header-left { flex: 1; }
+
+    .header h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, var(--teal) 0%, var(--slate) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .header .title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--teal);
+      letter-spacing: 0.05em;
+      margin-bottom: 10px;
+    }
+
+    .header .bio {
+      font-size: 0.92rem;
+      color: var(--text-body);
+      line-height: 1.65;
+      max-width: 420px;
+    }
+
+    .header-right {
+      font-size: 0.82rem;
+      text-align: right;
+      flex-shrink: 0;
+      padding-top: 6px;
+    }
+
+    .contact-line {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 6px;
+      margin-bottom: 6px;
+      color: var(--text-body);
+    }
+
+    .contact-line svg {
+      width: 14px;
+      height: 14px;
+      color: var(--teal);
+      flex-shrink: 0;
+    }
+
+    .languages {
+      margin-top: 12px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* ── Section ── */
+    .section { margin-bottom: 28px; }
+
+    .section-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--card-border), transparent);
+    }
+
+    .section-title .accent {
+      color: var(--teal);
+    }
+
+    /* ── Timeline ── */
+    .timeline { position: relative; padding-left: 20px; }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 4px;
+      top: 8px;
+      bottom: 8px;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--teal), var(--card-border), transparent);
+    }
+
+    .timeline-entry {
+      position: relative;
+      margin-bottom: 18px;
+      padding-bottom: 2px;
+    }
+
+    .timeline-entry:last-child { margin-bottom: 0; }
+
+    .timeline-dot {
+      position: absolute;
+      left: -20px;
+      top: 6px;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--teal);
+      border: 2px solid var(--bg);
+      z-index: 1;
+    }
+
+    .timeline-dot.muted {
+      background: #94a3b8;
+    }
+
+    .entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 2px;
+    }
+
+    .entry-company {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--text-dark);
+    }
+
+    .entry-period {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    .entry-role {
+      font-size: 0.82rem;
+      color: var(--teal);
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .entry-desc {
+      font-size: 0.84rem;
+      line-height: 1.6;
+      color: var(--text-body);
+      margin-bottom: 6px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .tag {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 500;
+      background: var(--tag-bg);
+      border: 1px solid rgba(14, 165, 165, 0.15);
+      color: var(--slate);
+      padding: 2px 8px;
+      border-radius: 12px;
+    }
+
+    .tag.highlight {
+      background: rgba(14, 165, 165, 0.1);
+      border-color: rgba(14, 165, 165, 0.3);
+      color: var(--teal-dark);
+    }
+
+    /* ── Publications ── */
+    .pub-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .pub-card {
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      background: white;
+    }
+
+    .pub-card h4 {
+      font-size: 0.88rem;
+      font-weight: 700;
+      margin-bottom: 3px;
+      line-height: 1.35;
+    }
+
+    .pub-venue {
+      font-size: 0.76rem;
+      color: var(--teal);
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+
+    .pub-abstract {
+      font-size: 0.8rem;
+      line-height: 1.55;
+      color: var(--text-body);
+      margin-bottom: 8px;
+    }
+
+    /* ── Education ── */
+    .edu-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .edu-card {
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      background: white;
+    }
+
+    .edu-card h4 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .edu-card .edu-school {
+      font-size: 0.82rem;
+      color: var(--teal);
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+
+    .edu-card .edu-detail {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* ── Footer ── */
+    .footer {
+      margin-top: 28px;
+      padding-top: 16px;
+      border-top: 1px solid var(--card-border);
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .footer a { color: var(--teal); }
+
+    .footer-sep {
+      display: inline-block;
+      margin: 0 10px;
+      color: var(--card-border);
+    }
+
+    /* ── Print ── */
+    @media print {
+      @page {
+        size: A4;
+        margin: 16mm 14mm;
+      }
+      body {
+        background: white;
+        font-size: 13px;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .page {
+        padding: 0;
+        max-width: none;
+      }
+      .header {
+        padding-bottom: 20px;
+        margin-bottom: 24px;
+      }
+      .section { margin-bottom: 22px; }
+      .timeline-entry { margin-bottom: 14px; }
+      .pub-card, .edu-card {
+        break-inside: avoid;
+        box-shadow: none;
+      }
+      .timeline-entry {
+        break-inside: avoid;
+      }
+      a { color: var(--teal) !important; }
+      .gradient-text {
+        -webkit-text-fill-color: var(--teal);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- ═══ HEADER ═══ -->
+    <header class="header">
+      <div class="header-left">
+        <h1>Ignacio <span class="gradient-text">Avas</span></h1>
+        <div class="title">AI Engineer</div>
+        <p class="bio">
+          Seasoned ML Engineer with 10+ years of expertise in Recommendation Systems,
+          NLP, and ethical AI. Building intelligent systems that are explainable,
+          interpretable, and fair.
+        </p>
+      </div>
+      <div class="header-right">
+        <div class="contact-line">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <a href="mailto:contact@ignacioavas.com">contact@ignacioavas.com</a>
+        </div>
+        <div class="contact-line">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          <a href="https://github.com/igui">github.com/igui</a>
+        </div>
+        <div class="contact-line">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          <a href="https://linkedin.com/in/iavas">linkedin.com/in/iavas</a>
+        </div>
+        <div class="languages">Spanish &middot; English &middot; Italian &middot; Dutch</div>
+      </div>
+    </header>
+
+    <!-- ═══ EXPERIENCE ═══ -->
+    <section class="section">
+      <h2 class="section-title">Work <span class="accent">Experience</span></h2>
+      <div class="timeline">
+
+        <div class="timeline-entry">
+          <div class="timeline-dot"></div>
+          <div class="entry-header">
+            <span class="entry-company">Synquery</span>
+            <span class="entry-period">2024 – Present</span>
+          </div>
+          <div class="entry-role">AI Engineer</div>
+          <p class="entry-desc">
+            Worked on AI-powered interview systems, designing and implementing intelligent conversational agents that conduct and evaluate candidate interviews. Developed advanced search capabilities leveraging vector embeddings and semantic retrieval to surface relevant information across large datasets. Built agentic systems that autonomously plan, reason, and execute multi-step tasks, integrating LLMs with external tools and APIs to deliver end-to-end automated workflows.
+          </p>
+          <div class="tags">
+            <span class="tag highlight">LLMs</span>
+            <span class="tag highlight">Agentic AI</span>
+            <span class="tag">Vector Embeddings</span>
+            <span class="tag">Semantic Search</span>
+          </div>
+        </div>
+
+        <div class="timeline-entry">
+          <div class="timeline-dot"></div>
+          <div class="entry-header">
+            <span class="entry-company">Hired</span>
+            <span class="entry-period">2021 – 2024</span>
+          </div>
+          <div class="entry-role">Machine Learning Engineer</div>
+          <p class="entry-desc">
+            Developed ranking systems using XGBoost and Python, enhancing the relevance of jobseekers in online searches with a 10% increase in NDCG. Engineered vector embeddings from resumes using Sentence BERT and RoBERTa, creating a recommendation system that showcases similar candidates. Co-authored a paper presented at SMC 2023. Implemented fairness strategies to ensure bias prevention across different racial groups and genders. Maintained a dynamic GPT integrated with Hired.com, handling over 200 real-time conversations.
+          </p>
+          <div class="tags">
+            <span class="tag">XGBoost</span>
+            <span class="tag">BERT</span>
+            <span class="tag">RoBERTa</span>
+            <span class="tag">TensorFlow</span>
+            <span class="tag">ML Ops</span>
+            <span class="tag">Fairness AI</span>
+          </div>
+        </div>
+
+        <div class="timeline-entry">
+          <div class="timeline-dot"></div>
+          <div class="entry-header">
+            <span class="entry-company">Tophatter</span>
+            <span class="entry-period">2020 – 2021</span>
+          </div>
+          <div class="entry-role">Software Engineer &amp; ML Engineer</div>
+          <p class="entry-desc">
+            Led key projects to enhance platform functionality and user experience using React, TypeScript, Ruby on Rails, and AWS. Developed a recommender system to increase user engagement by suggesting relevant items, becoming the primary navigation method on the platform. Employed a shallow Neural Network that outperformed the older rule-based system, particularly in attracting and retaining new users. Successfully integrated via A/B testing.
+          </p>
+          <div class="tags">
+            <span class="tag">React</span>
+            <span class="tag">Neural Networks</span>
+            <span class="tag">Scikit-learn</span>
+            <span class="tag">XGBoost</span>
+            <span class="tag">A/B Testing</span>
+          </div>
+        </div>
+
+        <div class="timeline-entry">
+          <div class="timeline-dot muted"></div>
+          <div class="entry-header">
+            <span class="entry-company">Hired</span>
+            <span class="entry-period">2018 – 2020</span>
+          </div>
+          <div class="entry-role">Full Stack Software Engineer</div>
+          <p class="entry-desc">
+            Decreased onboarding flow attrition by 10% by migrating from HAML to React and Redux. Improved CI/CD build performance by 100%. Integrated an external assessments system used by 25% of candidates. Worked with React, Redux, Ruby on Rails, PostgreSQL, Apache Kafka, AWS, and Heroku.
+          </p>
+          <div class="tags">
+            <span class="tag">React</span>
+            <span class="tag">Redux</span>
+            <span class="tag">Ruby on Rails</span>
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">Apache Kafka</span>
+          </div>
+        </div>
+
+        <div class="timeline-entry">
+          <div class="timeline-dot"></div>
+          <div class="entry-header">
+            <span class="entry-company">Sophilabs</span>
+            <span class="entry-period">2017 – 2018</span>
+          </div>
+          <div class="entry-role">Research &amp; Python Development</div>
+          <p class="entry-desc">
+            Worked at Envio360 (now CargoSprint), a Boston logistics company, building a smart platform for logistics planners to optimize shipments. Developed solutions using Django, Python, and Node.js. Focused research on Machine Learning and Elixir. Helped as a mentor training new hires in the New York branch.
+          </p>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">Django</span>
+            <span class="tag">Machine Learning</span>
+            <span class="tag">Node.js</span>
+            <span class="tag highlight">Logistics</span>
+          </div>
+        </div>
+
+        <div class="timeline-entry">
+          <div class="timeline-dot muted"></div>
+          <div class="entry-header">
+            <span class="entry-company">Netsuite (Oracle)</span>
+            <span class="entry-period">2013 – 2017</span>
+          </div>
+          <div class="entry-role">Team Lead, Software Engineering</div>
+          <p class="entry-desc">
+            Contributed to the development of SuiteCommerce InStore, a Point of Sale software leveraging the Netsuite platform, Backbone, Sass, and mobile-first development. Led the team with a focus on quality, robust software, and a clean code base using SCRUM.
+          </p>
+          <div class="tags">
+            <span class="tag">Team Lead</span>
+            <span class="tag">Backbone.js</span>
+            <span class="tag">Sass</span>
+            <span class="tag">SCRUM</span>
+            <span class="tag">POS Systems</span>
+          </div>
+        </div>
+
+        <div class="timeline-entry">
+          <div class="timeline-dot muted"></div>
+          <div class="entry-header">
+            <span class="entry-company">University of the Republic</span>
+            <span class="entry-period">2009 – 2014</span>
+          </div>
+          <div class="entry-role">Assistant Professor</div>
+          <p class="entry-desc">
+            Part-time Professor participating in dictating Object Oriented Programming, C++, Java, and Web Development related courses.
+          </p>
+          <div class="tags">
+            <span class="tag">OOP</span>
+            <span class="tag">C++</span>
+            <span class="tag">Java</span>
+            <span class="tag">Teaching</span>
+          </div>
+        </div>
+
+        <div class="timeline-entry">
+          <div class="timeline-dot muted"></div>
+          <div class="entry-header">
+            <span class="entry-company">GiglobalJob</span>
+            <span class="entry-period">2009 – 2011</span>
+          </div>
+          <div class="entry-role">Python Developer</div>
+          <p class="entry-desc">
+            Primary responsibilities included design and development of various frameworks and standalone programs to help web development and web scraping from initial planning to final production.
+          </p>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">Web Scraping</span>
+            <span class="tag">Frameworks</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══ PUBLICATIONS ═══ -->
+    <section class="section">
+      <h2 class="section-title">Publications &amp; <span class="accent">Research</span></h2>
+      <div class="pub-grid">
+
+        <div class="pub-card">
+          <h4>Align MacridVAE: Multimodal Alignment for Disentangled Recommendations</h4>
+          <div class="pub-venue">ECIR 2024: Advances in Information Retrieval</div>
+          <p class="pub-abstract">
+            We introduce a new recommendation model that combines text and image data to suggest items to users. By aligning the visual and textual descriptions in a shared space, our model better understands item features, improving recommendation accuracy and helping us visualize user preferences based on different item aspects. Based on the master thesis at KU Leuven.
+          </p>
+          <div class="tags">
+            <span class="tag">Recommendation Systems</span>
+            <span class="tag">Multimodal</span>
+            <span class="tag">VAE</span>
+            <span class="tag">KU Leuven</span>
+          </div>
+        </div>
+
+        <div class="pub-card">
+          <h4>Learning R&eacute;sum&eacute; Embeddings with Search Data and Transformers</h4>
+          <div class="pub-venue">2023 IEEE International Conference on Systems, Man, and Cybernetics (SMC)</div>
+          <p class="pub-abstract">
+            We explore how users' clicks and interactions with search results can teach us about the hidden connections between different search results. Using contrastive learning with BERT models, we train a similarity model that helps make better recommendations based on what users are actually interested in.
+          </p>
+          <div class="tags">
+            <span class="tag">NLP</span>
+            <span class="tag">BERT</span>
+            <span class="tag">Contrastive Learning</span>
+            <span class="tag">Resume Embeddings</span>
+          </div>
+        </div>
+
+        <div class="pub-card">
+          <h4>A Photon Tracing Approach to Solve Inverse Rendering Problems</h4>
+          <div class="pub-venue">Conference On Graphics, Patterns And Images (SIBGRAPI), 2018</div>
+          <p class="pub-abstract">
+            We introduce a new method to help designers achieve their lighting goals more efficiently. By combining photon tracing with an optimization technique, our approach handles various lighting needs without requiring lots of computing power, and it works well even when the space's shape is part of the design. Based on the Computer Engineering thesis at UdelaR.
+          </p>
+          <div class="tags">
+            <span class="tag">Computer Graphics</span>
+            <span class="tag">Photon Tracing</span>
+            <span class="tag">Inverse Rendering</span>
+            <span class="tag">Optimization</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══ EDUCATION ═══ -->
+    <section class="section">
+      <h2 class="section-title"><span class="accent">Education</span></h2>
+      <div class="edu-grid">
+        <div class="edu-card">
+          <h4>Master of Science — Advanced Computer Science</h4>
+          <div class="edu-school">KU Leuven, Belgium</div>
+          <div class="edu-detail">Thesis: Multimodal Recommendation Systems</div>
+        </div>
+        <div class="edu-card">
+          <h4>Computer Engineering</h4>
+          <div class="edu-school">University of the Republic (UdelaR), Uruguay</div>
+          <div class="edu-detail">Thesis: Inverse Rendering with Photon Tracing</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer class="footer">
+      <a href="mailto:contact@ignacioavas.com">contact@ignacioavas.com</a>
+      <span class="footer-sep">|</span>
+      <a href="https://github.com/igui">github.com/igui</a>
+      <span class="footer-sep">|</span>
+      <a href="https://linkedin.com/in/iavas">linkedin.com/in/iavas</a>
+    </footer>
+
+  </div>
+</body>
+</html>
