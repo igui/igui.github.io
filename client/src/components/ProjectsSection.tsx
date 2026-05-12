@@ -7,6 +7,14 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const PROJECTS = [
   {
+    name: "AI Interviewer",
+    description:
+      "A real-time conversational interviewer combining LiveKit transport with a custom turn-taking pipeline. Streams Deepgram STT into Claude and back through Kokoro-TTS to a synced avatar, with provider fallbacks and sub-second response latency.",
+    tags: ["LiveKit", "Claude", "Deepgram", "Kokoro-TTS", "Real-time", "Low Latency", "Avatar"],
+    type: "Voice AI",
+    image: "/projects/ai-interviewer.jpg",
+  },
+  {
     name: "RPSolver",
     description:
       "A tool released as part of a publication for using Photon Mapping for solving architectural lighting problems. Combines photon tracing with optimization techniques.",
@@ -82,6 +90,7 @@ const TYPE_COLORS: Record<string, string> = {
   "Game": "oklch(0.65 0.12 200)",
   "Mobile App": "oklch(0.58 0.15 180)",
   "Let's Connect": "oklch(0.58 0.15 180)",
+  "Voice AI": "oklch(0.55 0.18 25)",
 };
 
 export default function ProjectsSection() {

@@ -1,10 +1,20 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
-import { Route, Switch } from "wouter";
+import { Route, Switch, useLocation } from "wouter";
+import { useEffect } from "react";
+import mixpanel from "./lib/mixpanel";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
+
+function PageViewTracker() {
+  const [location] = useLocation();
+  useEffect(() => {
+    mixpanel.track("page_view", { path: location });
+  }, [location]);
+  return null;
+}
 
 function Router() {
   return (
@@ -22,6 +32,7 @@ function App() {
       <ThemeProvider defaultTheme="light">
         <TooltipProvider>
           <Toaster />
+          <PageViewTracker />
           <Router />
         </TooltipProvider>
       </ThemeProvider>
