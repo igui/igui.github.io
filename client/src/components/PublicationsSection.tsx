@@ -170,6 +170,8 @@ export default function PublicationsSection() {
               {/* Link */}
               <a
                 href={pub.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="outline-btn px-4 py-2 text-xs text-center"
               >
                 Read Paper →

@@ -270,7 +270,7 @@ export const profile: Profile = {
       abstract:
         'We introduce a new recommendation model that combines text and image data to suggest items to users. By aligning the visual and textual descriptions in a shared space, our model better understands item features, improving recommendation accuracy and helping us visualize user preferences based on different item aspects. Based on the master thesis at KU Leuven.',
       tags: ['Recommendation Systems', 'Multimodal', 'VAE', 'KU Leuven'],
-      href: '#',
+      href: 'https://link.springer.com/chapter/10.1007/978-3-031-56027-9_5',
       featured: true,
     },
     {
@@ -280,7 +280,7 @@ export const profile: Profile = {
       abstract:
         "We explore how users' clicks and interactions with search results can teach us about the hidden connections between different search results. Using contrastive learning with BERT models, we train a similarity model that helps make better recommendations based on what users are actually interested in.",
       tags: ['NLP', 'BERT', 'Contrastive Learning', 'Resume Embeddings'],
-      href: '#',
+      href: 'https://ieeexplore.ieee.org/document/10394109',
     },
     {
       title: 'A Photon Tracing Approach to Solve Inverse Rendering Problems',
@@ -289,7 +289,7 @@ export const profile: Profile = {
       abstract:
         "We introduce a new method to help designers achieve their lighting goals more efficiently. By combining photon tracing with an optimization technique, our approach handles various lighting needs without requiring lots of computing power, and it works well even when the space's shape is part of the design. Based on the Computer Engineering thesis at UdelaR.",
       tags: ['Computer Graphics', 'Photon Tracing', 'Inverse Rendering', 'Optimization'],
-      href: '#',
+      href: 'http://sibgrapi.sid.inpe.br/col/sid.inpe.br/sibgrapi/2018/09.03.19.54/doc/thisInformationItemHomePage.html',
     },
   ],
   projects: [
