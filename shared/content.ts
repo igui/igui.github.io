@@ -1,0 +1,381 @@
+export type Role =
+  | 'AI Engineer'
+  | 'ML Researcher'
+  | 'Recommendation Systems'
+  | 'NLP Specialist'
+  | 'Deep Learning';
+
+export interface SocialLink {
+  label: string;
+  handle?: string;
+  href: string;
+}
+
+export interface SkillGroup {
+  label: string;
+  skills: string[];
+}
+
+export interface ExperienceItem {
+  company: string;
+  role: string;
+  period: string;
+  logo: string;
+  description: string;
+  tags: string[];
+  highlight?: boolean;
+}
+
+export interface Publication {
+  title: string;
+  venue: string;
+  year: string;
+  abstract: string;
+  tags: string[];
+  href: string;
+  featured?: boolean;
+}
+
+export interface Project {
+  name: string;
+  description: string;
+  tags: string[];
+  type: string;
+  image: string;
+  cta?: boolean;
+}
+
+export interface Profile {
+  name: string;
+  surname: string;
+  tagline: string;
+  bio: string;
+  yearsExperience: number;
+  yearsInAI: number;
+  languages: string[];
+  flags: string[];
+  roles: Role[];
+  socials: SocialLink[];
+  about: { headline: string; paragraphs: string[] };
+  skills: SkillGroup[];
+  experience: ExperienceItem[];
+  publications: Publication[];
+  projects: Project[];
+  contact: {
+    headline: string;
+    intro: string;
+    email: string;
+  };
+}
+
+export const profile: Profile = {
+  name: 'Ignacio',
+  surname: 'Avas',
+  tagline:
+    'Seasoned ML Engineer with 10+ years of expertise in Recommendation Systems, NLP, and ethical AI. Building intelligent systems that are explainable, interpretable, and fair.',
+  bio: 'Seasoned ML Engineer with 10+ years of expertise in Recommendation Systems, NLP, and ethical AI. Building intelligent systems that are explainable, interpretable, and fair.',
+  yearsExperience: 10,
+  yearsInAI: 4,
+  languages: ['Spanish', 'English', 'Italian', 'Dutch'],
+  flags: ['🇺🇾', '🇪🇸', '🇧🇪'],
+  roles: [
+    'AI Engineer',
+    'ML Researcher',
+    'Recommendation Systems',
+    'NLP Specialist',
+    'Deep Learning',
+  ],
+  socials: [
+    { label: 'GitHub', handle: 'github.com/igui', href: 'https://github.com/igui' },
+    { label: 'LinkedIn', handle: 'linkedin.com/in/iavas', href: 'https://linkedin.com/in/iavas' },
+    { label: 'X / Twitter', handle: 'x.com/ignacioavas', href: 'https://x.com/ignacioavas' },
+    { label: 'Email', handle: 'contact@ignacioavas.com', href: 'mailto:contact@ignacioavas.com' },
+  ],
+  about: {
+    headline: 'Building Intelligent Systems That Matter',
+    paragraphs: [
+      'As a seasoned Machine Learning Engineer and Software Development Leader with over a decade of expertise, I specialize in Recommendation and Classification Systems. I pioneered the development of advanced AI tools, including a recommender system that streamlines candidate vetting and a ranking system that enhances job search relevance on a leading HR platform.',
+      'I also led the design and implementation of a POS software system extensively deployed across thousands of retail outlets in the US and Canada. My focus remains on developing recommendation and online classification systems, with an emphasis on explainability, interpretability, and bias mitigation.',
+      'My robust educational background in machine learning and software engineering supports my commitment to innovative and ethical technology solutions.',
+    ],
+  },
+  skills: [
+    {
+      label: 'AI & ML',
+      skills: [
+        'Machine Learning',
+        'Deep Learning',
+        'Artificial Intelligence',
+        'Large Language Models (LLM)',
+        'Natural Language Processing',
+        'Computer Vision',
+        'Chatbots',
+      ],
+    },
+    {
+      label: 'Frameworks & Tools',
+      skills: [
+        'Python',
+        'TensorFlow',
+        'PyTorch',
+        'Scikit-learn',
+        'Pandas',
+        'XGBoost',
+        'Sentence BERT',
+        'RoBERTa',
+      ],
+    },
+    {
+      label: 'Data & Infrastructure',
+      skills: [
+        'Data Science',
+        'Data Pipelines',
+        'Data Warehousing',
+        'AWS',
+        'Apache Kafka',
+        'SQL',
+        'ML Ops',
+        'CI/CD',
+      ],
+    },
+  ],
+  experience: [
+    {
+      company: 'Synquery',
+      role: 'AI Engineer',
+      period: '2024 – Present',
+      logo: '/company-logos/synquery.svg',
+      description:
+        'Worked on AI-powered interview systems, designing and implementing intelligent conversational agents that conduct and evaluate candidate interviews. Developed advanced search capabilities leveraging vector embeddings and semantic retrieval to surface relevant information across large datasets. Built agentic systems that autonomously plan, reason, and execute multi-step tasks, integrating LLMs with external tools and APIs to deliver end-to-end automated workflows.',
+      tags: ['LLMs', 'Agentic AI', 'Vector Embeddings', 'Semantic Search'],
+      highlight: true,
+    },
+    {
+      company: 'Hired',
+      role: 'Machine Learning Engineer',
+      period: '2021 – 2024',
+      logo: '/company-logos/hired.webp',
+      description:
+        'Developed ranking systems using XGBoost and Python, enhancing the relevance of jobseekers in online searches with a 10% increase in NDCG. Engineered vector embeddings from resumes using Sentence BERT and RoBERTa, creating a recommendation system that showcases similar candidates. Co-authored a paper presented at SMC 2023. Implemented fairness strategies to ensure bias prevention across different racial groups and genders. Maintained a dynamic GPT integrated with Hired.com, handling over 200 real-time conversations.',
+      tags: ['XGBoost', 'BERT', 'RoBERTa', 'TensorFlow', 'ML Ops', 'Fairness AI'],
+    },
+    {
+      company: 'Tophatter',
+      role: 'Software Engineer & ML Engineer',
+      period: '2020 – 2021',
+      logo: '/company-logos/tophatter.webp',
+      description:
+        'Led key projects to enhance platform functionality and user experience using React, TypeScript, Ruby on Rails, and AWS. Developed a recommender system to increase user engagement by suggesting relevant items, becoming the primary navigation method on the platform. Employed a shallow Neural Network that outperformed the older rule-based system, particularly in attracting and retaining new users. Successfully integrated via A/B testing.',
+      tags: ['React', 'Neural Networks', 'Scikit-learn', 'XGBoost', 'A/B Testing'],
+    },
+    {
+      company: 'Hired',
+      role: 'Full Stack Software Engineer',
+      period: '2018 – 2020',
+      logo: '/company-logos/hired-old.webp',
+      description:
+        'Decreased onboarding flow attrition by 10% by migrating from HAML to React and Redux. Improved CI/CD build performance by 100%. Integrated an external assessments system used by 25% of candidates. Worked with React, Redux, Ruby on Rails, PostgreSQL, Apache Kafka, AWS, and Heroku.',
+      tags: ['React', 'Redux', 'Ruby on Rails', 'PostgreSQL', 'Apache Kafka'],
+    },
+    {
+      company: 'Sophilabs',
+      role: 'Research & Python Development',
+      period: '2017 – 2018',
+      logo: '/company-logos/sophilabs.webp',
+      description:
+        'Work on Research and Development, building solutions primarily using Django, Python, and Node.js. Focused research on Machine Learning and Elixir. Helped as a mentor training new hires in the New York branch.',
+      tags: ['Python', 'Django', 'Machine Learning', 'Node.js'],
+    },
+    {
+      company: 'Netsuite (Oracle)',
+      role: 'Team Lead, Software Engineering',
+      period: '2013 – 2017',
+      logo: '/company-logos/netsuite.webp',
+      description:
+        'Contributed to the development of SuiteCommerce InStore, a Point of Sale software leveraging the Netsuite platform, Backbone, Sass, and mobile-first development. Led the team with a focus on quality, robust software, and a clean code base using SCRUM.',
+      tags: ['Team Lead', 'Backbone.js', 'Sass', 'SCRUM', 'POS Systems'],
+    },
+    {
+      company: 'University of the Republic',
+      role: 'Assistant Professor',
+      period: '2009 – 2014',
+      logo: '/company-logos/udelar.webp',
+      description:
+        'Part-time Professor participating in dictating Object Oriented Programming, C++, Java, and Web Development related courses.',
+      tags: ['OOP', 'C++', 'Java', 'Teaching'],
+    },
+    {
+      company: 'GiglobalJob',
+      role: 'Python Developer',
+      period: '2009 – 2011',
+      logo: '/company-logos/giglobaljob-logo.webp',
+      description:
+        'Primary responsibilities included design and development of various frameworks and standalone programs to help web development and web scraping from initial planning to final production.',
+      tags: ['Python', 'Web Scraping', 'Frameworks'],
+    },
+  ],
+  publications: [
+    {
+      title: 'Align MacridVAE: Multimodal Alignment for Disentangled Recommendations',
+      venue: 'ECIR 2024: Advances in Information Retrieval',
+      year: '2024',
+      abstract:
+        'We introduce a new recommendation model that combines text and image data to suggest items to users. By aligning the visual and textual descriptions in a shared space, our model better understands item features, improving recommendation accuracy and helping us visualize user preferences based on different item aspects. Based on the master thesis at KU Leuven.',
+      tags: ['Recommendation Systems', 'Multimodal', 'VAE', 'KU Leuven'],
+      href: '#',
+      featured: true,
+    },
+    {
+      title: 'Learning Résumé Embeddings with Search Data and Transformers',
+      venue: '2023 IEEE International Conference on Systems, Man, and Cybernetics (SMC)',
+      year: '2023',
+      abstract:
+        "We explore how users' clicks and interactions with search results can teach us about the hidden connections between different search results. Using contrastive learning with BERT models, we train a similarity model that helps make better recommendations based on what users are actually interested in.",
+      tags: ['NLP', 'BERT', 'Contrastive Learning', 'Resume Embeddings'],
+      href: '#',
+    },
+    {
+      title: 'A Photon Tracing Approach to Solve Inverse Rendering Problems',
+      venue: 'Conference On Graphics, Patterns And Images (SIBGRAPI), 2018',
+      year: '2018',
+      abstract:
+        "We introduce a new method to help designers achieve their lighting goals more efficiently. By combining photon tracing with an optimization technique, our approach handles various lighting needs without requiring lots of computing power, and it works well even when the space's shape is part of the design. Based on the Computer Engineering thesis at UdelaR.",
+      tags: ['Computer Graphics', 'Photon Tracing', 'Inverse Rendering', 'Optimization'],
+      href: '#',
+    },
+  ],
+  projects: [
+    {
+      name: 'AI Interviewer',
+      description:
+        'A real-time conversational interviewer combining LiveKit transport with a custom turn-taking pipeline. Streams Deepgram STT into Claude and back through Kokoro-TTS to a synced avatar, with provider fallbacks and sub-second response latency.',
+      tags: ['LiveKit', 'Claude', 'Deepgram', 'Kokoro-TTS', 'Real-time', 'Low Latency', 'Avatar'],
+      type: 'Voice AI',
+      image: '/projects/ai-interviewer.jpg',
+    },
+    {
+      name: 'RPSolver',
+      description:
+        'A tool released as part of a publication for using Photon Mapping for solving architectural lighting problems. Combines photon tracing with optimization techniques.',
+      tags: ['Python', 'Computer Graphics', 'Photon Mapping', 'Research'],
+      type: 'Research Tool',
+      image: '/projects/rpsolver.jpg',
+    },
+    {
+      name: 'SCIS — SuiteCommerce InStore',
+      description:
+        'A point of sales application leveraging Netsuite ERP capabilities with web technologies. Deployed across thousands of retail outlets in the US and Canada.',
+      tags: ['Backbone.js', 'Sass', 'Netsuite', 'POS'],
+      type: 'Enterprise Software',
+      image: '/projects/scis.jpg',
+    },
+    {
+      name: 'Scraping Development Framework',
+      description:
+        'SDF is a Python framework that allows easy scraping of sites. Enables making XPath and CSS selectors, managing sessions, and handling complex scraping workflows.',
+      tags: ['Python', 'Web Scraping', 'XPath', 'Framework'],
+      type: 'Open Source',
+      image: '/projects/sdf.jpg',
+    },
+    {
+      name: 'Pasteboard',
+      description:
+        'A link sharing app oriented to share links among coworkers or people that work in the same project. Streamlines information sharing within teams.',
+      tags: ['Web App', 'Collaboration', 'Node.js'],
+      type: 'Web Application',
+      image: '/projects/pasteboard.jpg',
+    },
+    {
+      name: 'Say Cheese',
+      description:
+        'The main result of a University course with 3 partners. A computer vision project exploring real-time image processing and recognition techniques.',
+      tags: ['Computer Vision', 'Python', 'University Project'],
+      type: 'Computer Vision',
+      image: '/projects/saycheese.jpg',
+    },
+    {
+      name: 'Flappy Bird (OpenGL)',
+      description:
+        'An OpenGL game made as an assignment for a Computer Graphics course at the University. Demonstrates real-time rendering and game loop implementation.',
+      tags: ['OpenGL', 'C++', 'Game Dev', 'Computer Graphics'],
+      type: 'Game',
+      image: '/projects/flappybird.jpg',
+    },
+    {
+      name: 'One vs One Hundred',
+      description:
+        '1 vs 100 for Windows Mobile was a project which began as an assignment of a University course in association with Microsoft Uruguay.',
+      tags: ['Windows Mobile', 'C#', 'Microsoft'],
+      type: 'Mobile App',
+      image: '/projects/1vs100.jpg',
+    },
+    {
+      name: 'Your Project?',
+      description:
+        "Feel free to contact me if you want to collaborate on a project or if you have any questions. I'm always open to discussing new ideas and opportunities.",
+      tags: ['Collaboration', 'Open to Work'],
+      type: "Let's Connect",
+      image: '/projects/question.jpg',
+      cta: true,
+    },
+  ],
+  contact: {
+    headline: "Let's Build Together",
+    intro:
+      "I'm always open to discussing new opportunities, research collaborations, or interesting AI/ML projects. Whether you have a question or just want to say hi, my inbox is always open.",
+    email: 'contact@ignacioavas.com',
+  },
+};
+
+/**
+ * Render a compact, plain-text profile summary suitable for stuffing into an
+ * LLM system prompt. Stable structure so prompt cache hits remain effective.
+ */
+export function renderProfileForPrompt(p: Profile = profile): string {
+  const skills = p.skills
+    .map((g) => `- ${g.label}: ${g.skills.join(', ')}`)
+    .join('\n');
+
+  const experience = p.experience
+    .map(
+      (e) =>
+        `- ${e.company} — ${e.role} (${e.period})\n  ${e.description}\n  Stack: ${e.tags.join(', ')}`,
+    )
+    .join('\n');
+
+  const publications = p.publications
+    .map((pub) => `- "${pub.title}" — ${pub.venue} (${pub.year}). ${pub.abstract}`)
+    .join('\n');
+
+  const projects = p.projects
+    .filter((proj) => !proj.cta)
+    .map((proj) => `- ${proj.name} (${proj.type}): ${proj.description}`)
+    .join('\n');
+
+  const socials = p.socials.map((s) => `- ${s.label}: ${s.href}`).join('\n');
+
+  return [
+    `Name: ${p.name} ${p.surname}`,
+    `Tagline: ${p.tagline}`,
+    `Years of experience: ${p.yearsExperience} (about ${p.yearsInAI} years focused on AI/ML)`,
+    `Spoken languages: ${p.languages.join(', ')}`,
+    '',
+    'About:',
+    p.about.paragraphs.join(' '),
+    '',
+    'Skills:',
+    skills,
+    '',
+    'Experience (most recent first):',
+    experience,
+    '',
+    'Publications:',
+    publications,
+    '',
+    'Projects:',
+    projects,
+    '',
+    'Contact and socials:',
+    socials,
+  ].join('\n');
+}

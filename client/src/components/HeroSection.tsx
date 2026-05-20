@@ -5,14 +5,9 @@
    ============================================================ */
 
 import { useEffect, useState } from "react";
+import { profile } from "@shared/content";
 
-const ROLES = [
-  "AI Engineer",
-  "ML Researcher",
-  "Recommendation Systems",
-  "NLP Specialist",
-  "Deep Learning",
-];
+const ROLES = profile.roles;
 
 export default function HeroSection() {
   const [roleIndex, setRoleIndex] = useState(0);
@@ -104,8 +99,8 @@ export default function HeroSection() {
             color: "oklch(0.18 0.01 240)",
           }}
         >
-          Ignacio{" "}
-          <span className="gradient-text">Avas</span>
+          {profile.name}{" "}
+          <span className="gradient-text">{profile.surname}</span>
         </h1>
 
         {/* Typewriter role */}
@@ -139,9 +134,7 @@ export default function HeroSection() {
             lineHeight: 1.7,
           }}
         >
-          Seasoned ML Engineer with 10+ years of expertise in Recommendation Systems,
-          NLP, and ethical AI. Building intelligent systems that are explainable,
-          interpretable, and fair.
+          {profile.bio}
         </p>
 
         {/* CTAs */}
@@ -166,11 +159,11 @@ export default function HeroSection() {
 
         {/* Flags */}
         <div className="flex items-center gap-2 mt-10 text-sm" style={{ color: "oklch(0.50 0.05 220)" }}>
-          <span>🇺🇾</span>
-          <span>🇪🇸</span>
-          <span>🇧🇪</span>
+          {profile.flags.map((flag) => (
+            <span key={flag}>{flag}</span>
+          ))}
           <span className="ml-2" style={{ fontFamily: "'Outfit', sans-serif" }}>
-            Spanish · English · Italian · Dutch
+            {profile.languages.join(" · ")}
           </span>
         </div>
       </div>

@@ -1,51 +1,97 @@
-import { useState, useEffect, useRef } from 'react';
-import { useChat } from '@ai-sdk/react';
-import { DefaultChatTransport, UIMessage } from 'ai';
+import { useState, useEffect, useRef, useCallback } from 'react';
+import { nanoid } from 'nanoid';
 import ReactMarkdown from 'react-markdown';
 import { MessageCircle, X, Send } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 
+type ChatMessage = { id: string; role: 'user' | 'assistant'; content: string };
+
+const WELCOME: ChatMessage = {
+  id: 'welcome',
+  role: 'assistant',
+  content: "Hi! I'm Ignacio's virtual assistant. How can I help you today?",
+};
+
+const MAX_CHARS = 300;
+
+function useChat() {
+  const [messages, setMessages] = useState<ChatMessage[]>([WELCOME]);
+  const [status, setStatus] = useState<'idle' | 'streaming' | 'error'>('idle');
+  const [error, setError] = useState<Error | null>(null);
+
+  const sendMessage = useCallback(
+    async (text: string) => {
+      const userMsg: ChatMessage = { id: nanoid(), role: 'user', content: text };
+      const assistantId = nanoid();
+
+      // Snapshot of history sent to the server (excluding the placeholder)
+      const history = [...messages, userMsg];
+
+      setMessages([...history, { id: assistantId, role: 'assistant', content: '' }]);
+      setStatus('streaming');
+      setError(null);
+
+      try {
+        const response = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            messages: history.map(({ role, content }) => ({ role, content })),
+          }),
+        });
+
+        if (!response.ok || !response.body) {
+          const errText = await response.text().catch(() => 'Request failed');
+          throw new Error(errText || `HTTP ${response.status}`);
+        }
+
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          const chunk = decoder.decode(value, { stream: true });
+          if (!chunk) continue;
+          setMessages((prev) =>
+            prev.map((m) => (m.id === assistantId ? { ...m, content: m.content + chunk } : m)),
+          );
+        }
+        setStatus('idle');
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error(String(err)));
+        setStatus('error');
+      }
+    },
+    [messages],
+  );
+
+  return { messages, status, error, sendMessage };
+}
+
 export default function Chatbox() {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  
-  const { messages, sendMessage, status, error } = useChat<UIMessage>({
-    transport: new DefaultChatTransport({ api: '/api/chat' }),
-    messages: [
-      {
-        id: 'welcome',
-        role: 'assistant',
-        parts: [{ type: 'text', text: "Hi! I'm Ignacio's virtual assistant. How can I help you today?" }],
-      },
-    ],
-  });
+  const { messages, status, error, sendMessage } = useChat();
 
-  const isLoading = status === 'submitted' || status === 'streaming';
-  const MAX_CHARS = 300;
+  const isLoading = status === 'streaming';
 
-  // Auto-scroll to bottom when new messages appear
   useEffect(() => {
-    if (messagesEndRef.current) {
-      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, isOpen]);
 
   const onFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (input.trim().length === 0 || input.length > MAX_CHARS) return;
-    sendMessage({ text: input });
+    const trimmed = input.trim();
+    if (trimmed.length === 0 || trimmed.length > MAX_CHARS) return;
+    sendMessage(trimmed);
     setInput('');
-  };
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInput(e.target.value);
   };
 
   return (
     <div className="fixed bottom-6 right-6 z-50">
-      {/* Floating Action Button */}
       {!isOpen && (
         <Button
           onClick={() => setIsOpen(true)}
@@ -55,7 +101,6 @@ export default function Chatbox() {
         </Button>
       )}
 
-      {/* Chat Window */}
       {isOpen && (
         <Card className="w-[350px] sm:w-[400px] h-[500px] flex flex-col shadow-2xl animate-in slide-in-from-bottom-5">
           <CardHeader className="flex flex-row items-center justify-between p-4 border-b bg-muted/50 rounded-t-xl">
@@ -77,9 +122,7 @@ export default function Chatbox() {
             {messages.map((message) => (
               <div
                 key={message.id}
-                className={`flex w-full ${
-                  message.role === 'user' ? 'justify-end' : 'justify-start'
-                }`}
+                className={`flex w-full ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
               >
                 <div
                   className={`max-w-[85%] rounded-2xl px-4 py-2 ${
@@ -89,18 +132,14 @@ export default function Chatbox() {
                   }`}
                 >
                   {message.role === 'user' ? (
-                    <p className="text-sm whitespace-pre-wrap">
-                      {message.parts.filter((p: any) => p.type === 'text').map((p: any) => p.text).join('')}
-                    </p>
+                    <p className="text-sm whitespace-pre-wrap">{message.content}</p>
                   ) : (
-                    message.parts.filter((p: any) => p.type === 'text').map((p: any, i: number) => (
-                      <ReactMarkdown key={i}>{p.text}</ReactMarkdown>
-                    ))
+                    <ReactMarkdown>{message.content}</ReactMarkdown>
                   )}
                 </div>
               </div>
             ))}
-            
+
             {error && (
               <div className="flex w-full justify-center">
                 <span className="text-xs text-destructive bg-destructive/10 px-3 py-1 rounded-full">
@@ -108,8 +147,8 @@ export default function Chatbox() {
                 </span>
               </div>
             )}
-            
-            {isLoading && messages[messages.length - 1]?.role === 'user' && (
+
+            {isLoading && messages[messages.length - 1]?.content === '' && (
               <div className="flex w-full justify-start">
                 <div className="bg-muted text-muted-foreground rounded-2xl rounded-tl-sm px-4 py-2 text-sm flex gap-1 items-center">
                   <span className="animate-bounce">●</span>
@@ -128,14 +167,14 @@ export default function Chatbox() {
                   className="flex-1 bg-transparent border-0 focus:ring-0 px-2 text-sm outline-none resize-none"
                   placeholder="Type your message..."
                   value={input}
-                  onChange={handleInputChange}
+                  onChange={(e) => setInput(e.target.value)}
                   maxLength={MAX_CHARS}
                   disabled={isLoading}
                   autoFocus
                 />
-                <Button 
-                  type="submit" 
-                  size="icon" 
+                <Button
+                  type="submit"
+                  size="icon"
                   disabled={isLoading || input.length === 0 || input.length > MAX_CHARS}
                   className="h-8 w-8 rounded-full shrink-0"
                 >
@@ -143,10 +182,10 @@ export default function Chatbox() {
                 </Button>
               </div>
               <div className="flex justify-between px-2">
-                <span className="text-[10px] text-muted-foreground">
-                  Powered by AI
-                </span>
-                <span className={`text-[10px] ${input.length >= MAX_CHARS ? 'text-destructive' : 'text-muted-foreground'}`}>
+                <span className="text-[10px] text-muted-foreground">Powered by AI</span>
+                <span
+                  className={`text-[10px] ${input.length >= MAX_CHARS ? 'text-destructive' : 'text-muted-foreground'}`}
+                >
                   {input.length}/{MAX_CHARS}
                 </span>
               </div>

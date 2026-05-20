@@ -5,6 +5,7 @@
    ============================================================ */
 
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { profile } from "@shared/content";
 
 export default function AboutSection() {
   const { ref, isVisible } = useScrollReveal();
@@ -53,7 +54,7 @@ export default function AboutSection() {
               >
                 <img
                   src="/about/him.jpg"
-                  alt="Ignacio Avas"
+                  alt={`${profile.name} ${profile.surname}`}
                   className="w-full h-full object-cover"
                 />
                 {/* Gradient overlay at bottom */}
@@ -74,7 +75,7 @@ export default function AboutSection() {
                   className="gradient-text font-bold text-2xl"
                   style={{ fontFamily: "'Space Grotesk', sans-serif" }}
                 >
-                  10+
+                  {profile.yearsExperience}+
                 </div>
                 <div className="text-xs mt-0.5" style={{ color: "oklch(0.50 0.05 220)", fontFamily: "'Outfit', sans-serif" }}>
                   Years Exp.
@@ -89,7 +90,7 @@ export default function AboutSection() {
                   className="gradient-text font-bold text-2xl"
                   style={{ fontFamily: "'Space Grotesk', sans-serif" }}
                 >
-                  3
+                  {profile.publications.length}
                 </div>
                 <div className="text-xs mt-0.5" style={{ color: "oklch(0.50 0.05 220)", fontFamily: "'Outfit', sans-serif" }}>
                   Publications
@@ -124,35 +125,14 @@ export default function AboutSection() {
                 lineHeight: 1.8,
               }}
             >
-              <p>
-                As a seasoned Machine Learning Engineer and Software Development Leader
-                with over a decade of expertise, I specialize in Recommendation and
-                Classification Systems. I pioneered the development of advanced AI tools,
-                including a recommender system that streamlines candidate vetting and a
-                ranking system that enhances job search relevance on a leading HR platform.
-              </p>
-              <p>
-                I also led the design and implementation of a POS software system
-                extensively deployed across thousands of retail outlets in the US and Canada.
-                My focus remains on developing recommendation and online classification
-                systems, with an emphasis on <span style={{ color: "oklch(0.58 0.15 180)" }}>explainability</span>,{" "}
-                <span style={{ color: "oklch(0.58 0.15 180)" }}>interpretability</span>, and{" "}
-                <span style={{ color: "oklch(0.58 0.15 180)" }}>bias mitigation</span>.
-              </p>
-              <p>
-                My robust educational background in machine learning and software engineering
-                supports my commitment to innovative and ethical technology solutions.
-              </p>
+              {profile.about.paragraphs.map((para, i) => (
+                <p key={i}>{para}</p>
+              ))}
             </div>
 
             {/* Social links */}
             <div className="flex flex-wrap gap-3 mt-8">
-              {[
-                { label: "GitHub", href: "https://github.com/igui" },
-                { label: "LinkedIn", href: "https://linkedin.com/in/iavas" },
-                { label: "X / Twitter", href: "https://x.com/ignacioavas" },
-                { label: "Email", href: "mailto:contact@ignacioavas.com" },
-              ].map((link) => (
+              {profile.socials.map((link) => (
                 <a
                   key={link.label}
                   href={link.href}

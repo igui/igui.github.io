@@ -4,82 +4,9 @@
    ============================================================ */
 
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { profile } from "@shared/content";
 
-const PROJECTS = [
-  {
-    name: "AI Interviewer",
-    description:
-      "A real-time conversational interviewer combining LiveKit transport with a custom turn-taking pipeline. Streams Deepgram STT into Claude and back through Kokoro-TTS to a synced avatar, with provider fallbacks and sub-second response latency.",
-    tags: ["LiveKit", "Claude", "Deepgram", "Kokoro-TTS", "Real-time", "Low Latency", "Avatar"],
-    type: "Voice AI",
-    image: "/projects/ai-interviewer.jpg",
-  },
-  {
-    name: "RPSolver",
-    description:
-      "A tool released as part of a publication for using Photon Mapping for solving architectural lighting problems. Combines photon tracing with optimization techniques.",
-    tags: ["Python", "Computer Graphics", "Photon Mapping", "Research"],
-    type: "Research Tool",
-    image: "/projects/rpsolver.jpg",
-  },
-  {
-    name: "SCIS — SuiteCommerce InStore",
-    description:
-      "A point of sales application leveraging Netsuite ERP capabilities with web technologies. Deployed across thousands of retail outlets in the US and Canada.",
-    tags: ["Backbone.js", "Sass", "Netsuite", "POS"],
-    type: "Enterprise Software",
-    image: "/projects/scis.jpg",
-  },
-  {
-    name: "Scraping Development Framework",
-    description:
-      "SDF is a Python framework that allows easy scraping of sites. Enables making XPath and CSS selectors, managing sessions, and handling complex scraping workflows.",
-    tags: ["Python", "Web Scraping", "XPath", "Framework"],
-    type: "Open Source",
-    image: "/projects/sdf.jpg",
-  },
-  {
-    name: "Pasteboard",
-    description:
-      "A link sharing app oriented to share links among coworkers or people that work in the same project. Streamlines information sharing within teams.",
-    tags: ["Web App", "Collaboration", "Node.js"],
-    type: "Web Application",
-    image: "/projects/pasteboard.jpg",
-  },
-  {
-    name: "Say Cheese",
-    description:
-      "The main result of a University course with 3 partners. A computer vision project exploring real-time image processing and recognition techniques.",
-    tags: ["Computer Vision", "Python", "University Project"],
-    type: "Computer Vision",
-    image: "/projects/saycheese.jpg",
-  },
-  {
-    name: "Flappy Bird (OpenGL)",
-    description:
-      "An OpenGL game made as an assignment for a Computer Graphics course at the University. Demonstrates real-time rendering and game loop implementation.",
-    tags: ["OpenGL", "C++", "Game Dev", "Computer Graphics"],
-    type: "Game",
-    image: "/projects/flappybird.jpg",
-  },
-  {
-    name: "One vs One Hundred",
-    description:
-      "1 vs 100 for Windows Mobile was a project which began as an assignment of a University course in association with Microsoft Uruguay.",
-    tags: ["Windows Mobile", "C#", "Microsoft"],
-    type: "Mobile App",
-    image: "/projects/1vs100.jpg",
-  },
-  {
-    name: "Your Project?",
-    description:
-      "Feel free to contact me if you want to collaborate on a project or if you have any questions. I'm always open to discussing new ideas and opportunities.",
-    tags: ["Collaboration", "Open to Work"],
-    type: "Let's Connect",
-    image: "/projects/question.jpg",
-    cta: true,
-  },
-];
+const PROJECTS = profile.projects;
 
 const TYPE_COLORS: Record<string, string> = {
   "Research Tool": "oklch(0.45 0.08 220)",
@@ -216,7 +143,7 @@ export default function ProjectsSection() {
 
               {proj.cta && (
                 <a
-                  href="mailto:contact@ignacioavas.com"
+                  href={`mailto:${profile.contact.email}`}
                   className="primary-btn mt-4 px-4 py-2 text-xs text-center"
                 >
                   Let's Collaborate →

@@ -1,16 +1,23 @@
 import type { IncomingMessage, ServerResponse } from 'node:http';
-import { createOpenRouter } from '@openrouter/ai-sdk-provider';
-import { streamText, convertToModelMessages, UIMessage } from 'ai';
+import OpenAI from 'openai';
+import { wrapOpenAI } from 'langsmith/wrappers';
+import { traceable } from 'langsmith/traceable';
 import { Ratelimit } from '@upstash/ratelimit';
 import { Redis } from '@upstash/redis';
 import { CHAT_MODEL } from './constants';
 import fs from 'node:fs';
 import path from 'node:path';
 import { encoding_for_model } from 'tiktoken';
+import { profile, renderProfileForPrompt } from '../shared/content';
 
-const openrouter = createOpenRouter({
-  apiKey: process.env.OPENROUTER_API_KEY,
-});
+type ChatMessage = { role: 'system' | 'user' | 'assistant'; content: string };
+
+const openai = wrapOpenAI(
+  new OpenAI({
+    apiKey: process.env.OPENROUTER_API_KEY,
+    baseURL: 'https://openrouter.ai/api/v1',
+  }),
+);
 
 const redis = new Redis({
   url: process.env.UPSTASH_REDIS_REST_URL || 'https://dummy.upstash.io',
@@ -23,11 +30,9 @@ const ratelimit = new Ratelimit({
   analytics: true,
 });
 
-function getMessageText(msg: UIMessage): string {
-  return msg.parts
-    .filter((p): p is { type: 'text'; text: string } => p.type === 'text')
-    .map((p) => p.text)
-    .join('');
+function getHeader(req: IncomingMessage, name: string): string | undefined {
+  const v = req.headers[name.toLowerCase()];
+  return Array.isArray(v) ? v[0] : v;
 }
 
 function readJsonBody<T = unknown>(req: IncomingMessage): Promise<T> {
@@ -46,10 +51,64 @@ function readJsonBody<T = unknown>(req: IncomingMessage): Promise<T> {
   });
 }
 
-function getHeader(req: IncomingMessage, name: string): string | undefined {
-  const v = req.headers[name.toLowerCase()];
-  return Array.isArray(v) ? v[0] : v;
+function trimToTokenBudget(messages: ChatMessage[], budget = 5000): ChatMessage[] {
+  try {
+    const enc = encoding_for_model('gpt-4');
+    let total = 0;
+    const kept: ChatMessage[] = [];
+    for (let i = messages.length - 1; i >= 0; i--) {
+      const msg = messages[i];
+      const tokens = enc.encode(`${msg.role}: ${msg.content}`).length;
+      if (total + tokens > budget) break;
+      total += tokens;
+      kept.unshift(msg);
+    }
+    enc.free();
+    return kept;
+  } catch (err) {
+    console.error('Tokenization error:', err);
+    let total = 0;
+    const kept: ChatMessage[] = [];
+    for (let i = messages.length - 1; i >= 0; i--) {
+      const msg = messages[i];
+      if (total + msg.content.length > budget * 4) break;
+      total += msg.content.length;
+      kept.unshift(msg);
+    }
+    return kept;
+  }
 }
+
+const systemPromptTemplate = fs.readFileSync(
+  path.join(process.cwd(), 'api', 'system-prompt.txt'),
+  'utf8',
+);
+
+function buildSystemPrompt(): string {
+  return systemPromptTemplate
+    .replaceAll('{{name}}', profile.name)
+    .replaceAll('{{email}}', profile.contact.email)
+    .replaceAll('{{profile}}', renderProfileForPrompt(profile));
+}
+
+const chatPipeline = traceable(
+  async function* (messages: ChatMessage[]) {
+    const systemPrompt = buildSystemPrompt();
+
+    const stream = await openai.chat.completions.create({
+      model: CHAT_MODEL,
+      messages: [{ role: 'system', content: systemPrompt }, ...messages],
+      max_tokens: 500,
+      stream: true,
+    });
+
+    for await (const chunk of stream) {
+      const delta = chunk.choices[0]?.delta?.content;
+      if (delta) yield delta;
+    }
+  },
+  { name: 'Chat Pipeline', run_type: 'chain' },
+);
 
 export default async function handler(req: IncomingMessage, res: ServerResponse) {
   if (req.method !== 'POST') {
@@ -63,7 +122,6 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
 
     if (process.env.UPSTASH_REDIS_REST_URL) {
       const { success, limit, reset, remaining } = await ratelimit.limit(`chat_${ip}`);
-
       if (!success) {
         res.statusCode = 429;
         res.setHeader('X-RateLimit-Limit', limit.toString());
@@ -74,71 +132,40 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
       }
     }
 
-    let { messages } = await readJsonBody<{ messages: UIMessage[] }>(req);
+    const body = await readJsonBody<{ messages: ChatMessage[] }>(req);
+    const messages = body?.messages;
 
-    if (!messages || !Array.isArray(messages)) {
+    if (!Array.isArray(messages) || messages.length === 0) {
       res.statusCode = 400;
       res.end('Invalid payload');
       return;
     }
 
-    const latestMessage = messages[messages.length - 1];
-    if (latestMessage && getMessageText(latestMessage).length > 300) {
+    const latest = messages[messages.length - 1];
+    if (typeof latest?.content !== 'string' || latest.content.length > 300) {
       res.statusCode = 400;
       res.end('Message exceeds the maximum limit of 300 characters.');
       return;
     }
 
-    try {
-      const enc = encoding_for_model('gpt-4');
-      let totalTokens = 0;
-      const keptMessages: UIMessage[] = [];
+    const trimmed = trimToTokenBudget(messages);
 
-      for (let i = messages.length - 1; i >= 0; i--) {
-        const msg = messages[i];
-        const tokens = enc.encode(msg.role + ': ' + getMessageText(msg)).length;
-        if (totalTokens + tokens <= 5000) {
-          totalTokens += tokens;
-          keptMessages.unshift(msg);
-        } else {
-          break;
-        }
-      }
-      messages = keptMessages;
-      enc.free();
-    } catch (err) {
-      console.error('Tokenization error:', err);
-      let totalChars = 0;
-      const keptMessages: UIMessage[] = [];
-      for (let i = messages.length - 1; i >= 0; i--) {
-        const msg = messages[i];
-        const text = getMessageText(msg);
-        if (totalChars + text.length <= 20000) {
-          totalChars += text.length;
-          keptMessages.unshift(msg);
-        } else {
-          break;
-        }
-      }
-      messages = keptMessages;
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+    res.setHeader('Cache-Control', 'no-cache, no-transform');
+    res.setHeader('X-Accel-Buffering', 'no');
+
+    for await (const delta of chatPipeline(trimmed)) {
+      res.write(delta);
     }
-
-    const systemPromptPath = path.join(process.cwd(), 'api', 'system-prompt.txt');
-    const systemPrompt = fs.readFileSync(systemPromptPath, 'utf8');
-
-    const result = streamText({
-      model: openrouter(CHAT_MODEL),
-      system: systemPrompt,
-      messages: await convertToModelMessages(messages),
-      maxOutputTokens: 500,
-    });
-
-    result.pipeUIMessageStreamToResponse(res);
+    res.end();
   } catch (error) {
     console.error('Chat API Error:', error);
     if (!res.headersSent) {
       res.statusCode = 500;
       res.end('Internal Server Error');
+    } else {
+      res.end();
     }
   }
 }

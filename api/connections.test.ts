@@ -1,8 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { Redis } from '@upstash/redis';
 import dotenv from 'dotenv';
-import { createOpenRouter } from '@openrouter/ai-sdk-provider';
-import { generateText } from 'ai';
+import OpenAI from 'openai';
 import { CHAT_MODEL } from './constants';
 
 dotenv.config();
@@ -11,7 +10,7 @@ describe('External Services Connection', () => {
   it('should connect to Upstash Redis using environment variables', async () => {
     const redisUrl = process.env.UPSTASH_REDIS_REST_URL;
     const redisToken = process.env.UPSTASH_REDIS_REST_TOKEN;
-    
+
     expect(redisUrl).toBeDefined();
     expect(redisToken).toBeDefined();
 
@@ -20,31 +19,30 @@ describe('External Services Connection', () => {
       token: redisToken!,
     });
 
-    // Test the connection by setting and getting a test key
     const testKey = 'test_connection_key';
     const testValue = 'hello_upstash';
 
-    await redis.set(testKey, testValue, { ex: 5 }); // Set with 5s expiration
+    await redis.set(testKey, testValue, { ex: 5 });
     const value = await redis.get(testKey);
-    
+
     expect(value).toBe(testValue);
   });
 
-  it('should connect to OpenRouter and generate a simple response', async () => {
+  it('should connect to OpenRouter via the OpenAI client and generate a simple response', async () => {
     const openRouterKey = process.env.OPENROUTER_API_KEY;
     expect(openRouterKey).toBeDefined();
 
-    const openrouter = createOpenRouter({
+    const openai = new OpenAI({
       apiKey: openRouterKey!,
+      baseURL: 'https://openrouter.ai/api/v1',
     });
 
-    // Send a very small ping-like request
-    const response = await generateText({
-      model: openrouter('deepseek/deepseek-v4-flash'),
-      prompt: 'Reply with exactly the word "pong".',
-      maxTokens: 5,
+    const response = await openai.chat.completions.create({
+      model: CHAT_MODEL,
+      messages: [{ role: 'user', content: 'Reply with exactly the word "pong".' }],
+      max_tokens: 5,
     });
 
-    expect(response.text.toLowerCase()).toContain('pong');
-  }, 30000); // Allow some time for the API call
+    expect(response.choices[0]?.message?.content?.toLowerCase()).toContain('pong');
+  }, 30000);
 });

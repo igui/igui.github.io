@@ -5,39 +5,9 @@
    ============================================================ */
 
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { profile } from "@shared/content";
 
-const PUBLICATIONS = [
-  {
-    title: "Align MacridVAE: Multimodal Alignment for Disentangled Recommendations",
-    venue: "ECIR 2024: Advances in Information Retrieval",
-    year: "2024",
-    abstract:
-      "We introduce a new recommendation model that combines text and image data to suggest items to users. By aligning the visual and textual descriptions in a shared space, our model better understands item features, improving recommendation accuracy and helping us visualize user preferences based on different item aspects. Based on the master thesis at KU Leuven.",
-    tags: ["Recommendation Systems", "Multimodal", "VAE", "KU Leuven"],
-    href: "#",
-    featured: true,
-  },
-  {
-    title: "Learning Résumé Embeddings with Search Data and Transformers",
-    venue: "2023 IEEE International Conference on Systems, Man, and Cybernetics (SMC)",
-    year: "2023",
-    abstract:
-      "We explore how users' clicks and interactions with search results can teach us about the hidden connections between different search results. Using contrastive learning with BERT models, we train a similarity model that helps make better recommendations based on what users are actually interested in.",
-    tags: ["NLP", "BERT", "Contrastive Learning", "Resume Embeddings"],
-    href: "#",
-    featured: false,
-  },
-  {
-    title: "A Photon Tracing Approach to Solve Inverse Rendering Problems",
-    venue: "Conference On Graphics, Patterns And Images (SIBGRAPI), 2018",
-    year: "2018",
-    abstract:
-      "We introduce a new method to help designers achieve their lighting goals more efficiently. By combining photon tracing with an optimization technique, our approach handles various lighting needs without requiring lots of computing power, and it works well even when the space's shape is part of the design. Based on the Computer Engineering thesis at UdelaR.",
-    tags: ["Computer Graphics", "Photon Tracing", "Inverse Rendering", "Optimization"],
-    href: "#",
-    featured: false,
-  },
-];
+const PUBLICATIONS = profile.publications;
 
 export default function PublicationsSection() {
   const { ref, isVisible } = useScrollReveal();

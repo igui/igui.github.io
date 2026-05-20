@@ -6,92 +6,12 @@
 
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useState } from "react";
+import { profile, type ExperienceItem } from "@shared/content";
 
-const EXPERIENCES = [
-  {
-    company: "Synquery",
-    role: "AI Engineer",
-    period: "2024 – Present",
-    logo: "/company-logos/synquery.svg",
-    description:
-      "Worked on AI-powered interview systems, designing and implementing intelligent conversational agents that conduct and evaluate candidate interviews. Developed advanced search capabilities leveraging vector embeddings and semantic retrieval to surface relevant information across large datasets. Built agentic systems that autonomously plan, reason, and execute multi-step tasks, integrating LLMs with external tools and APIs to deliver end-to-end automated workflows.",
-    tags: ["LLMs", "Agentic AI", "Vector Embeddings", "Semantic Search"],
-    highlight: true,
-  },
-  {
-    company: "Hired",
-    role: "Machine Learning Engineer",
-    period: "2021 – 2024",
-    logo: "/company-logos/hired.webp",
-    description:
-      "Developed ranking systems using XGBoost and Python, enhancing the relevance of jobseekers in online searches with a 10% increase in NDCG. Engineered vector embeddings from resumes using Sentence BERT and RoBERTa, creating a recommendation system that showcases similar candidates. Co-authored a paper presented at SMC 2023. Implemented fairness strategies to ensure bias prevention across different racial groups and genders. Maintained a dynamic GPT integrated with Hired.com, handling over 200 real-time conversations.",
-    tags: ["XGBoost", "BERT", "RoBERTa", "TensorFlow", "ML Ops", "Fairness AI"],
-    highlight: false,
-  },
-  {
-    company: "Tophatter",
-    role: "Software Engineer & ML Engineer",
-    period: "2020 – 2021",
-    logo: "/company-logos/tophatter.webp",
-    description:
-      "Led key projects to enhance platform functionality and user experience using React, TypeScript, Ruby on Rails, and AWS. Developed a recommender system to increase user engagement by suggesting relevant items, becoming the primary navigation method on the platform. Employed a shallow Neural Network that outperformed the older rule-based system, particularly in attracting and retaining new users. Successfully integrated via A/B testing.",
-    tags: ["React", "Neural Networks", "Scikit-learn", "XGBoost", "A/B Testing"],
-    highlight: false,
-  },
-  {
-    company: "Hired",
-    role: "Full Stack Software Engineer",
-    period: "2018 – 2020",
-    logo: "/company-logos/hired-old.webp",
-    description:
-      "Decreased onboarding flow attrition by 10% by migrating from HAML to React and Redux. Improved CI/CD build performance by 100%. Integrated an external assessments system used by 25% of candidates. Worked with React, Redux, Ruby on Rails, PostgreSQL, Apache Kafka, AWS, and Heroku.",
-    tags: ["React", "Redux", "Ruby on Rails", "PostgreSQL", "Apache Kafka"],
-    highlight: false,
-  },
-  {
-    company: "Sophilabs",
-    role: "Research & Python Development",
-    period: "2017 – 2018",
-    logo: "/company-logos/sophilabs.webp",
-    description:
-      "Work on Research and Development, building solutions primarily using Django, Python, and Node.js. Focused research on Machine Learning and Elixir. Helped as a mentor training new hires in the New York branch.",
-    tags: ["Python", "Django", "Machine Learning", "Node.js"],
-    highlight: false,
-  },
-  {
-    company: "Netsuite (Oracle)",
-    role: "Team Lead, Software Engineering",
-    period: "2013 – 2017",
-    logo: "/company-logos/netsuite.webp",
-    description:
-      "Contributed to the development of SuiteCommerce InStore, a Point of Sale software leveraging the Netsuite platform, Backbone, Sass, and mobile-first development. Led the team with a focus on quality, robust software, and a clean code base using SCRUM.",
-    tags: ["Team Lead", "Backbone.js", "Sass", "SCRUM", "POS Systems"],
-    highlight: false,
-  },
-  {
-    company: "University of the Republic",
-    role: "Assistant Professor",
-    period: "2009 – 2014",
-    logo: "/company-logos/udelar.webp",
-    description:
-      "Part-time Professor participating in dictating Object Oriented Programming, C++, Java, and Web Development related courses.",
-    tags: ["OOP", "C++", "Java", "Teaching"],
-    highlight: false,
-  },
-  {
-    company: "GiglobalJob",
-    role: "Python Developer",
-    period: "2009 – 2011",
-    logo: "/company-logos/giglobaljob-logo.webp",
-    description:
-      "Primary responsibilities included design and development of various frameworks and standalone programs to help web development and web scraping from initial planning to final production.",
-    tags: ["Python", "Web Scraping", "Frameworks"],
-    highlight: false,
-  },
-];
+const EXPERIENCES = profile.experience;
 
 function ExperienceCard({ exp, index, isVisible }: {
-  exp: typeof EXPERIENCES[0];
+  exp: ExperienceItem;
   index: number;
   isVisible: boolean;
 }) {

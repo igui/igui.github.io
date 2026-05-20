@@ -5,47 +5,9 @@
    ============================================================ */
 
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { profile } from "@shared/content";
 
-const SKILL_GROUPS = [
-  {
-    label: "AI & ML",
-    skills: [
-      "Machine Learning",
-      "Deep Learning",
-      "Artificial Intelligence",
-      "Large Language Models (LLM)",
-      "Natural Language Processing",
-      "Computer Vision",
-      "Chatbots",
-    ],
-  },
-  {
-    label: "Frameworks & Tools",
-    skills: [
-      "Python",
-      "TensorFlow",
-      "PyTorch",
-      "Scikit-learn",
-      "Pandas",
-      "XGBoost",
-      "Sentence BERT",
-      "RoBERTa",
-    ],
-  },
-  {
-    label: "Data & Infrastructure",
-    skills: [
-      "Data Science",
-      "Data Pipelines",
-      "Data Warehousing",
-      "AWS",
-      "Apache Kafka",
-      "SQL",
-      "ML Ops",
-      "CI/CD",
-    ],
-  },
-];
+const SKILL_GROUPS = profile.skills;
 
 export default function SkillsSection() {
   const { ref, isVisible } = useScrollReveal();
@@ -170,7 +132,7 @@ export default function SkillsSection() {
                 className="font-bold text-3xl gradient-text"
                 style={{ fontFamily: "'Space Grotesk', sans-serif" }}
               >
-                4+
+                {profile.yearsInAI}+
               </div>
               <div
                 className="text-sm mt-1"
