@@ -4,11 +4,11 @@ import { wrapOpenAI } from 'langsmith/wrappers';
 import { traceable } from 'langsmith/traceable';
 import { Ratelimit } from '@upstash/ratelimit';
 import { Redis } from '@upstash/redis';
-import { CHAT_MODEL } from './constants';
+import { CHAT_MODEL } from './constants.js';
 import fs from 'node:fs';
 import path from 'node:path';
 import { encoding_for_model } from 'tiktoken';
-import { profile, renderProfileForPrompt } from '../shared/content';
+import { profile, renderProfileForPrompt } from '../shared/content.js';
 
 type ChatMessage = { role: 'system' | 'user' | 'assistant'; content: string };
 
