@@ -7,6 +7,7 @@ import mixpanel from "./lib/mixpanel";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
+import Chatbox from "./components/Chatbox";
 
 function PageViewTracker() {
   const [location] = useLocation();
@@ -32,8 +33,8 @@ function App() {
       <ThemeProvider defaultTheme="light">
         <TooltipProvider>
           <Toaster />
-          <PageViewTracker />
           <Router />
+          <Chatbox />
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>

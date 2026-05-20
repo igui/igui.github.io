@@ -30,8 +30,8 @@ export default defineConfig({
     },
   },
   server: {
-    port: 3000,
-    strictPort: false,
+    port: Number(process.env.PORT) || 5173,
+    strictPort: true,
     host: true,
     allowedHosts: [
       "localhost",
