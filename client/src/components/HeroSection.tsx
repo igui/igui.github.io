@@ -52,7 +52,7 @@ export default function HeroSection() {
 
   return (
     <section
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-20"
+      className="relative min-h-[100svh] flex flex-col items-center justify-center overflow-hidden pt-24 pb-32"
       style={{
         background: "linear-gradient(135deg, oklch(0.98 0.002 240) 0%, oklch(0.96 0.003 200) 100%)",
       }}
