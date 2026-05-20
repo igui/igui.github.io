@@ -7,6 +7,7 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useState } from "react";
 import { profile, type ExperienceItem } from "@shared/content";
+import NeuralCanvas from "./NeuralCanvas";
 
 const EXPERIENCES = profile.experience;
 
@@ -198,10 +199,29 @@ export default function ExperienceSection() {
           </div>
         </div>
 
-        <div className="max-w-3xl">
-          {EXPERIENCES.map((exp, i) => (
-            <ExperienceCard key={`${exp.company}-${exp.period}`} exp={exp} index={i} isVisible={isVisible} />
-          ))}
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] gap-12 items-start">
+          <div className="max-w-3xl">
+            {EXPERIENCES.map((exp, i) => (
+              <ExperienceCard key={`${exp.company}-${exp.period}`} exp={exp} index={i} isVisible={isVisible} />
+            ))}
+          </div>
+
+          {/* Right-side neural canvas — sticky on wide screens */}
+          <div
+            aria-hidden="true"
+            className="hidden lg:block relative rounded-2xl overflow-hidden sticky top-24 self-start"
+            style={{
+              aspectRatio: "3/4",
+              background: "linear-gradient(135deg, oklch(0.15 0.02 240), oklch(0.10 0.02 220))",
+              border: "1px solid oklch(0.92 0.004 240)",
+              boxShadow: "0 8px 24px oklch(0 0 0 / 10%)",
+              opacity: isVisible ? 1 : 0,
+              transform: isVisible ? "scale(1)" : "scale(0.96)",
+              transition: "opacity 0.8s ease 0.4s, transform 0.8s ease 0.4s",
+            }}
+          >
+            <NeuralCanvas />
+          </div>
         </div>
       </div>
     </section>

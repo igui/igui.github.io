@@ -95,15 +95,16 @@ export default function Chatbox() {
       {!isOpen && (
         <Button
           onClick={() => setIsOpen(true)}
-          className="rounded-full w-14 h-14 shadow-lg hover:scale-105 transition-transform duration-200 bg-primary text-primary-foreground"
+          className="rounded-full px-6 h-14 shadow-lg hover:scale-105 transition-transform duration-200 bg-primary text-primary-foreground flex items-center gap-2 font-medium"
         >
-          <MessageCircle className="w-6 h-6" />
+          <MessageCircle className="w-5 h-5" />
+          Chat with this page!
         </Button>
       )}
 
       {isOpen && (
-        <Card className="w-[350px] sm:w-[400px] h-[500px] flex flex-col shadow-2xl animate-in slide-in-from-bottom-5">
-          <CardHeader className="flex flex-row items-center justify-between p-4 border-b bg-muted/50 rounded-t-xl">
+        <Card className="w-[350px] sm:w-[400px] h-[500px] flex flex-col shadow-2xl animate-in slide-in-from-bottom-5 py-0">
+          <CardHeader className="flex flex-row items-center justify-between p-4 px-4 border-b bg-muted/50 rounded-t-xl gap-0 [.border-b]:pb-4">
             <CardTitle className="text-lg font-semibold flex items-center gap-2">
               <MessageCircle className="w-5 h-5" />
               Chat Assistant
@@ -119,7 +120,12 @@ export default function Chatbox() {
           </CardHeader>
 
           <CardContent className="flex-1 overflow-y-auto p-4 space-y-4">
-            {messages.map((message) => (
+            {messages.map((message) => {
+              // Hide empty assistant messages while loading
+              if (isLoading && message.role === 'assistant' && message.content === '') {
+                return null;
+              }
+              return (
               <div
                 key={message.id}
                 className={`flex w-full ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
@@ -128,7 +134,7 @@ export default function Chatbox() {
                   className={`max-w-[85%] rounded-2xl px-4 py-2 ${
                     message.role === 'user'
                       ? 'bg-primary text-primary-foreground rounded-tr-sm'
-                      : 'bg-muted text-foreground rounded-tl-sm prose-sm prose dark:prose-invert prose-p:leading-relaxed prose-pre:p-0'
+                      : 'bg-muted text-foreground rounded-tl-sm prose-sm prose dark:prose-invert prose-p:leading-relaxed prose-pre:p-0 prose-p:m-0'
                   }`}
                 >
                   {message.role === 'user' ? (
@@ -138,7 +144,7 @@ export default function Chatbox() {
                   )}
                 </div>
               </div>
-            ))}
+            )})}
 
             {error && (
               <div className="flex w-full justify-center">
@@ -160,7 +166,7 @@ export default function Chatbox() {
             <div ref={messagesEndRef} />
           </CardContent>
 
-          <CardFooter className="p-3 border-t bg-background rounded-b-xl">
+          <CardFooter className="p-3 px-3 border-t bg-background rounded-b-xl [.border-t]:pt-3">
             <form onSubmit={onFormSubmit} className="flex flex-col w-full gap-2">
               <div className="flex w-full items-center gap-2">
                 <input

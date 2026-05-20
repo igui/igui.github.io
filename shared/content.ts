@@ -16,6 +16,11 @@ export interface SkillGroup {
   skills: string[];
 }
 
+export interface MarqueeSkill {
+  name: string;
+  icon: string;
+}
+
 export interface ExperienceItem {
   company: string;
   role: string;
@@ -58,6 +63,7 @@ export interface Profile {
   socials: SocialLink[];
   about: { headline: string; paragraphs: string[] };
   skills: SkillGroup[];
+  marqueeSkills: MarqueeSkill[];
   experience: ExperienceItem[];
   publications: Publication[];
   projects: Project[];
@@ -138,6 +144,48 @@ export const profile: Profile = {
         'CI/CD',
       ],
     },
+  ],
+  marqueeSkills: [
+    { name: 'Anthropic', icon: '/skills/Anthropic.svg' },
+    { name: 'AWS', icon: '/skills/AWS.svg' },
+    { name: 'Deepseek', icon: '/skills/Deepseek.svg' },
+    { name: 'Django', icon: '/skills/Django.svg' },
+    { name: 'Docker', icon: '/skills/Docker.svg' },
+    { name: 'ElevenLabs', icon: '/skills/ElevenLabs.svg' },
+    { name: 'Expo', icon: '/skills/Expo.png' },
+    { name: 'FAISS', icon: '/skills/FAISS.png' },
+    { name: 'FastAPI', icon: '/skills/FastAPI.svg' },
+    { name: 'Flask', icon: '/skills/Flask.svg' },
+    { name: 'Git', icon: '/skills/Git.svg' },
+    { name: 'Google Cloud', icon: '/skills/Google_Cloud.svg' },
+    { name: 'Gradio', icon: '/skills/Gradio.svg' },
+    { name: 'Hugging Face', icon: '/skills/Hugging_Face.svg' },
+    { name: 'JavaScript', icon: '/skills/JavaScript.svg' },
+    { name: 'Keras', icon: '/skills/Keras.svg' },
+    { name: 'Kubernetes', icon: '/skills/Kubernetes.svg' },
+    { name: 'LangChain', icon: '/skills/LangChain.svg' },
+    { name: 'Make.com', icon: '/skills/Make.com.png' },
+    { name: 'MongoDB', icon: '/skills/MongoDB.svg' },
+    { name: 'n8n', icon: '/skills/n8n.png' },
+    { name: 'NumPy', icon: '/skills/NumPy.svg' },
+    { name: 'OpenAI', icon: '/skills/OpenAI.svg' },
+    { name: 'OpenCV', icon: '/skills/OpenCV.svg' },
+    { name: 'Pandas', icon: '/skills/Pandas.svg' },
+    { name: 'Pinecone', icon: '/skills/Pinecone.png' },
+    { name: 'PostgreSQL', icon: '/skills/PostgreSQL.svg' },
+    { name: 'Python', icon: '/skills/Python.svg' },
+    { name: 'PyTorch', icon: '/skills/PyTorch.svg' },
+    { name: 'React', icon: '/skills/React.svg' },
+    { name: 'Redis', icon: '/skills/Redis.svg' },
+    { name: 'Retell AI', icon: '/skills/Retell_AI.png' },
+    { name: 'Runpod', icon: '/skills/Runpod.png' },
+    { name: 'Scikit-learn', icon: '/skills/Scikit-learn.svg' },
+    { name: 'Streamlit', icon: '/skills/Streamlit.svg' },
+    { name: 'TensorFlow', icon: '/skills/TensorFlow.svg' },
+    { name: 'Twilio', icon: '/skills/Twilio.png' },
+    { name: 'VAPI', icon: '/skills/VAPI.png' },
+    { name: 'Voiceflow', icon: '/skills/Voiceflow.png' },
+    { name: 'Zapier', icon: '/skills/Zapier.png' },
   ],
   experience: [
     {
