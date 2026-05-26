@@ -1,9 +1,11 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback, lazy, Suspense } from 'react';
 import { nanoid } from 'nanoid';
 import ReactMarkdown from 'react-markdown';
-import { MessageCircle, X, Send } from 'lucide-react';
+import { MessageCircle, X, Send, Mic } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+
+const LivekitModal = lazy(() => import('@/components/LivekitModal'));
 
 type ChatMessage = { id: string; role: 'user' | 'assistant'; content: string };
 
@@ -72,6 +74,7 @@ function useChat() {
 
 export default function Chatbox() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isVoiceOpen, setIsVoiceOpen] = useState(false);
   const [input, setInput] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { messages, status, error, sendMessage } = useChat();
@@ -93,14 +96,26 @@ export default function Chatbox() {
   return (
     <div className="fixed bottom-6 right-6 z-50">
       {!isOpen && (
-        <Button
-          onClick={() => setIsOpen(true)}
-          className="rounded-full px-6 h-14 shadow-lg hover:scale-105 transition-transform duration-200 bg-primary text-primary-foreground flex items-center gap-2 font-medium"
-        >
-          <MessageCircle className="w-5 h-5" />
-          Chat with this page!
-        </Button>
+        <div className="flex flex-col items-end gap-2">
+          <Button
+            onClick={() => setIsVoiceOpen(true)}
+            className="rounded-full px-6 h-14 shadow-lg hover:scale-105 transition-transform duration-200 bg-primary text-primary-foreground flex items-center gap-2 font-medium"
+          >
+            <Mic className="w-5 h-5" />
+            Talk with this page
+          </Button>
+          <Button
+            onClick={() => setIsOpen(true)}
+            className="rounded-full px-6 h-14 shadow-lg hover:scale-105 transition-transform duration-200 bg-primary text-primary-foreground flex items-center gap-2 font-medium"
+          >
+            <MessageCircle className="w-5 h-5" />
+            Chat with this page!
+          </Button>
+        </div>
       )}
+      <Suspense fallback={null}>
+        <LivekitModal open={isVoiceOpen} onOpenChange={setIsVoiceOpen} />
+      </Suspense>
 
       {isOpen && (
         <Card className="w-[350px] sm:w-[400px] h-[500px] flex flex-col shadow-2xl animate-in slide-in-from-bottom-5 py-0">
